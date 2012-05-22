@@ -1,0 +1,75 @@
+<?php echo '<?xml version="1.0" encoding="UTF-8"?>'?>
+<flashmedialiveencoder_profile>
+    <preset>
+        <name>Custom</name>
+        <description></description>
+    </preset>
+    <capture>
+        <video>
+        <device></device>
+        <crossbar_input>0</crossbar_input>
+        <frame_rate>12.00</frame_rate>
+        <size>
+            <width>640</width>
+            <height>480</height>
+        </size>
+        </video>
+        <audio>
+        <device></device>
+        <crossbar_input>0</crossbar_input>
+        <sample_rate>44100</sample_rate>
+        <channels>1</channels>
+        <input_volume>75</input_volume>
+        </audio>
+    </capture>
+    <process>
+        <video>
+        <deinterlace></deinterlace>
+        </video>
+    </process>
+    <encode>
+        <video>
+        <format>H.264</format>
+        <datarate>500;</datarate>
+        <outputsize>320x240;</outputsize>
+        <advanced>
+            <profile>Baseline</profile>
+            <level>2.1</level>
+            <keyframe_frequency>4 Seconds</keyframe_frequency>
+        </advanced>
+        <autoadjust>
+            <enable>true</enable>
+            <maxbuffersize>1</maxbuffersize>
+            <dropframes>
+            <enable>true</enable>
+            </dropframes>
+            <degradequality>
+            <enable>false</enable>
+            <minvideobitrate></minvideobitrate>
+            <preservepfq>false</preservepfq>
+            </degradequality>
+        </autoadjust>
+        </video>
+        <audio>
+        <format>MP3</format>
+        <datarate>56</datarate>
+        </audio>
+    </encode>
+    <restartinterval>
+        <days></days>
+        <hours></hours>
+        <minutes></minutes>
+    </restartinterval>
+    <reconnectinterval>
+        <attempts></attempts>
+        <interval></interval>
+    </reconnectinterval>
+    <output>
+        <rtmp>
+        <url><?php echo $url?><?php echo $this->user->id?>?userId=<?php echo $this->user->id?>&amp;uniqId=<?php echo $this->watchers->generate_one_unique_id()?>&amp;pasword=<?php echo $this->user->password?>&amp;performerId=<?php echo $this->user->id?>&amp;userName=<?php echo $this->user->username?>&amp;fmsId=<?php echo $fms_id?></url>
+        <backup_url></backup_url>
+        <stream><?php echo $stream?></stream>
+        </rtmp>
+    </output>
+    <metadata></metadata>
+</flashmedialiveencoder_profile>

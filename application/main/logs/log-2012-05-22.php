@@ -1,0 +1,10 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2012-05-22 17:24:57 --> Severity: Warning  --> mysql_pconnect(): php_network_getaddresses: getaddrinfo failed: Name or service not known /home/thibaut/projects/www.thenaughtyandthenice.com/htdocs/system/database/drivers/mysql/mysql_driver.php 91 - Request - http://www.thenaughtyandthenice.com/
+ERROR - 2012-05-22 17:24:57 --> Severity: Warning  --> mysql_pconnect(): [2002] php_network_getaddresses: getaddrinfo failed: Name or service not known (trying to connect via tcp://my11328.d18632.myhost.ro:3306) /home/thibaut/projects/www.thenaughtyandthenice.com/htdocs/system/database/drivers/mysql/mysql_driver.php 91 - Request - http://www.thenaughtyandthenice.com/
+ERROR - 2012-05-22 17:24:57 --> Severity: Warning  --> mysql_pconnect(): php_network_getaddresses: getaddrinfo failed: Name or service not known /home/thibaut/projects/www.thenaughtyandthenice.com/htdocs/system/database/drivers/mysql/mysql_driver.php 91 - Request - http://www.thenaughtyandthenice.com/
+ERROR - 2012-05-22 17:24:57 --> Unable to connect to the database
+ERROR - 2012-05-22 17:25:02 --> Severity: Warning  --> mysql_pconnect(): php_network_getaddresses: getaddrinfo failed: Name or service not known /home/thibaut/projects/www.thenaughtyandthenice.com/htdocs/system/database/drivers/mysql/mysql_driver.php 91 - Request - http://www.thenaughtyandthenice.com/
+ERROR - 2012-05-22 17:25:02 --> Severity: Warning  --> mysql_pconnect(): [2002] php_network_getaddresses: getaddrinfo failed: Name or service not known (trying to connect via tcp://my11328.d18632.myhost.ro:3306) /home/thibaut/projects/www.thenaughtyandthenice.com/htdocs/system/database/drivers/mysql/mysql_driver.php 91 - Request - http://www.thenaughtyandthenice.com/
+ERROR - 2012-05-22 17:25:02 --> Severity: Warning  --> mysql_pconnect(): php_network_getaddresses: getaddrinfo failed: Name or service not known /home/thibaut/projects/www.thenaughtyandthenice.com/htdocs/system/database/drivers/mysql/mysql_driver.php 91 - Request - http://www.thenaughtyandthenice.com/
+ERROR - 2012-05-22 17:25:02 --> Unable to connect to the database

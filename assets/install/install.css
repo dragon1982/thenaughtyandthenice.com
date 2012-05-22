@@ -1,0 +1,171 @@
+root {
+    display: block;
+}
+
+a {
+	color: #445599;
+}
+
+* {
+	margin:0px;
+	padding:0px;
+	/*border:none;*/
+	font-family: "Arial";
+	font-size: 12px;
+}
+
+h1 {
+	font-family: "Calibri";
+	font-size: 34px;
+	padding: 5px;
+	width: 96%;
+	margin-top: -10px;
+	margin-bottom: 10px;
+	color: #6DD4F7;
+	font-weight: normal;
+}
+
+ul {
+	margin-left: 40px;
+}
+
+ul a {
+	text-decoration: none;
+}
+
+body, html {
+	margin:0px;
+	padding:0px;
+	border:none;
+	background-color:#B8B8B8;
+}
+
+
+.warper{
+	width:800px;
+	margin:0px auto;
+	margin-top:50px;
+}
+
+.titleSteps {
+	font-family: "Calibri";
+	font-size: 48px;
+	margin-bottom: 10px;
+}
+
+.titleSteps span {
+	font-family: "Calibri";
+	font-size: 48px;
+	color: #FE0000;
+}
+
+.widefatFix {
+	width: 800px;
+}
+
+span.error{
+	display:block;
+	color:red;
+	font-size:13px;
+    font-weight: bold;
+    margin-left: 45px;	
+}
+
+.pageTopBg{
+	/*background-image: url('./../install/images/topBgInstall.jpg');*/
+	background-image: url('./../install/images/topBgInstallx800.png');
+	height:12px;
+}
+
+.pageBg{
+	background-image: url('./../install/images/installBgx800.png');
+	background-repeat: repeat-y;
+    padding: 10px 0 10px 10px;
+    width: 790px;
+	min-height: 300px;
+}
+
+.pageBottomBg{
+	/*background-image: url('./../install/images/bottomBgInstall.jpg');*/
+	background-image: url('./../install/images/bottomBgInstallx800.png');
+	width:100%;
+	height:12px;
+}
+
+.blackBtn {
+	background-image: url('./../install/images/blackBtn.jpg');
+	height: 36px;
+	width: 115px;
+	color:#ffffff;
+	border:none;
+	cursor: pointer;
+	margin: auto;
+}
+
+.btnDiv{
+	width: 115px;
+	margin: auto;
+	font-weight: bold;
+	font-size: 20px;
+	color: #FF0000;
+}
+
+/*************************************************************************************************/
+/***   FIELD   INPUTS   **************************************************************************/
+
+.fieldName {
+	font-family: Calibri, Arial;
+	color: #6F6F6F;
+	font-size: 22px;
+	padding-right: 10px;
+	white-space: nowrap;
+}
+
+.field {
+	background-image: url('./../install/images/inputBg.png');
+	background-repeat: repeat-x;
+	border: solid #BFBFBF 1px;
+	width: 300px;
+	height: 36px;
+	font-family: Calibri, Arial;
+	font-size: 22px;
+	font-weight: normal;
+}
+
+.fieldDesc {
+	font-family: sans-serif;
+	color: #6F6F6F;
+	font-size: 11px;
+	padding-right: 10px;
+}
+
+/*************************************************************************************************/
+/*************************************************************************************************/
+
+.errors {
+	background: #C66D5E;
+	border:1px solid #AE1414;
+	color:#FFFFFF;
+	font-family:Arial;
+	font-size:12px;
+	font-weight:bold;
+	margin:5px 8px 13px 10px;
+	padding:1em;
+	text-align:left;
+	width: 91%;
+	margin-top: -30px;
+}
+
+.succes {
+	background: #90CA77;
+	border:1px solid #6EBF04;
+	color:#FFFFFF;
+	font-family:Arial;
+	font-size:12px;
+	font-weight:bold;
+	margin:5px 8px 13px 10px;
+	padding:1em;
+	text-align:left;
+	width: 91%;
+	margin-top: -30px;
+}

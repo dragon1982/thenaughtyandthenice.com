@@ -1,0 +1,1 @@
+<th id="<?php echo $key?>" class="sort <?php echo (isset($order_by[$key]) ? ($order_by[$key] == 'desc' ? 'sorting_desc' : 'sorting_asc' ) : 'sorting') ?>" order="<?php echo (isset($order_by[$key]) ? ($order_by[$key] == 'desc' ? 'asc' : 'desc' ) : 'asc') ?>" <?php echo isset($style) ? 'style=" '. $style . '"' : NULL?>><?php echo $name?></th>
