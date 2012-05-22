@@ -1,9 +1,3 @@
 .settings/
 .buildpath
 .project
-
-application/admin/config/config.php
-application/affiliates/config/config.php
-application/main/config/config.php
-application/performers/config/config.php
-application/studios/config/config.php
