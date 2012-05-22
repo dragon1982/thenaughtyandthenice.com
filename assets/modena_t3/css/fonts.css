@@ -1,0 +1,53 @@
+/* 
+    Document   : fonts
+    Created on : Dec 2, 2011, 12:15:33 PM
+    Author     : CagunA
+    Description:
+        Load custom fonts 
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/*	@font-face
+{
+    font-family: VijayaRegular;
+    src: url('../fonts/VijayaRegular.ttf');
+}*/
+
+
+@font-face {
+	font-family: 'eutemia';
+	src: url('../fonts/Eutemia.eot'); /* IE9 Compat Modes */
+	src: url('../fonts/Eutemia.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	     url('../fonts/Eutemia.woff') format('woff'), /* Modern Browsers */
+	     url('../fonts/Eutemia.ttf')  format('truetype'), /* Safari, Android, iOS */
+	     url('../fonts/Eutemia.svg#svgEutemia') format('svg'); /* Legacy iOS */
+	}
+
+
+@font-face {
+	font-family: 'helr46w'; /*helr46w*/
+	src: url('../fonts/helr46w.eot');  /*IE9 Compat Modes */
+	src: url('../fonts/helr46w.eot?#iefix') format('embedded-opentype'),  /*IE6-IE8 */
+	     url('../fonts/helr46w.woff') format('woff'), /* Modern Browsers */
+	     url('../fonts/helr46w.ttf')  format('truetype'), /* Safari, Android, iOS */
+	     url('../fonts/helr46w.svg#svgHelvetica') format('svg');  /*Legacy iOS */
+	}
+	
+	
+
+@font-face {
+    font-family: 'VijayaRegular';
+    src: url('../fonts/vijaya-webfont.eot');
+    src: url('../fonts/vijaya-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/vijaya-webfont.woff') format('woff'),
+         url('../fonts/vijaya-webfont.ttf') format('truetype'),
+         url('../fonts/vijaya-webfont.svg#VijayaRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+

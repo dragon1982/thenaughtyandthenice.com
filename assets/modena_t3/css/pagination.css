@@ -1,0 +1,56 @@
+#pagination{
+	width:auto;
+	float:right;
+}
+
+#pagination .paginationPage,
+#pagination .paginationDirection,
+#pagination a.previous_link,
+#pagination a.page_link,
+#pagination a.next_link{
+	float:left;
+	
+}
+#pagination .paginationPage a,
+#pagination .paginationDirection a,
+#pagination .paginationPage.selected,
+#pagination a.previous_link,
+#pagination a.page_link,
+#pagination a.next_link{
+	border-radius: 5px;
+	padding:5px 10px;
+	margin-left:5px;
+	background: #0f0f11; /* Old browsers */
+	background: -moz-linear-gradient(top, #0f0f11 0%, #212123 99%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0f0f11), color-stop(99%,#212123)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #0f0f11 0%,#212123 99%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #0f0f11 0%,#212123 99%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, #0f0f11 0%,#212123 99%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f0f11', endColorstr='#212123',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, #0f0f11 0%,#212123 99%); /* W3C */
+	font-style: italic;
+	font-weight: bold;
+	display:block;
+}
+#pagination .paginationPage a:hover,
+#pagination .paginationDirection a:hover,
+#pagination a.previous_link:hover,
+#pagination a.page_link:hover,
+#pagination a.next_link:hover{
+	background: #222227; /* Old browsers */
+	background: -moz-linear-gradient(top, #222227 0%, #3f3f42 99%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#222227), color-stop(99%,#3f3f42)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #222227 0%,#3f3f42 99%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #222227 0%,#3f3f42 99%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, #222227 0%,#3f3f42 99%); /* IE10+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222227', endColorstr='#3f3f42',GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, #222227 0%,#3f3f42 99%); /* W3C */
+	color:#bd2020;
+}
+
+
+#pagination .paginationPage.selected, 
+#pagination .active_page{
+	color:#bd2020;
+	
+}
