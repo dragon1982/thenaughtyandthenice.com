@@ -3,7 +3,7 @@
 # Server version:               5.5.18-1~dotdeb.1
 # Server OS:                    debian-linux-gnu
 # HeidiSQL version:             6.0.0.3603
-# Date/time:                    2012-05-23 16:29:55
+# Date/time:                    2012-05-25 18:40:47
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -711,8 +711,8 @@ CREATE TABLE IF NOT EXISTS `performers` (
 # Dumping data for table east_wolf_com_thenaughtyandthenice.performers: ~15 rows (approximately)
 /*!40000 ALTER TABLE `performers` DISABLE KEYS */;
 INSERT INTO `performers` (`id`, `username`, `password`, `hash`, `email`, `nickname`, `first_name`, `last_name`, `status`, `avatar`, `register_date`, `register_ip`, `country_code`, `is_online`, `is_online_hd`, `is_online_type`, `is_in_private`, `enable_peek_mode`, `max_nude_watchers`, `is_imported`, `is_imported_id`, `is_imported_category_id`, `contract_status`, `photo_id_status`, `address`, `state`, `city`, `zip`, `phone`, `country`, `true_private_chips_price`, `private_chips_price`, `nude_chips_price`, `peek_chips_price`, `paid_photo_gallery_price`, `website_percentage`, `fms_id`, `studio_id`, `register_step`, `payment`, `account`, `release`, `credits`) VALUES
-	(1, 'sample1', 'fdcbd4746c0a34bc630298628ae47fccadb00cdec9d093239a595e76131954bb', '97830f6b2faac2912dc1b02b77f2ad54167dade7', 'sample1@sample1.com', 'Sample1', 'sample1', 'sample1', 'approved', 'c2630d34abca3eed4ee9ed7a9a02df93.jpg', 1322686951, 1348550660, 'RO', 0, 0, NULL, 0, 0, 5, 0, NULL, NULL, 'approved', 'approved', 'sample1', 'state', 'sample1', 'sample1', '23452345235', 'AF', 100.00, 100.00, 100.00, 100.00, 100.00, 50.00, NULL, NULL, 6, 1, '', 100.00, 0.00),
-	(2, 'sample2', '7c3c65c0448104e43283fb8992fcf5060f2f9d8372b04134215f2f11c39f271a', '132441114da06d3b2266d98270c131fe643b388f', 'sample2@sample2.com', 'Sample2', 'sample2', 'sample2', 'approved', '12493640474747cd13f69ce9f0bcd0cb.jpg', 1322687028, 1348550660, 'RO', 0, 0, NULL, 0, 0, 5, 0, NULL, NULL, 'approved', 'approved', 'sample2', 'state', 'sample2', 'sample2', '23452345235', 'AF', 100.00, 100.00, 100.00, 100.00, 100.00, 50.00, NULL, NULL, 6, 1, '', 100.00, 0.00),
+	(1, 'sample1', 'fdcbd4746c0a34bc630298628ae47fccadb00cdec9d093239a595e76131954bb', '97830f6b2faac2912dc1b02b77f2ad54167dade7', 'sample1@sample1.com', 'Sample1', 'sample1', 'sample1', 'approved', 'c2630d34abca3eed4ee9ed7a9a02df93.jpg', 1322686951, 1348550660, 'RO', 0, 0, 'free', 0, 0, 5, 0, NULL, NULL, 'approved', 'approved', 'sample1', 'state', 'sample1', 'sample1', '23452345235', 'AF', 100.00, 100.00, 100.00, 100.00, 100.00, 50.00, 1, NULL, 6, 1, '', 100.00, 0.00),
+	(2, 'sample2', '2c69305cba42174f42c258f131c2941b9e1b235a80b80d761728452363fc0a9a', '132441114da06d3b2266d98270c131fe643b388f', 'sample2@sample2.com', 'Sample2', 'sample2', 'sample2', 'approved', '12493640474747cd13f69ce9f0bcd0cb.jpg', 1322687028, 1348550660, 'RO', 0, 0, 'free', 0, 0, 5, 0, NULL, NULL, 'approved', 'approved', 'sample2', 'state', 'sample2', 'sample2', '23452345235', 'AF', 100.00, 100.00, 100.00, 100.00, 100.00, 50.00, 1, NULL, 6, 1, '', 100.00, 0.00),
 	(3, 'sample3', '77b735f7857c43ce64ffd0744e62281db6c8771f0dfd593a1dfb96b382eb63bf', '46fe6c7fa63fbeda0978e3607ef932ef6eecb7c2', 'sample3@sample3.com', 'Sample3', 'sample3', 'sample3', 'approved', 'e1b727cdac41a5530d0d53fab67b25d1.jpg', 1322687101, 1348550660, 'RO', 0, 0, NULL, 0, 0, 5, 0, NULL, NULL, 'approved', 'approved', 'sample3', 'state', 'sample3', 'sample3', '234234234234', 'AF', 100.00, 100.00, 100.00, 100.00, 100.00, 50.00, NULL, NULL, 6, 1, '', 100.00, 0.00),
 	(4, 'sample4', '5bd093141c470e6a0c461c1e5c95b7544719ce5770eb19aa495e53c70e6c8d79', '2c15b0a7256365a15d1ed462bbffac0ed197fce0', 'sample4@sample4.com', 'Sample4', 'sample4', 'sample4', 'approved', '156e28b61ed397d9ad7aed47cc82645b.jpg', 1322687173, 1348550660, 'RO', 0, 0, NULL, 0, 0, 5, 0, NULL, NULL, 'approved', 'approved', 'sample4', 'state', 'sample4', 'sample4', '23452352345', 'AF', 100.00, 100.00, 100.00, 100.00, 100.00, 50.00, NULL, NULL, 6, 1, '', 100.00, 0.00),
 	(5, 'sample5', '38a615c3edd59e03ad6db2e47363e206ef3baedea237879f7325c7cfa0dd5599', 'b0a97cef1edeada05be91dd3a3f438786b722881', 'sample5@sample5.com', 'Sample5', 'sample5', 'sample5', 'approved', 'd6532725580b78b8b858209a2453d7f7.jpg', 1322687265, 1348550660, 'RO', 0, 0, NULL, 0, 0, 5, 0, NULL, NULL, 'approved', 'approved', 'sample5', 'state', 'sample5', 'sample5', '23452345235', 'AF', 100.00, 100.00, 100.00, 100.00, 100.00, 50.00, NULL, NULL, 6, 1, '', 100.00, 0.00),
@@ -986,6 +986,8 @@ CREATE TABLE IF NOT EXISTS `performers_ping` (
 
 # Dumping data for table east_wolf_com_thenaughtyandthenice.performers_ping: 0 rows
 /*!40000 ALTER TABLE `performers_ping` DISABLE KEYS */;
+INSERT INTO `performers_ping` (`performer_id`, `last_ping`) VALUES
+	(1, 1337954415);
 /*!40000 ALTER TABLE `performers_ping` ENABLE KEYS */;
 
 
@@ -1169,7 +1171,7 @@ INSERT INTO `settings` (`id`, `name`, `value`, `type`, `title`, `description`) V
 	(44, 'separator_Affiliate settings', 'null', 'separator', 'Affiliate settings', NULL),
 	(45, 'settings_transaction_percentage', '30', 'integer', 'Transaction percentage', NULL),
 	(46, 'separator_Fms settings', 'null', 'separator', 'FMS settings', NULL),
-	(47, 'fms_secret_hash', 'MY_SECRET_HASH', 'string', 'FMS secret hash', NULL),
+	(47, 'fms_secret_hash', 'vHDdpNyAz9xCnnzANAY8', 'string', 'FMS secret hash', NULL),
 	(48, 'website_license', 'trial', 'string', 'Application License Key', NULL);
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
@@ -1255,7 +1257,7 @@ CREATE TABLE IF NOT EXISTS `system_logs` (
   `key` int(11) DEFAULT NULL,
   `action_comment` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 # Dumping data for table east_wolf_com_thenaughtyandthenice.system_logs: ~5 rows (approximately)
 /*!40000 ALTER TABLE `system_logs` DISABLE KEYS */;
@@ -1264,7 +1266,38 @@ INSERT INTO `system_logs` (`id`, `date`, `actor`, `actor_id`, `action_on`, `acti
 	(2, 1337708124, 'admin', 1, 'performer', 1, 'edit_account', 1588620210, NULL, 'Admin edited performer account information.'),
 	(3, 1337708194, 'performer', 1, 'performer', 1, 'login', 1588620210, NULL, 'Performer has logged in.'),
 	(4, 1337704439, 'performer', 1, 'performer', 1, 'login', 2147483647, NULL, 'Performer has logged in.'),
-	(5, 1337704461, 'performer', 1, 'performer', 1, 'logout', 2147483647, NULL, 'Performer has logged out.');
+	(5, 1337704461, 'performer', 1, 'performer', 1, 'logout', 2147483647, NULL, 'Performer has logged out.'),
+	(6, 1337954087, 'admin', 1, 'admin', 1, 'login', 2147483647, NULL, 'Admin has logged in.'),
+	(7, 1337954385, 'performer', 1, 'performer', 1, 'login', 2147483647, NULL, 'Performer has logged in.'),
+	(8, 1337954456, 'performer', 1, 'performer', 1, 'logout', 2147483647, NULL, 'Performer has logged out.'),
+	(9, 1337954468, 'admin', 1, 'admin', 1, 'login', 2147483647, NULL, 'Admin has logged in.'),
+	(10, 1337954485, 'admin', 1, 'performer', 2, 'edit_account', 2147483647, NULL, 'Admin edited performer account information.'),
+	(11, 1337954506, 'performer', 2, 'performer', 2, 'login', 2147483647, NULL, 'Performer has logged in.'),
+	(12, 1337954538, 'performer', 2, 'performer', 2, 'logout', 2147483647, NULL, 'Performer has logged out.'),
+	(13, 1337954543, 'performer', 1, 'performer', 1, 'login', 2147483647, NULL, 'Performer has logged in.'),
+	(14, 1337954611, 'performer', 1, 'performer', 1, 'logout', 2147483647, NULL, 'Performer has logged out.'),
+	(15, 1337954617, 'performer', 1, 'performer', 1, 'login', 2147483647, NULL, 'Performer has logged in.'),
+	(16, 1337954680, 'performer', 1, 'performer', 1, 'logout', 2147483647, NULL, 'Performer has logged out.'),
+	(17, 1337954685, 'performer', 1, 'performer', 1, 'login', 2147483647, NULL, 'Performer has logged in.'),
+	(18, 1337955008, 'performer', 1, 'performer', 1, 'login', 2147483647, NULL, 'Performer has logged in.'),
+	(19, 1337955096, 'performer', 1, 'performer', 1, 'logout', 2147483647, NULL, 'Performer has logged out.'),
+	(20, 1337955106, 'performer', 1, 'performer', 1, 'login', 2147483647, NULL, 'Performer has logged in.'),
+	(21, 1337955144, 'performer', 1, 'performer', 1, 'logout', 2147483647, NULL, 'Performer has logged out.'),
+	(22, 1337955152, 'performer', 2, 'performer', 2, 'login', 2147483647, NULL, 'Performer has logged in.'),
+	(23, 1337955194, 'admin', 1, 'admin', 1, 'login', 2147483647, NULL, 'Admin has logged in.'),
+	(24, 1337955210, 'admin', 1, 'performer', 2, 'edit_account', 2147483647, NULL, 'Admin edited performer account information.'),
+	(25, 1337955422, 'performer', 2, 'performer', 2, 'login', 2147483647, NULL, 'Performer has logged in.'),
+	(26, 1337955459, 'performer', 2, 'performer', 2, 'logout', 2147483647, NULL, 'Performer has logged out.'),
+	(27, 1337955526, 'user', -1, 'user', -1, 'start_chat', 2147483647, NULL, 'User has entered chat with 0 chips , performer 0.00 .'),
+	(28, 1337955758, 'admin', 1, 'admin', 1, 'login', 2147483647, NULL, 'Admin has logged in.'),
+	(29, 1337955870, 'performer', 1, 'performer', 1, 'login', 2147483647, NULL, 'Performer has logged in.'),
+	(30, 1337955883, 'performer', 1, 'performer', 1, 'logout', 2147483647, NULL, 'Performer has logged out.'),
+	(31, 1337955897, 'performer', 1, 'performer', 1, 'login', 2147483647, NULL, 'Performer has logged in.'),
+	(32, 1337955933, 'performer', 1, 'performer', 1, 'logout', 2147483647, NULL, 'Performer has logged out.'),
+	(33, 1337955969, 'performer', 1, 'performer', 1, 'login', 2147483647, NULL, 'Performer has logged in.'),
+	(34, 1337956004, 'performer', 1, 'performer', 1, 'logout', 2147483647, NULL, 'Performer has logged out.'),
+	(35, 1337956051, 'performer', 1, 'performer', 1, 'login', 2147483647, NULL, 'Performer has logged in.'),
+	(36, 1337956065, 'performer', 1, 'performer', 1, 'logout', 2147483647, NULL, 'Performer has logged out.');
 /*!40000 ALTER TABLE `system_logs` ENABLE KEYS */;
 
 
