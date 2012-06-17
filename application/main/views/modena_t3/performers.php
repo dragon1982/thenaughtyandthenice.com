@@ -2,7 +2,7 @@
 	<div class="content">
 		<div class="title">
 			<?php $this->load->view('includes/_search')?>
-			<?php $_live_perf_title = lang('Live Performers')?>
+			<?php $_live_perf_title = lang('Live Performers') ?>
 			<span class="eutemia "><?php echo substr($_live_perf_title, 0, 1) ?></span><span class="helvetica "><?php echo substr($_live_perf_title, 1) ?></span>		
 		</div>
 		<div class="clear"></div>		

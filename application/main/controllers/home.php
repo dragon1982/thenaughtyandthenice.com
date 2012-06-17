@@ -74,6 +74,19 @@ class Home_controller extends MY_Controller {
 		$data['description'] 			= SETTINGS_SITE_DESCRIPTION;
 		$data['keywords'] 				= SETTINGS_SITE_KEYWORDS;
 		$data['pageTitle'] 				= lang('Online Models').' - '.SETTINGS_SITE_TITLE;
+
+		if($this->user->id > 0) {
+			$data['friends'] = true;
+			$data['accepted_friends'] = $this->users->get_friends($this->user->id, 'accepted');
+			$data['pending_friends'] = array();
+			$data['friend_requests'] = array();
+			$pending_friends = $this->users->get_friends($this->user->id, 'pending');
+			foreach ($pending_friends as $friend){
+				if($friend->owner) $data['friend_requests'][] = $friend;
+				else $data['pending_friends'][] = $friend;
+			}
+			$data['banned_friends'] = $this->users->get_friends($this->user->id, 'ban');
+		}
 		
 		$this->load->model('fms');
 		$this->fms_list = create_array_by_property($this->fms->get_multiple(),'fms_id');
