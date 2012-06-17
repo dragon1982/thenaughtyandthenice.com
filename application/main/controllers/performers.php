@@ -49,7 +49,7 @@ class Performers_controller extends MY_Controller{
 	 * @return unknown_type
 	 */
 	function index(){
-		
+
 		$this->load->library('pagination');	
 				
 		$filters = $this->input->get('filters');

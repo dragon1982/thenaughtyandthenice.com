@@ -17,8 +17,9 @@
  */
 Class Users extends CI_Model{
 	
-	var $users 			= 'users';
-	var $users_detail 	= 'users_detail';
+	var $users 			      = 'users';
+	var $users_detail 	      = 'users_detail';
+	var $relations      = 'relations';
 	var $performers_favorites = 'performers_favorites';
 	#############################################################################################
 	##################################### DATABASE ##############################################
@@ -343,5 +344,64 @@ Class Users extends CI_Model{
 			return FALSE;
 		}
 		return TRUE;
+	}
+	
+	// -----------------------------------------------------------------------------------------
+	
+	function get_friends($id, $status = null){
+		if($status) $status = " AND relations.status = '".$status."'";
+		$results = $this->db->query("
+			SELECT 
+				relations.id as rel_id, 
+				relations.to_id as id,
+				relations.to_type as `type`,
+				0 as owner
+			FROM relations
+			WHERE relations.from_type = 'user' AND relations.from_id = $id $status
+			UNION
+			SELECT 
+				relations.id as rel_id, 
+				relations.from_id as id,
+				relations.from_type as `type`,
+				1 as owner
+			FROM relations
+			WHERE relations.to_type = 'user' AND relations.to_id = $id $status
+			ORDER BY rel_id
+		")->result();
+		
+		$friends = array();
+		foreach ($results as $result){
+			if(!$friend = $this->db->query("
+				SELECT username
+				FROM {$result->type}s
+				WHERE id = {$result->id} AND status = 'approved'
+			")->result()) continue;
+			if(property_exists($friend[0],'username')){
+				$friends[] = (object)array(
+					'rel_id' => $result->rel_id,
+					'id' => $result->id,
+					'username' => $friend[0]->username,
+					'type' => $result->type,
+					'owner' => $result->owner,
+				);
+			}
+		}
+		return $friends;
+	}
+	
+	// -----------------------------------------------------------------------------------------
+	
+	function delete_relation($rel_id){
+		return $this->db->query('
+			DELETE FROM '.$this->relations.' WHERE id = '.$rel_id
+		);
+	}
+	
+	// -----------------------------------------------------------------------------------------
+	
+	function update_relation($rel_id, $status = 'accepted'){
+		return $this->db->query('
+			UPDATE '.$this->relations.' SET status="'.$status.'" WHERE id = '.$rel_id
+		);
 	}
 }
