@@ -30,14 +30,8 @@
 				?>
 			</div>
 			<div id="page">
-			
-				<?php 
-					if($this->user->id > 0 && isset($friends)) {
-						if($friends) $this->load->view('includes/friends'); 
-					}
-				?>
-				
-				<?php
+
+				<?php	
 					if(isset($_sidebar) && $_sidebar){
 						$this->load->view('includes/_sidebar');
 					}elseif(isset($page)){						

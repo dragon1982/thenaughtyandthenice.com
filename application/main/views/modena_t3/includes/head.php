@@ -1,20 +1,79 @@
-<?php
+<?php 
 $_lang = $this->config->item('lang_selected');
 if (empty($_lang))
 {
     $_lang = "en";
 }
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
 
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+************************************************************************************************
+This portal is powered by ModenaCam - www.modenacam.com
+ModenaCam is a turnkey solution for adult/non-adult webchat portals
+Custom programming, integration and designing available at custom prices
+************************************************************************************************
 
+Don't steal, it's bad luck!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="<?php echo $_lang;?>">
-	<head>
+	<head>			
 <title><?php echo ($pageTitle)? $pageTitle : SETTINGS_SITE_TITLE ?></title>
 
 <meta name="description" content="<?php echo ($description)? $description : SETTINGS_SITE_DESCRIPTION ?>" />
@@ -34,7 +93,10 @@ if (empty($_lang))
 	<!-- FAVICON -->
 		<link rel="shortcut icon" href="<?=assets_url()?>favicon.ico" type="image/x-icon"/>
 		<link rel="icon" href="<?=assets_url()?>favicon.ico" type="image/x-icon"/>
-
+	
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>/assets/<?php echo SETTINGS_DEFAULT_THEME?>/css/fonts.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo assets_url()?>css/style.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo assets_url()?>css/pagination.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo assets_url()?>addons/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
 <script type="text/javascript">
 	var base_url = '<?php echo base_url()?>';
@@ -60,38 +122,38 @@ jQuery(function($){
 	$('.confirm, .pay_gallery').click(function() {
 		var link = $(this).attr('href');
 		$.ajax({
-			url: link+'/?confim=true',
-			complete: function(html) {
+			url: link+'/?confim=true', 					
+			complete: function(html) { 
 				$.blockUI({ message: html.responseText});
 			}
-		});
+		});	
 		return false;
 	});
-
+ 
 	$('.modal').fancybox({
 		'overlayShow': true,
 		'scrolling': 'no',
 		'type': 'iframe',
-		'titleShow'			: false,
+		'titleShow'			: false,		
 		'overlayColor'		: '#000',
 		'overlayOpacity'	: 0.6,
 		'showCloseButton'	: true
 	});
-
+	
 	$('.forgot_password').fancybox({
 		'showCloseButton'	: true,
 		'padding'			: 0,
 		'scrolling'			: 'no',
-		'titleShow'			: false,
+		'titleShow'			: false,		
 		'type'				: 'iframe',
 		'overlayColor'		: '#000',
 		'overlayOpacity'	: 0.6,
 		'width'				: 348,
 		'height'			: 238
 	});
-
-
-
+	
+	
+	
 	$(".signup").fancybox({
 		'showCloseButton'	: false,
 		'padding'			: 0,
@@ -102,12 +164,10 @@ jQuery(function($){
 		'href'				: '<?php echo site_url('register')?>',
 		'width'				: 630,
 		'height'			: 458
-	});
+	});	
 });
 </script>
 <script src="<?php echo assets_url()?>js/jquery.ui.core.js"></script>
 <script src="<?php echo assets_url()?>js/jquery.ui.widget.js"></script>
 <link rel="stylesheet" href="<?php echo assets_url()?>css/blitzer/jquery-ui-1.8.14.custom.css">
-
-	<link rel="stylesheet" href="<?php echo assets_url()?>css/main.css">
 </head>

@@ -1,3 +1,6 @@
+<div class="logo">
+	<a href="<?php echo base_url()?>"><img src="<?php echo assets_url()?>images/logo.png"/></a>
+</div>
 <div class="top_login">
 	<?php echo form_open('login')?>
 	<span class="eutemia top_text"><?php echo lang('Members Login')?></span>
@@ -9,6 +12,6 @@
 	<div style="margin-left:10px;">
 		<span style="display:inline-block; width:123px; text-align: center;"><a href="<?php echo site_url('register')?>" class="red italic bold signup"><?php echo lang('Sign Up')?></a></span>
 		<span style="display:inline-block; width:123px; text-align: center;"><a href="<?php echo site_url('forgot-password')?>" class="red italic bold forgot_password"><?php echo lang('Forgot Password?')?></a></span>
-	</div>
+	</div>		
 	<?php echo form_close()?>
 </div>

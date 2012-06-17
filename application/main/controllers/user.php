@@ -762,40 +762,4 @@ Class User_controller extends MY_Users{
 		$this->session->unset_userdata('id');
 		redirect();
 	}
-	
-	// ------------------------------------------------------------------------	
-	function delete_relation() {
-		$rel_id = $this->input->post('rel_id', null);
-		$rel_ids = array();
-		$friends = $this->users->get_friends($this->user->id);
-		foreach($friends as $friend) $rel_ids[] = $friend->rel_id;
-		if(in_array($rel_id, $rel_ids)) $this->users->delete_relation($rel_id);
-		redirect();
-	}
-	
-	// ------------------------------------------------------------------------	
-	function accept_relation() {
-		$rel_id = $this->input->post('rel_id', null);
-		$rel_ids = array();
-		$friends = $this->users->get_friends($this->user->id,'pending');
-		foreach($friends as $friend) {
-			if($friend->owner) $rel_ids[] = $friend->rel_id;
-		}
-		if(in_array($rel_id, $rel_ids)) $this->users->update_relation($rel_id);
-		redirect();
-	}
-	
-	// ------------------------------------------------------------------------	
-	function ban_relation() {
-		$rel_id = $this->input->post('rel_id', null);
-		$rel_ids = array();
-		$friends = $this->users->get_friends($this->user->id,'accepted');
-		foreach($friends as $friend) {
-			if($friend->rel_id == $rel_id){
-				$this->users->update_relation($rel_id, $friend->owner?'banned':'ban');
-				break;
-			}
-		}
-		redirect();
-	}
 }
