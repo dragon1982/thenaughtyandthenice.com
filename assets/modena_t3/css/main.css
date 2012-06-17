@@ -1,0 +1,159 @@
+/*	--------------------------------------------------
+	:: Global Reset & Standards
+	-------------------------------------------------- */
+	
+	/* 
+		Eric Meyer's CSS Reset
+		http://meyerweb.com/eric/tools/css/reset/ 
+		v2.0 | 20110126
+   		License: none (public domain)
+	*/
+	
+	html, body, div, span, applet, object, iframe,
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+	a, abbr, acronym, address, big, cite, code,
+	del, dfn, em, img, ins, kbd, q, s, samp,
+	small, strike, strong, sub, sup, tt, var,
+	b, u, i, center,
+	dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td,
+	article, aside, canvas, details, embed, 
+	figure, figcaption, footer, header, hgroup, 
+	menu, nav, output, ruby, section, summary,
+	time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font: inherit;
+		vertical-align: baseline;
+	}
+	html {
+		font-size: 62.5%; 
+	}
+	/* HTML5 display-role reset for older browsers */
+	article, aside, details, figcaption, figure, 
+	footer, header, hgroup, menu, nav, section {
+		display: block;
+	}
+	body {
+		line-height: 1;
+	}
+	ol, ul {
+		list-style: none;
+	}
+	blockquote, q {
+		quotes: none;
+	}
+	blockquote:before, blockquote:after,
+	q:before, q:after {
+		content: '';
+		content: none;
+	}
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+	
+	
+	
+	body {position: relative; -webkit-font-smoothing: antialiased;  }
+	
+
+
+/*	--------------------------------------------------
+	:: Links
+	-------------------------------------------------- */
+	a { color: #19a2d6; text-decoration: none; line-height: inherit; }
+
+	
+
+/*	--------------------------------------------------
+	:: Lists
+	-------------------------------------------------- */
+	ul { list-style: none outside; }
+	ol { list-style: decimal; }
+	ol, ul.square, ul.circle, ul.disc { margin-left: 30px; }
+	ul.square { list-style: square outside; }
+	ul.circle { list-style: circle outside; }
+	ul.disc { list-style: disc outside; }
+	
+
+
+
+/* -------------------------------------------------- 
+	:: Misc
+---------------------------------------------------*/
+	.left        { float: left; }
+	.right       { float: right; }
+	.text-left   { text-align: left; }
+	.text-right  { text-align: right; }
+	.text-center { text-align: center; }
+	.hide        { display: none; }
+	.highlight   { background: #ff0; }
+	
+	
+	
+	.container { padding: 130px 20px 0 20px; }
+	
+	.row { width: 100%; max-width: 1100px;  margin: 0 auto; }
+	/* To fix the grid into a certain size, set max-width to width */
+	.row .row { min-width: 0; }
+	
+	.column, .columns { margin-left: 2%; float: left; min-height: 1px; position: relative; }
+	.column:first-child, .columns:first-child { margin-left: 0; }
+	[class*="column"] + [class*="column"]:last-child { float: right; }
+
+	.row .one 		{ width: 4.3%; }
+	.row .two 		{ width: 10.68%; }
+	.row .three 	{ width: 17%; }
+	.row .four 		{ width: 23.5%; }
+	.row .five 		{ width: 30%; }
+	.row .six 		{ width: 47.8%; }
+	.row .seven 	{ width: 56.5%; }
+	.row .eight 	{ width: 49%; }
+	.row .nine 		{ width: 73.9%; }
+	.row .ten 		{ width: 82.6%; }
+	.row .eleven 	{ width: 91.3%; }
+	.row .twelve 	{ width: 100%; }
+	.row .thirteen 	{ width: 76em; }
+	.row .fourteen 	{ width: 82em; }
+	.row .fifteen 	{ width: 88em; }
+	.row .sixteen 	{ width: 94em; }
+
+	
+	img, object, embed { max-width: 100%; height: auto; }
+	img { -ms-interpolation-mode: bicubic; }
+	#map_canvas img, .map_canvas img {max-width: none!important;}
+
+ /* Nicolas Gallagher's micro clearfix */
+	 .row:before, .row:after, .clearfix:before, .clearfix:after { content:""; display:table; }
+	 .row:after, .clearfix:after { clear: both; }
+	 .row, .clearfix { zoom: 1; }
+	 
+	 
+/* -------------------------------------------------- 
+	:: The N&N
+---------------------------------------------------*/
+
+
+body { background:#e3faff url(../images/clouds.png) fixed no-repeat center 0; font-family:Arial, Helvetica, sans-serif;}
+
+#site-decoration { background:url(../images/left-curtain.png) no-repeat fixed 0 0;}
+#site-decoration-content {background:url(../images/right-curtain.png)  no-repeat  fixed right  0; height:2500px;}
+
+#master-header { background:url(../images/master-header-bg.png) repeat-x 0 0; width:100%; height:90px; position:fixed; top:0; left:0;}
+
+#master-logo { float:left; display:block; padding:10px 25px 10px 20px;}
+#master-nav { float:left;}
+#master-nav ul {border-right:1px solid #4b4f50; font-size:1.7em;}
+#master-nav ul li { float:left; border-left:1px solid #4b4f50;}
+#master-nav ul li a { color:#6acbef; display:block; padding:32px 20px 30px 20px;}
+#master-nav ul li.selected a { color:#fefd58; font-weight:bold;}
+#master-nav ul li a:hover { background-color:#232323;}
+
+
+
+
+	
+	
