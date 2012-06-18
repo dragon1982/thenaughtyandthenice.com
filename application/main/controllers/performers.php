@@ -192,7 +192,12 @@ class Performers_controller extends MY_Controller{
         $data['keywords'] 				= SETTINGS_SITE_KEYWORDS;
         $data['pageTitle']				= sprintf(lang('%s\'s profile - %s'),$performer['performer']->nickname,SETTINGS_SITE_TITLE);        
         $search = prepare_search_options();
-        $data = array_merge($data, $search);        
+        $data = array_merge($data, $search); 
+        if($this->user->id > 0) {		
+			$data['relation'] = true;
+        }else{
+        	$data['relation'] = false;
+        }
         $this->load->view('template',$data);
 	}
 	

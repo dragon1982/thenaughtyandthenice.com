@@ -43,7 +43,6 @@ Class Home_controller extends MY_Performer{
 		$data['pageTitle'] 			= lang('My account').' - '.SETTINGS_SITE_TITLE;
 		$data['performer']			= $this->user;
 		$data['video_access']		= $this->watchers->count_chat_access($this->user->id);
-		
 
 		if(strlen($this->input->post('start_date')) == 0){
 			$start_date = strtotime('- 1 month', strtotime(date('Y-m-d 00:00:00')));

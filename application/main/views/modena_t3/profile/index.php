@@ -81,6 +81,12 @@
 	});
 </script>
 
+<?php 
+	if($relation) {
+
+	}
+?>
+
 <div class="black_box_bg_middle"><div class="black_box_bg_top"><div class="black_box">
 	<div class="content">
 		<div class="title">
