@@ -1,0 +1,28 @@
+
+
+###############################################################################################################
+###############################################################################################################
+
+	end_session
+
+DATE: 2012-05-25 18:28:53
+IP: 174.138.167.26
+
+SESSION:
+POST:
+	userId => 2
+	userType => performer
+	pasword => 2c69305cba42174f42c258f131c2941b9e1b235a80b80d761728452363fc0a9a
+	uniqId => a6b5324147143182b70a2664d82844be72595bf75
+	performerId => 2
+	ip => 94.176.107.178
+	hash => vHDdpNyAz9xCnnzANAY8
+GET:
+
+
+http://thenaughtyandthenice.east-wolf.com/fms/end_session/?userId=2&userType=performer&pasword=2c69305cba42174f42c258f131c2941b9e1b235a80b80d761728452363fc0a9a&uniqId=a6b5324147143182b70a2664d82844be72595bf75&performerId=2&ip=94.176.107.178&hash=vHDdpNyAz9xCnnzANAY8
+
+
+RETURN:
+
+status=ok&log=performer_went_offline

@@ -1,0 +1,20 @@
+DATE: 2012-05-25 19:11:14
+IP: 94.176.107.178
+
+SESSION:
+POST:
+	performerId => 1
+	label => Free
+	chatType => 1
+	fmsId => 1
+	pasword => fdcbd4746c0a34bc630298628ae47fccadb00cdec9d093239a595e76131954bb
+GET:
+	random => 611
+
+
+http://thenaughtyandthenice.east-wolf.com/performer/fms/change_nude/?performerId=1&label=Free&chatType=1&fmsId=1&pasword=fdcbd4746c0a34bc630298628ae47fccadb00cdec9d093239a595e76131954bb&random=611
+
+
+RETURN:
+
+status=allow&log=free

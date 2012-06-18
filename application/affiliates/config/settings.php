@@ -47,7 +47,7 @@ define('EMAIL_ACTIVATION', true);
 define('EMAIL_UNIQUE', false);
 define('SUPPORT_EMAIL', 'office@east-wolf.com');
 define('SUPPORT_NAME', 'east-wolf.com');
-define('WEBSITE_NAME', 'Your site name');
+define('WEBSITE_NAME', 'TheNaughtyAndTheNice');
 define('SETTINGS_DEFAULT_THEME', 'modena_t3');
 define('SETTINGS_SITE_TITLE', 'thenaughtyandthenice.com');
 define('SETTINGS_SITE_DESCRIPTION', 'thenaughtyandthenice.com');

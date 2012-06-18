@@ -1,0 +1,262 @@
+
+
+###############################################################################################################
+###############################################################################################################
+
+	auth
+
+DATE: 2012-05-25 19:09:35
+IP: 174.138.167.26
+
+SESSION:
+POST:
+	ip => 94.176.107.178
+	userId => v
+	userType => viewer
+	uniqId => a1cf37055f329fee5eba04c62e5e70490c7b58b62
+	userName => Anonymus8771
+	performerId => 1
+	sessionType => public
+	hash => vHDdpNyAz9xCnnzANAY8
+	md5 => 33ec9c1e1c9be435784d97bf5b743b9d
+GET:
+
+
+http://thenaughtyandthenice.east-wolf.com/fms/auth/?ip=94.176.107.178&userId=v&userType=viewer&uniqId=a1cf37055f329fee5eba04c62e5e70490c7b58b62&userName=Anonymus8771&performerId=1&sessionType=public&hash=vHDdpNyAz9xCnnzANAY8&md5=33ec9c1e1c9be435784d97bf5b743b9d
+
+
+RETURN:
+
+status=allow&allowChat=1
+
+###############################################################################################################
+###############################################################################################################
+
+	tax
+
+DATE: 2012-05-25 19:09:40
+IP: 174.138.167.26
+
+SESSION:
+POST:
+	userId => v
+	userType => viewer
+	uniqId => a1cf37055f329fee5eba04c62e5e70490c7b58b62
+	performerId => 1
+	sessionType => public
+	hash => vHDdpNyAz9xCnnzANAY8
+GET:
+
+
+http://thenaughtyandthenice.east-wolf.com/fms/tax/?userId=v&userType=viewer&uniqId=a1cf37055f329fee5eba04c62e5e70490c7b58b62&performerId=1&sessionType=public&hash=vHDdpNyAz9xCnnzANAY8
+
+
+RETURN:
+
+status=allow
+
+###############################################################################################################
+###############################################################################################################
+
+	tax
+
+DATE: 2012-05-25 19:09:45
+IP: 174.138.167.26
+
+SESSION:
+POST:
+	userId => v
+	userType => viewer
+	uniqId => a1cf37055f329fee5eba04c62e5e70490c7b58b62
+	performerId => 1
+	sessionType => public
+	hash => vHDdpNyAz9xCnnzANAY8
+GET:
+
+
+http://thenaughtyandthenice.east-wolf.com/fms/tax/?userId=v&userType=viewer&uniqId=a1cf37055f329fee5eba04c62e5e70490c7b58b62&performerId=1&sessionType=public&hash=vHDdpNyAz9xCnnzANAY8
+
+
+RETURN:
+
+status=allow
+
+###############################################################################################################
+###############################################################################################################
+
+	tax
+
+DATE: 2012-05-25 19:09:50
+IP: 174.138.167.26
+
+SESSION:
+POST:
+	userId => v
+	userType => viewer
+	uniqId => a1cf37055f329fee5eba04c62e5e70490c7b58b62
+	performerId => 1
+	sessionType => public
+	hash => vHDdpNyAz9xCnnzANAY8
+GET:
+
+
+http://thenaughtyandthenice.east-wolf.com/fms/tax/?userId=v&userType=viewer&uniqId=a1cf37055f329fee5eba04c62e5e70490c7b58b62&performerId=1&sessionType=public&hash=vHDdpNyAz9xCnnzANAY8
+
+
+RETURN:
+
+status=allow
+
+###############################################################################################################
+###############################################################################################################
+
+	tax
+
+DATE: 2012-05-25 19:09:55
+IP: 174.138.167.26
+
+SESSION:
+POST:
+	userId => v
+	userType => viewer
+	uniqId => a1cf37055f329fee5eba04c62e5e70490c7b58b62
+	performerId => 1
+	sessionType => public
+	hash => vHDdpNyAz9xCnnzANAY8
+GET:
+
+
+http://thenaughtyandthenice.east-wolf.com/fms/tax/?userId=v&userType=viewer&uniqId=a1cf37055f329fee5eba04c62e5e70490c7b58b62&performerId=1&sessionType=public&hash=vHDdpNyAz9xCnnzANAY8
+
+
+RETURN:
+
+status=allow
+
+###############################################################################################################
+###############################################################################################################
+
+	tax
+
+DATE: 2012-05-25 19:10:00
+IP: 174.138.167.26
+
+SESSION:
+POST:
+	userId => v
+	userType => viewer
+	uniqId => a1cf37055f329fee5eba04c62e5e70490c7b58b62
+	performerId => 1
+	sessionType => public
+	hash => vHDdpNyAz9xCnnzANAY8
+GET:
+
+
+http://thenaughtyandthenice.east-wolf.com/fms/tax/?userId=v&userType=viewer&uniqId=a1cf37055f329fee5eba04c62e5e70490c7b58b62&performerId=1&sessionType=public&hash=vHDdpNyAz9xCnnzANAY8
+
+
+RETURN:
+
+status=allow
+
+###############################################################################################################
+###############################################################################################################
+
+	tax
+
+DATE: 2012-05-25 19:10:05
+IP: 174.138.167.26
+
+SESSION:
+POST:
+	userId => v
+	userType => viewer
+	uniqId => a1cf37055f329fee5eba04c62e5e70490c7b58b62
+	performerId => 1
+	sessionType => public
+	hash => vHDdpNyAz9xCnnzANAY8
+GET:
+
+
+http://thenaughtyandthenice.east-wolf.com/fms/tax/?userId=v&userType=viewer&uniqId=a1cf37055f329fee5eba04c62e5e70490c7b58b62&performerId=1&sessionType=public&hash=vHDdpNyAz9xCnnzANAY8
+
+
+RETURN:
+
+status=allow
+
+###############################################################################################################
+###############################################################################################################
+
+	tax
+
+DATE: 2012-05-25 19:10:10
+IP: 174.138.167.26
+
+SESSION:
+POST:
+	userId => v
+	userType => viewer
+	uniqId => a1cf37055f329fee5eba04c62e5e70490c7b58b62
+	performerId => 1
+	sessionType => public
+	hash => vHDdpNyAz9xCnnzANAY8
+GET:
+
+
+http://thenaughtyandthenice.east-wolf.com/fms/tax/?userId=v&userType=viewer&uniqId=a1cf37055f329fee5eba04c62e5e70490c7b58b62&performerId=1&sessionType=public&hash=vHDdpNyAz9xCnnzANAY8
+
+
+RETURN:
+
+status=allow
+
+###############################################################################################################
+###############################################################################################################
+
+	tax
+
+DATE: 2012-05-25 19:10:15
+IP: 174.138.167.26
+
+SESSION:
+POST:
+	userId => v
+	userType => viewer
+	uniqId => a1cf37055f329fee5eba04c62e5e70490c7b58b62
+	performerId => 1
+	sessionType => public
+	hash => vHDdpNyAz9xCnnzANAY8
+GET:
+
+
+http://thenaughtyandthenice.east-wolf.com/fms/tax/?userId=v&userType=viewer&uniqId=a1cf37055f329fee5eba04c62e5e70490c7b58b62&performerId=1&sessionType=public&hash=vHDdpNyAz9xCnnzANAY8
+
+
+RETURN:
+
+status=allow
+
+###############################################################################################################
+###############################################################################################################
+
+	end_session
+
+DATE: 2012-05-25 19:10:19
+IP: 174.138.167.26
+
+SESSION:
+POST:
+	userId => v
+	userType => viewer
+	uniqId => a1cf37055f329fee5eba04c62e5e70490c7b58b62
+	hash => vHDdpNyAz9xCnnzANAY8
+GET:
+
+
+http://thenaughtyandthenice.east-wolf.com/fms/end_session/?userId=v&userType=viewer&uniqId=a1cf37055f329fee5eba04c62e5e70490c7b58b62&hash=vHDdpNyAz9xCnnzANAY8
+
+
+RETURN:
+
+status=ok&log=closed

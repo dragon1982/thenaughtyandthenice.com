@@ -1,0 +1,18 @@
+DATE: 2012-05-25 19:11:58
+IP: 174.138.167.26
+
+SESSION:
+POST:
+	userId => v
+	userType => viewer
+	uniqId => a7e54358388606f1eb607a0daf9d8465846a1bd54
+	hash => vHDdpNyAz9xCnnzANAY8
+GET:
+
+
+http://thenaughtyandthenice.east-wolf.com/fms/end_session/?userId=v&userType=viewer&uniqId=a7e54358388606f1eb607a0daf9d8465846a1bd54&hash=vHDdpNyAz9xCnnzANAY8
+
+
+RETURN:
+
+status=ok&log=closed

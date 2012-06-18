@@ -1008,10 +1008,9 @@ CREATE TABLE IF NOT EXISTS `performers_profile` (
   `build` enum('above average','athletic','average','large','muscular','obese','petite') DEFAULT NULL,
   `birthday` int(11) DEFAULT NULL,
   `cup_size` enum('A','B','C','D','E','F') DEFAULT NULL,
-  `performer_status` tinytext,
   PRIMARY KEY (`performer_id`),
   CONSTRAINT `performers_profile_ibfk_1` FOREIGN KEY (`performer_id`) REFERENCES `performers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 # Dumping data for table east_wolf_com_thenaughtyandthenice.performers_profile: ~15 rows (approximately)
 /*!40000 ALTER TABLE `performers_profile` DISABLE KEYS */;
@@ -1351,23 +1350,6 @@ CREATE TABLE IF NOT EXISTS `users_detail` (
 # Dumping data for table east_wolf_com_thenaughtyandthenice.users_detail: ~0 rows (approximately)
 /*!40000 ALTER TABLE `users_detail` DISABLE KEYS */;
 /*!40000 ALTER TABLE `users_detail` ENABLE KEYS */;
-
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.relations
-CREATE TABLE IF NOT EXISTS `relations` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `from_id` int(11) unsigned NOT NULL,
-  `from_type` enum('user','performer') NOT NULL,
-  `to_id` int(11) unsigned NOT NULL,
-  `to_type` enum('user','performer') NOT NULL,
-  `status` enum('pending','accepted','ban','banned') NOT NULL DEFAULT 'pending' COMMENT 'ban : from_id bans to_id',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `unique` (`from_id`,`from_type`,`to_id`,`to_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-# Data exporting was unselected.
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 
 
 # Dumping structure for table east_wolf_com_thenaughtyandthenice.watchers

@@ -3,10 +3,15 @@
 	<head>
 		<?$this->load->view('includes/head')?>
 	</head>
-	
+
 	<body style="background: transparent; background-image: none;">
 		<div id="become_member">
-			<div class="fancy_box_close" onclick="parent.$.fancybox.close();"><img src="<?php echo assets_url()?>images/spacer.gif" width="16" height="16"/></div>
+
+	  <script type="text/javascript">
+		var $j = jQuery.noConflict();
+		</script>
+
+			<div class="fancy_box_close" onclick="javascript:parent.$j.fancybox.close();"><img src="<?php echo assets_url()?>images/spacer.gif" width="16" height="16" style="cursor:pointer; " /></div>
 			<div class="content">
 				<div style="margin-left: 335px; padding-top: 10px;">
 					<span class="eutemia text_shadow" style="font-size:40px;"><?php echo lang('Become a member') ?></span>
@@ -42,7 +47,7 @@
 							<span class="input_helper_l gray italic f10" style="width:135px;"><span class="input_helper_line"><?php echo form_error('repeat_password')?form_error('repeat_password'):($this->input->post('repeat_password')?NULL:lang('Password must match!'))?></span></span><span class="input_helper_r"></span>
 						</div>
 					</div>
-					
+
 					<div class="clear"></div>
 
 					<div class="buttons">

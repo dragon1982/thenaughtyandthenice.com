@@ -59,18 +59,18 @@
 .ui-widget { font-family: Arial,sans-serif; font-size: 1.1em; }
 .ui-widget .ui-widget { font-size: 1em; }
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Arial,sans-serif; font-size: 1em; }
-.ui-widget-content { border: 1px solid #eeeeee; background: #ffffff url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x; color: #333333; }
+/*.ui-widget-content { border: 1px solid #eeeeee; background: #ffffff url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x; color: #333333; }*/
 .ui-widget-content a { color: #333333; }
 .ui-widget-header { border: 1px solid #e3a1a1; background: #cc0000 url(images/ui-bg_highlight-soft_15_cc0000_1x100.png) 50% 50% repeat-x; color: #ffffff; font-weight: bold; }
 .ui-widget-header a { color: #ffffff; }
 
 /* Interaction states
 ----------------------------------*/
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #d8dcdf; background: #eeeeee url(images/ui-bg_highlight-hard_100_eeeeee_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #004276; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { background: #eeeeee url(images/ui-bg_highlight-hard_100_eeeeee_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #004276; }
 .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #004276; text-decoration: none; }
-.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: 1px solid #cdd5da; background: #f6f6f6 url(images/ui-bg_highlight-hard_100_f6f6f6_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #111111; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { /*background: #f6f6f6 url(images/ui-bg_highlight-hard_100_f6f6f6_1x100.png) 50% 50% repeat-x;*/ font-weight: bold; color: #111111; }
 .ui-state-hover a, .ui-state-hover a:hover { color: #111111; text-decoration: none; }
-.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #eeeeee; background: #ffffff url(images/ui-bg_flat_65_ffffff_40x100.png) 50% 50% repeat-x; font-weight: bold; color: #cc0000; }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { /*background: #ffffff url(images/ui-bg_flat_65_ffffff_40x100.png) 50% 50% repeat-x;*/ font-weight: bold; color: #cc0000; }
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #cc0000; text-decoration: none; }
 .ui-widget :active { outline: none; }
 
@@ -89,14 +89,14 @@
 ----------------------------------*/
 
 /* states and images */
-.ui-icon { width: 16px; height: 16px; background-image: url(images/ui-icons_cc0000_256x240.png); }
-.ui-widget-content .ui-icon {background-image: url(images/ui-icons_cc0000_256x240.png); }
-.ui-widget-header .ui-icon {background-image: url(images/ui-icons_ffffff_256x240.png); }
-.ui-state-default .ui-icon { background-image: url(images/ui-icons_cc0000_256x240.png); }
-.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(images/ui-icons_cc0000_256x240.png); }
-.ui-state-active .ui-icon {background-image: url(images/ui-icons_cc0000_256x240.png); }
-.ui-state-highlight .ui-icon {background-image: url(images/ui-icons_004276_256x240.png); }
-.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(images/ui-icons_cc0000_256x240.png); }
+.ui-icon { width: 11px; height: 12px; /*background-image: url(images/ui-icons_cc0000_256x240.png);*/ }
+.ui-widget-content .ui-icon {/*background-image: url(images/ui-icons_cc0000_256x240.png);*/ }
+.ui-widget-header .ui-icon {/*background-image: url(images/ui-icons_cc0000_256x240.png);*/ }
+.ui-state-default .ui-icon { /*background-image: url(images/ui-icons_cc0000_256x240.png);*/ }
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {/*background-image: url(images/ui-icons_cc0000_256x240.png);*/ }
+.ui-state-active .ui-icon {/*background-image: url(images/ui-icons_cc0000_256x240.png);*/ }
+.ui-state-highlight .ui-icon {/*background-image: url(images/ui-icons_004276_256x240.png);*/ }
+.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {/*background-image: url(images/ui-icons_cc0000_256x240.png);*/ }
 
 /* positioning */
 .ui-icon-carat-1-n { background-position: 0 0; }
@@ -111,9 +111,19 @@
 .ui-icon-carat-2-e-w { background-position: -144px 0; }
 .ui-icon-triangle-1-n { background-position: 0 -16px; }
 .ui-icon-triangle-1-ne { background-position: -16px -16px; }
-.ui-icon-triangle-1-e { background-position: -32px -16px; }
+.ui-icon-triangle-1-e { 
+	background: url("http://thenaughtyandthenice.east-wolf.com/assets/modena_t3/images/ico-arrow-closed.png") no-repeat scroll 0 0 transparent;
+  left: 9px;
+  position: absolute;
+  top: 20px;
+}
 .ui-icon-triangle-1-se { background-position: -48px -16px; }
-.ui-icon-triangle-1-s { background-position: -64px -16px; }
+.ui-icon-triangle-1-s { 
+	background: url("http://thenaughtyandthenice.east-wolf.com/assets/modena_t3/images/ico-arrow-opened.png") no-repeat scroll 0 0 transparent;
+  left: 9px;
+  position: absolute;
+  top: 24px;
+}
 .ui-icon-triangle-1-sw { background-position: -80px -16px; }
 .ui-icon-triangle-1-w { background-position: -96px -16px; }
 .ui-icon-triangle-1-nw { background-position: -112px -16px; }
@@ -400,3 +410,8 @@ background: #ffffff url(images/slider_handle_bg.png) 50% 50% repeat-x;
 	height: 3px;
 }
 
+/* Accordion */
+.ui-accordion-header{
+	position: relative;
+}
+}

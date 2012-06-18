@@ -119,6 +119,7 @@ $lang['confirmation email.'] = 'Confirmation email';
 $lang['a confirmation email has been sent'] = 'A confirmation email has been sent.';
 $lang['account created successfully'] = 'Account created successfully!';
 $lang['our models'] = 'Our Models';
+$lang['models'] = 'Models';
 $lang['performer is suspended'] = 'This performer is suspended.';
 $lang['%s\'s profile - %s'] = '%s\'s profile - %s';
 $lang['no results found matching your search criteria.'] = 'No results found matching your search criteria.';

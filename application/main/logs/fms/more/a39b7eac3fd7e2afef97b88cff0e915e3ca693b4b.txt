@@ -1,0 +1,54 @@
+
+
+###############################################################################################################
+###############################################################################################################
+
+	auth
+
+DATE: 2012-05-25 18:30:08
+IP: 174.138.167.26
+
+SESSION:
+POST:
+	ip => 94.176.107.178
+	userId => v
+	userType => viewer
+	uniqId => a39b7eac3fd7e2afef97b88cff0e915e3ca693b4b
+	userName => Anonymus8347
+	performerId => 2
+	sessionType => public
+	hash => vHDdpNyAz9xCnnzANAY8
+	md5 => 33ec9c1e1c9be435784d97bf5b743b9d
+GET:
+
+
+http://thenaughtyandthenice.east-wolf.com/fms/auth/?ip=94.176.107.178&userId=v&userType=viewer&uniqId=a39b7eac3fd7e2afef97b88cff0e915e3ca693b4b&userName=Anonymus8347&performerId=2&sessionType=public&hash=vHDdpNyAz9xCnnzANAY8&md5=33ec9c1e1c9be435784d97bf5b743b9d
+
+
+RETURN:
+
+status=allow&allowChat=1
+
+###############################################################################################################
+###############################################################################################################
+
+	end_session
+
+DATE: 2012-05-25 18:30:20
+IP: 174.138.167.26
+
+SESSION:
+POST:
+	userId => v
+	userType => viewer
+	uniqId => a39b7eac3fd7e2afef97b88cff0e915e3ca693b4b
+	hash => vHDdpNyAz9xCnnzANAY8
+GET:
+
+
+http://thenaughtyandthenice.east-wolf.com/fms/end_session/?userId=v&userType=viewer&uniqId=a39b7eac3fd7e2afef97b88cff0e915e3ca693b4b&hash=vHDdpNyAz9xCnnzANAY8
+
+
+RETURN:
+
+status=ok&log=closed
