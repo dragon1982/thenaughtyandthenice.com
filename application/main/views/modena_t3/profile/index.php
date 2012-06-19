@@ -24,6 +24,10 @@
 	$("div.btn div:first").addClass("active").show(); //Activate first tab
 
 		$('.menu_item').click(function(){
+
+			$('nav.model-nav ul li').removeClass('selected');
+	    $(this).addClass('selected');
+
 			$('.slide').hide();
 			$('#'+$(this).attr('id') + '_content').show();
 			if($(this).attr('id') != 'profile'){
@@ -32,11 +36,11 @@
 				$('#reviews').show();
 			}
 
-			if($(this).attr('id') == 'pictures' || $(this).attr('id') == 'videos'){
-				$('.right').hide();
-			}else{
-				$('.right').show();
-			}
+//			if($(this).attr('id') == 'pictures' || $(this).attr('id') == 'videos'){
+//				$('.right').hide();
+//			}else{
+//				$('.right').show();
+//			}
 				var warpper_min_height = $(window).height() -115;
 
 				var new_min_height = $('#'+$(this).attr('id') + '_content').height() + 155;
@@ -88,11 +92,11 @@
                     <h1 class="article-title left"><?php echo $performer->nickname?></h1>
                     <nav class="model-nav right">
                     	<ul>
-                        	<li id="profile" class="selected"><a class="ico-profile" href="javascript:;"><span><?php echo lang('My Profile') ?></span></a></li>
-                          <li id="pictures"><a class="ico-photos" href="javascript:;"><span><?php echo sprintf(lang('My Photos (%s)'),(count($photos)+count($photos_paid)))?></span></a></li>
-                          <li id="videos"><a class="ico-videos" href="javascript:;"><span><?php echo sprintf(lang('My Videos (%s)'),(count($videos) + count($videos_paid)))?></span></a></li>
-                          <li id="schedule"><a class="ico-schedule" href="javascript:;"><span><?php echo lang('Schedule') ?></span></a></li>
-                          <li id="contact"><a class="ico-contact" href="javascript:;"><span><?php echo lang('Contact') ?></span></a></li>
+                        	<li id="profile" class="selected menu_item"><a class="ico-profile" href="javascript:;"><span><?php echo lang('My Profile') ?></span></a></li>
+                          <li id="pictures" class="menu_item"><a class="ico-photos" href="javascript:;"><span><?php echo sprintf(lang('My Photos (%s)'),(count($photos)+count($photos_paid)))?></span></a></li>
+                          <li id="videos" class="menu_item"><a class="ico-videos" href="javascript:;"><span><?php echo sprintf(lang('My Videos (%s)'),(count($videos) + count($videos_paid)))?></span></a></li>
+                          <li id="schedule" class="menu_item"><a class="ico-schedule" href="javascript:;"><span><?php echo lang('Schedule') ?></span></a></li>
+                          <li id="contact" class="menu_item"><a class="ico-contact" href="javascript:;"><span><?php echo lang('Contact') ?></span></a></li>
                       </ul>
                     </nav>
                 </header><!--end box-header-->
@@ -129,6 +133,8 @@
 													<?php endif?>
 
                         </div><!-- end box-t1 -->
+
+                        <a class="btn-nice-4 set-bott-2" href="javascript:;"><span class="ico-messages">Private Chat</span></a>
                         <?php if($this->user->id > 0):?>
                         <a class="btn-nice-3 set-bott-2 send_message" href="javascript:;"><span class="ico-messages"><?php echo lang('send message')?></span></a>
                         <?php endif;?>
