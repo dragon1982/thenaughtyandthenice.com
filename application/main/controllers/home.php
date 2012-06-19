@@ -340,8 +340,4 @@ class Home_controller extends MY_Controller {
 		die('allow=true&min=1&max=' . $max . '&noChips=false&notLogged=false');
 
 	}
-	
-	function static_login(){
-		$this->load->view('static_login');
-	}
 }

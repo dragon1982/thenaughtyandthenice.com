@@ -1,6 +1,6 @@
 		            <div class="account-info">
 		            	<a id="register" class="btn-nice-1 sufix10" href="<?php echo site_url('register')?>">Register <span>(FREE)</span></a>
-		                Already a member? <a class="btn-nice-2 prefix5" href="<?php echo site_url('home/static_login')?>">Sign In</a>
+		                Already a member? <a class="btn-nice-2 prefix5" href="<?php echo site_url('login/static_login')?>">Sign In</a>
 		            </div><!--end right-->
 
 <?php if(false):?>

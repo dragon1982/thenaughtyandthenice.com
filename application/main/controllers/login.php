@@ -38,4 +38,8 @@ class Login_controller extends MY_Controller{
 			redirect();
 		}
 	}
+	
+	function static_login() {
+		$this->load->view('static_login');
+	}
 }
