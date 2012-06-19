@@ -83,6 +83,20 @@ class Home_controller extends MY_Controller {
 		$search = prepare_search_options();
 		$data = array_merge($data, $search);
 
+		// Friends ------------------------------------------------------------------
+		$data['friends'] = array();
+		if($this->user->id > 0) {
+			$friends = $this->users->get_friends($this->user->id,'user');
+			foreach ($friends as $friend){
+				if($friend->owner && $friend->status == 'pending') $data['friends']['requests'][] = $friend;
+				if(!$friend->owner && $friend->status == 'pending') $data['friends']['pending'][] = $friend;
+				if($friend->status == 'accepted') $data['friends']['accepted'][] = $friend;
+				if($friend->status == 'ban') $data['friends']['banned'][] = $friend;
+				if($friend->status == 'accepted' && $friend->is_chat_online) $data['friends']['online'][] = $friend;
+				if($friend->status == 'accepted' && !$friend->is_chat_online) $data['friends']['offline'][] = $friend;
+			}
+		}
+
 		$this->load->view('template', $data);
 
 	}

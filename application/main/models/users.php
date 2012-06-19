@@ -344,4 +344,115 @@ Class Users extends CI_Model{
 		}
 		return TRUE;
 	}
+	// -----------------------------------------------------------------------------------------
+	
+	function get_friends($id, $type, $status = null){
+		if($status) $status = " AND relations.status = '".$status."'";
+		$results = $this->db->query("
+			SELECT 
+				relations.id as rel_id, 
+				relations.to_id as id,
+				relations.to_type as `type`,
+				relations.status as status,
+				0 as owner
+			FROM relations
+			WHERE relations.from_type = '$type' AND relations.from_id = $id $status
+			UNION
+			SELECT 
+				relations.id as rel_id, 
+				relations.from_id as id,
+				relations.from_type as `type`,
+				relations.status as status,
+				1 as owner
+			FROM relations
+			WHERE relations.to_type = '$type' AND relations.to_id = $id $status
+			ORDER BY rel_id
+		")->result();
+		
+		$friends = array();
+		foreach ($results as $result){
+			if(!$friend = $this->db->query("
+				SELECT username,is_chat_online
+				FROM {$result->type}s
+				WHERE id = {$result->id} AND status = 'approved'
+			")->row()) continue;
+			if(property_exists($friend,'username')){
+				$friends[] = (object)array(
+					'rel_id' => $result->rel_id,
+					'id' => $result->id,
+					'username' => $friend->username,
+					'is_chat_online' => $friend->is_chat_online,
+					'type' => $result->type,
+					'owner' => $result->owner,
+					'status' => $result->status,
+				);
+			}
+		}
+		return $friends;
+	}
+	// -----------------------------------------------------------------------------------------
+	
+	function get_friend($id, $type, $searchId, $searchType, $status = null){
+		if($status) $status = " AND relations.status = '".$status."'";
+		$result = $this->db->query("
+			SELECT 
+				relations.id as rel_id, 
+				relations.to_id as id,
+				relations.to_type as `type`,
+				relations.status as status,
+				0 as owner
+			FROM relations
+			WHERE relations.from_type = '$type' AND relations.from_id = $id AND relations.to_type = '$searchType' AND relations.to_id = $searchId $status
+			UNION
+			SELECT 
+				relations.id as rel_id, 
+				relations.from_id as id,
+				relations.from_type as `type`,
+				relations.status as status,
+				1 as owner
+			FROM relations
+			WHERE relations.to_type = '$type' AND relations.to_id = $id AND relations.from_type = '$searchType' AND relations.from_id = $searchId $status
+			ORDER BY rel_id
+		")->row();
+		
+		if($result){
+			if($friend = $this->db->query("SELECT username,is_chat_online FROM {$result->type}s WHERE id = {$result->id} AND status = 'approved' ")->row()){
+				if(property_exists($friend,'username')){
+					$friend = (object)array(
+						'rel_id' => $result->rel_id,
+						'id' => $result->id,
+						'username' => $friend->username,
+						'is_chat_online' => $friend->is_chat_online,
+						'type' => $result->type,
+						'owner' => $result->owner,
+						'status' => $result->status,
+					);
+				}
+			}
+			return $friend;
+		}
+		return null;
+	}
+	// -----------------------------------------------------------------------------------------
+	
+	function is_friend($id, $type, $searchId, $searchType){
+		if($friend = $this->get_friend($id, $type, $searchId, $searchType, 'accepted')) return true;
+		else return false;
+	}
+	
+	// -----------------------------------------------------------------------------------------
+	
+	function delete_relation($rel_id){
+		return $this->db->query('
+			DELETE FROM '.$this->relations.' WHERE id = '.$rel_id
+		);
+	}
+	
+	// -----------------------------------------------------------------------------------------
+	
+	function update_relation($rel_id, $status = 'accepted'){
+		return $this->db->query('
+			UPDATE '.$this->relations.' SET status="'.$status.'" WHERE id = '.$rel_id
+		);
+	}
 }

@@ -661,51 +661,52 @@ INSERT INTO `payment_methods` (`id`, `name`, `minim_amount`, `fields`, `status`)
 
 # Dumping structure for table east_wolf_com_thenaughtyandthenice.performers
 CREATE TABLE IF NOT EXISTS `performers` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `username` char(25) NOT NULL,
-  `password` char(64) NOT NULL,
-  `hash` char(64) NOT NULL,
-  `email` char(64) NOT NULL,
-  `nickname` char(25) NOT NULL,
-  `first_name` varchar(30) DEFAULT NULL,
-  `last_name` varchar(30) DEFAULT NULL,
-  `status` enum('approved','pending','rejected') NOT NULL DEFAULT 'pending',
-  `avatar` varchar(40) DEFAULT NULL,
-  `register_date` int(11) DEFAULT NULL,
-  `register_ip` int(11) DEFAULT NULL,
-  `country_code` char(2) DEFAULT NULL,
-  `is_online` tinyint(1) DEFAULT '0',
-  `is_online_hd` tinyint(1) DEFAULT '0',
-  `is_online_type` enum('free','nude','private') DEFAULT NULL,
-  `is_in_private` tinyint(1) DEFAULT '0',
-  `enable_peek_mode` tinyint(1) DEFAULT '0',
-  `max_nude_watchers` int(5) DEFAULT '5',
-  `is_imported` tinyint(1) DEFAULT '0',
-  `is_imported_id` int(11) DEFAULT NULL,
-  `is_imported_category_id` int(11) DEFAULT NULL,
-  `contract_status` enum('approved','pending','rejected') NOT NULL DEFAULT 'pending',
-  `photo_id_status` enum('approved','pending','rejected') NOT NULL DEFAULT 'pending',
-  `address` varchar(80) DEFAULT NULL,
-  `state` varchar(40) DEFAULT NULL,
-  `city` varchar(40) DEFAULT NULL,
-  `zip` varchar(40) DEFAULT NULL,
-  `phone` varchar(15) DEFAULT NULL,
-  `country` varchar(4) DEFAULT NULL,
-  `true_private_chips_price` decimal(7,2) DEFAULT NULL,
-  `private_chips_price` decimal(7,2) DEFAULT NULL,
-  `nude_chips_price` decimal(7,2) DEFAULT NULL,
-  `peek_chips_price` decimal(7,2) DEFAULT NULL,
-  `paid_photo_gallery_price` decimal(7,2) DEFAULT NULL,
-  `website_percentage` float(7,2) DEFAULT NULL,
-  `fms_id` tinyint(1) DEFAULT NULL,
-  `studio_id` mediumint(4) DEFAULT NULL,
-  `register_step` tinyint(3) DEFAULT '0',
-  `payment` tinyint(3) DEFAULT '0',
-  `account` varchar(800) DEFAULT NULL,
-  `release` decimal(7,2) DEFAULT '0.00',
-  `credits` decimal(8,2) DEFAULT '0.00',
-  PRIMARY KEY (`id`),
-  KEY `nickname` (`nickname`)
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`username` CHAR(25) NOT NULL,
+	`password` CHAR(64) NOT NULL,
+	`hash` CHAR(64) NOT NULL,
+	`email` CHAR(64) NOT NULL,
+	`nickname` CHAR(25) NOT NULL,
+	`first_name` VARCHAR(30) NULL DEFAULT NULL,
+	`last_name` VARCHAR(30) NULL DEFAULT NULL,
+	`status` ENUM('approved','pending','rejected') NOT NULL DEFAULT 'pending',
+	`avatar` VARCHAR(40) NULL DEFAULT NULL,
+	`register_date` INT(11) NULL DEFAULT NULL,
+	`register_ip` INT(11) NULL DEFAULT NULL,
+	`country_code` CHAR(2) NULL DEFAULT NULL,
+	`is_online` TINYINT(1) NULL DEFAULT '0',
+	`is_online_hd` TINYINT(1) NULL DEFAULT '0',
+	`is_online_type` ENUM('free','nude','private') NULL DEFAULT NULL,
+	`is_in_private` TINYINT(1) NULL DEFAULT '0',
+	`is_chat_online` TINYINT(1) NOT NULL DEFAULT '0',
+	`enable_peek_mode` TINYINT(1) NULL DEFAULT '0',
+	`max_nude_watchers` INT(5) NULL DEFAULT '5',
+	`is_imported` TINYINT(1) NULL DEFAULT '0',
+	`is_imported_id` INT(11) NULL DEFAULT NULL,
+	`is_imported_category_id` INT(11) NULL DEFAULT NULL,
+	`contract_status` ENUM('approved','pending','rejected') NOT NULL DEFAULT 'pending',
+	`photo_id_status` ENUM('approved','pending','rejected') NOT NULL DEFAULT 'pending',
+	`address` VARCHAR(80) NULL DEFAULT NULL,
+	`state` VARCHAR(40) NULL DEFAULT NULL,
+	`city` VARCHAR(40) NULL DEFAULT NULL,
+	`zip` VARCHAR(40) NULL DEFAULT NULL,
+	`phone` VARCHAR(15) NULL DEFAULT NULL,
+	`country` VARCHAR(4) NULL DEFAULT NULL,
+	`true_private_chips_price` DECIMAL(7,2) NULL DEFAULT NULL,
+	`private_chips_price` DECIMAL(7,2) NULL DEFAULT NULL,
+	`nude_chips_price` DECIMAL(7,2) NULL DEFAULT NULL,
+	`peek_chips_price` DECIMAL(7,2) NULL DEFAULT NULL,
+	`paid_photo_gallery_price` DECIMAL(7,2) NULL DEFAULT NULL,
+	`website_percentage` FLOAT(7,2) NULL DEFAULT NULL,
+	`fms_id` TINYINT(1) NULL DEFAULT NULL,
+	`studio_id` MEDIUMINT(4) NULL DEFAULT NULL,
+	`register_step` TINYINT(3) NULL DEFAULT '0',
+	`payment` TINYINT(3) NULL DEFAULT '0',
+	`account` VARCHAR(800) NULL DEFAULT NULL,
+	`release` DECIMAL(7,2) NULL DEFAULT '0.00',
+	`credits` DECIMAL(8,2) NULL DEFAULT '0.00',
+	PRIMARY KEY (`id`),
+	INDEX `nickname` (`nickname`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 # Dumping data for table east_wolf_com_thenaughtyandthenice.performers: ~15 rows (approximately)
@@ -1008,9 +1009,10 @@ CREATE TABLE IF NOT EXISTS `performers_profile` (
   `build` enum('above average','athletic','average','large','muscular','obese','petite') DEFAULT NULL,
   `birthday` int(11) DEFAULT NULL,
   `cup_size` enum('A','B','C','D','E','F') DEFAULT NULL,
+  `performer_status` tinytext,
   PRIMARY KEY (`performer_id`),
   CONSTRAINT `performers_profile_ibfk_1` FOREIGN KEY (`performer_id`) REFERENCES `performers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # Dumping data for table east_wolf_com_thenaughtyandthenice.performers_profile: ~15 rows (approximately)
 /*!40000 ALTER TABLE `performers_profile` DISABLE KEYS */;
@@ -1317,15 +1319,16 @@ CREATE TABLE IF NOT EXISTS `test_gateway_processor` (
 
 # Dumping structure for table east_wolf_com_thenaughtyandthenice.users
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `username` char(25) NOT NULL,
-  `password` char(64) NOT NULL,
-  `hash` char(64) NOT NULL,
-  `email` char(64) NOT NULL,
-  `status` enum('approved','pending','rejected') NOT NULL,
-  `gateway` enum('test_gateway') DEFAULT NULL,
-  `credits` decimal(7,2) DEFAULT '0.00',
-  PRIMARY KEY (`id`)
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`username` CHAR(25) NOT NULL,
+	`password` CHAR(64) NOT NULL,
+	`hash` CHAR(64) NOT NULL,
+	`email` CHAR(64) NOT NULL,
+	`status` ENUM('approved','pending','rejected') NOT NULL,
+	`gateway` ENUM('test_gateway') NULL DEFAULT NULL,
+	`credits` DECIMAL(7,2) NULL DEFAULT '0.00',
+	`is_chat_online` TINYINT(1) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # Dumping data for table east_wolf_com_thenaughtyandthenice.users: ~0 rows (approximately)
@@ -1350,6 +1353,23 @@ CREATE TABLE IF NOT EXISTS `users_detail` (
 # Dumping data for table east_wolf_com_thenaughtyandthenice.users_detail: ~0 rows (approximately)
 /*!40000 ALTER TABLE `users_detail` DISABLE KEYS */;
 /*!40000 ALTER TABLE `users_detail` ENABLE KEYS */;
+
+# Dumping structure for table east_wolf_com_thenaughtyandthenice.relations
+CREATE TABLE IF NOT EXISTS `relations` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `from_id` int(11) unsigned NOT NULL,
+  `from_type` enum('user','performer') NOT NULL,
+  `to_id` int(11) unsigned NOT NULL,
+  `to_type` enum('user','performer') NOT NULL,
+  `status` enum('pending','accepted','ban','banned') NOT NULL DEFAULT 'pending' COMMENT 'ban : from_id bans to_id',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique` (`from_id`,`from_type`,`to_id`,`to_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+# Data exporting was unselected.
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 
 
 # Dumping structure for table east_wolf_com_thenaughtyandthenice.watchers
