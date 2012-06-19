@@ -83,18 +83,9 @@ class Home_controller extends MY_Controller {
 		$search = prepare_search_options();
 		$data = array_merge($data, $search);
 
-		// Friends ------------------------------------------------------------------
-		$data['friends'] = array();
+		// Friends
 		if($this->user->id > 0) {
-			$friends = $this->users->get_friends($this->user->id,'user');
-			foreach ($friends as $friend){
-				if($friend->owner && $friend->status == 'pending') $data['friends']['requests'][] = $friend;
-				if(!$friend->owner && $friend->status == 'pending') $data['friends']['pending'][] = $friend;
-				if($friend->status == 'accepted') $data['friends']['accepted'][] = $friend;
-				if($friend->status == 'ban') $data['friends']['banned'][] = $friend;
-				if($friend->status == 'accepted' && $friend->is_chat_online) $data['friends']['online'][] = $friend;
-				if($friend->status == 'accepted' && !$friend->is_chat_online) $data['friends']['offline'][] = $friend;
-			}
+			$data['friends'] = $this->users->get_friends_data($this->user->id,'user');
 		}
 
 		$this->load->view('template', $data);
@@ -348,5 +339,9 @@ class Home_controller extends MY_Controller {
 
 		die('allow=true&min=1&max=' . $max . '&noChips=false&notLogged=false');
 
+	}
+	
+	function static_login(){
+		$this->load->view('static_login');
 	}
 }

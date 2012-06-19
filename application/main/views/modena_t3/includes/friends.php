@@ -1,21 +1,25 @@
-<!-- 
-<div class="black_box_bg_middle">
-	<div class="black_box_bg_top">
-		<div class="black_box">
-			<div class="content">
-				<div class="title">
-					<span class="eutemia ">F</span><span class="helvetica ">riends List</span>	
-				</div>
-				<div class="clear"></div>
-				
-			</div>
-		</div>
-	</div>
-</div>
--->
-<table>
+<table style="font-size: 16px;">
+	<?php if(isset($friends['request'])): ?>
+		<tr>
+			<td colspan="3" align="center" bgcolor="#bbbbbb">
+				<?php if($friends['request']->status == 'new'): ?>
+					<?php echo form_open('user/add_relation', array('id'=>'add_relation_form', 'method'=>'post')); ?>
+						<input type="hidden" name="id" value="<?php echo $friends['request']->id; ?>" />
+						<input type="hidden" name="type" value="<?php echo $friends['request']->type; ?>" />
+						<input type="submit" value="Send friend request" />
+					</form>
+				<?php elseif($friends['request']->status == 'pending'): ?>
+					Friend request sent
+				<?php elseif($friends['request']->status == 'ban'): ?>
+					The user is banned
+				<?php elseif($friends['request']->status == 'banned'): ?>
+					You were banned by this user
+				<?php endif; ?>
+			</td>
+		</tr>
+	<?php endif; ?>
 	<tr><td colspan="3" align="center" bgcolor="#bbbbbb"><b>Friends</b></td></tr>
-	<?php foreach($accepted_friends as $friend): ?>
+	<?php foreach($friends['accepted'] as $friend): ?>
 	<tr>
 		<td><?php echo $friend->username; ?></td>
 		<td>
@@ -33,7 +37,7 @@
 	</tr>
 	<?php endforeach; ?>
 	<tr><td colspan="3" align="center" bgcolor="#bbbbbb"><b>Pending friends</b></td></tr>
-	<?php foreach($pending_friends as $friend): ?>
+	<?php foreach($friends['pending'] as $friend): ?>
 	<tr>
 		<td><?php echo $friend->username; ?></td>
 		<td colspan="2">
@@ -44,8 +48,8 @@
 		</td>
 	</tr>
 	<?php endforeach; ?>
-	<tr><td colspan="3" align="center" bgcolor="#bbbbbb"><b>Friend request</b></td></tr>
-	<?php foreach($friend_requests as $friend): ?>
+	<tr><td colspan="3" align="center" bgcolor="#bbbbbb"><b>Friend requests</b></td></tr>
+	<?php foreach($friends['requests'] as $friend): ?>
 	<tr>
 		<td><?php echo $friend->username; ?></td>
 		<td>
@@ -63,7 +67,7 @@
 	</tr>
 	<?php endforeach; ?>
 	<tr><td colspan="3" align="center" bgcolor="#bbbbbb"><b>Banned friends</b></td></tr>
-	<?php foreach($banned_friends as $friend): ?>
+	<?php foreach($friends['banned'] as $friend): ?>
 	<tr>
 		<td><?php echo $friend->username; ?></td>
 		<td colspan="2">

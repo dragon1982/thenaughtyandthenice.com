@@ -762,4 +762,54 @@ Class User_controller extends MY_Users{
 		$this->session->unset_userdata('id');
 		redirect();
 	}
+	
+	// ------------------------------------------------------------------------	
+	function add_relation() {
+		$this->load->model('performers');
+		$id = $this->input->post('id', null);
+		$type = $this->input->post('type', null);
+		if(!$friend = $this->users->get_friend($this->user->id,'user',$id,$type)){
+			$this->users->add_relation($this->user->id,'user',$id,$type);
+		}
+		redirect();
+	}
+	
+	// ------------------------------------------------------------------------	
+	function delete_relation() {
+		$this->load->model('performers');
+		$rel_id = $this->input->post('rel_id', null);
+		$rel_ids = array();
+		$friends = $this->users->get_friends($this->user->id,'user');
+		foreach($friends as $friend) $rel_ids[] = $friend->rel_id;
+		if(in_array($rel_id, $rel_ids)) $this->users->delete_relation($rel_id);
+		redirect();
+	}
+	
+	// ------------------------------------------------------------------------	
+	function accept_relation() {
+		$this->load->model('performers');
+		$rel_id = $this->input->post('rel_id', null);
+		$rel_ids = array();
+		$friends = $this->users->get_friends($this->user->id,'user','pending');
+		foreach($friends as $friend) {
+			if($friend->owner) $rel_ids[] = $friend->rel_id;
+		}
+		if(in_array($rel_id, $rel_ids)) $this->users->update_relation($rel_id);
+		redirect();
+	}
+	
+	// ------------------------------------------------------------------------	
+	function ban_relation() {
+		$this->load->model('performers');
+		$rel_id = $this->input->post('rel_id', null);
+		$rel_ids = array();
+		$friends = $this->users->get_friends($this->user->id,'user','accepted');
+		foreach($friends as $friend) {
+			if($friend->rel_id == $rel_id){
+				$this->users->update_relation($rel_id, $friend->owner?'banned':'ban');
+				break;
+			}
+		}
+		redirect();
+	}
 }

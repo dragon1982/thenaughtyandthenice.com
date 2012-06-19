@@ -39,7 +39,6 @@
 
 		    		<div id="wrapper" class="clearfix">
 			        <div id="content">
-
 										<?php
 											if(isset($_sidebar) && $_sidebar){
 												$this->load->view('includes/_sidebar');
@@ -52,7 +51,9 @@
 
 			        </div><!--end content-->
 
-							<?php $this->load->view('includes/chatSidebar')?>
+							<?php if($this->user->id > 0) $this->load->view('includes/friends'); ?>
+							<br /><br /><br />
+							<?php if($this->user->id > 0) $this->load->view('includes/chatSidebar')?>
 
 						</div><!--end wrapper-->
 

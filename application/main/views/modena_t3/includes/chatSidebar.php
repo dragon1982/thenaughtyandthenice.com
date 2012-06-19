@@ -1,82 +1,26 @@
         <div id="sidebar">
-
         	<div id="accordion" class="sidebar-box">
             	<div id="headerOnlineFriends" class="sidebar-box-header">
-                	<a class="sidebar-link-header" href="javascript:;"><img src="<?php echo assets_url()?>images/title-online-friends.png" alt="Online Friends"> <span>(152)</span></a>
+                	<a class="sidebar-link-header" href="javascript:;"><img src="<?php echo assets_url()?>images/title-online-friends.png" alt="Online Friends"> <span>(<?php echo count($friends['online']); ?>)</span></a>
                 </div><!--end sidebar-box-header-->
 
             	<div class="sidebar-box-content">
                 	<ul id="chatOnlineUserList" class="chat-users-list">
-                    	<li class="item ico-group-show">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                                <span class="status"><!-- --></span>
-                            </a>
-                        </li>
-                        <li class="item ico-webcam-on">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                                <span class="status"><!-- --></span>
-                            </a>
-                        </li>
-                        <li class="item ico-private-show">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                                <span class="status"><!-- --></span>
-                            </a>
-                        </li>
-                        <li class="item ico-webcam-off">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                                <span class="status"><!-- --></span>
-                            </a>
-                        </li>
-                        <li class="item ico-true-private">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                                <span class="status"><!-- --></span>
-                            </a>
-                        </li>
-                        <li class="item ico-champagne-room">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                                <span class="status"><!-- --></span>
-                            </a>
-                        </li>
-                        <li class="item ico-group-show">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                                <span class="status"><!-- --></span>
-                            </a>
-                        </li>
-                        <li class="item ico-group-show">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                                <span class="status"><!-- --></span>
-                            </a>
-                        </li>
-                        <li class="item ico-group-show">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                                <span class="status"><!-- --></span>
-                            </a>
-                        </li>
-                        <li class="item ico-group-show">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                                <span class="status"><!-- --></span>
-                            </a>
-                        </li>
+                		<?php foreach($friends['online'] as $friend): ?>
+	                    	<li class="item 
+	                    		<?php if($friend->is_in_a_group_show): ?>ico-group-show
+	                    		<?php elseif($friend->is_in_a_private_show): ?>ico-private-show
+	                    		<?php elseif($friend->is_true_private): ?>ico-true-private
+	                    		<?php elseif($friend->is_in_champagne_room): ?>ico-champagne-room
+	                    		<?php endif; ?>
+	                    	">
+	                        	<a href="javascript:;">
+	                            	<img width="28" height="28" class="pic" src="<?php echo $friend->avatar_url; ?>" alt="<?php echo $friend->username; ?>">
+	                                <span class="name"><?php echo ucfirst($friend->username); ?></span>
+	                                <span class="status"><!-- --></span>
+	                            </a>
+	                        </li>
+                        <?php endforeach; ?>
                     </ul><!--end chat-users-list-->
 
                     <ul class="chat-users-status clearfix">
@@ -106,66 +50,14 @@
 
             	<div class="sidebar-box-content hide">
                 	<ul id="chatOfflineUserList" class="chat-users-list">
-                    	<li class="item ico-group-show">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                            </a>
-                        </li>
-                        <li class="item ico-webcam-on">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                            </a>
-                        </li>
-                        <li class="item ico-private-show">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                            </a>
-                        </li>
-                        <li class="item ico-webcam-off">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                            </a>
-                        </li>
-                        <li class="item ico-true-private">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                            </a>
-                        </li>
-                        <li class="item ico-champagne-room">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                            </a>
-                        </li>
-                        <li class="item ico-group-show">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                            </a>
-                        </li>
-                        <li class="item ico-group-show">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                            </a>
-                        </li>
-                        <li class="item ico-group-show">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                            </a>
-                        </li>
-                        <li class="item ico-group-show">
-                        	<a href="javascript:;">
-                            	<img class="pic" src="<?php echo assets_url()?>user-pic-28x28.jpg" alt="">
-                                <span class="name">Stephanie xOxO</span>
-                            </a>
-                        </li>
+	                	<?php foreach($friends['offline'] as $friend): ?>
+	                    	<li class="item ico-group-show">
+	                        	<a href="javascript:;">
+	                            	<img width="28" height="28" class="pic" src="<?php echo $friend->avatar_url; ?>" alt="<?php echo $friend->username; ?>">
+	                                <span class="name"><?php echo ucfirst($friend->username); ?></span>
+	                            </a>
+	                        </li>
+	                    <?php endforeach; ?>
                     </ul><!--end chat-users-list-->
                 </div><!--end sidebar-box-content-->
             </div><!--end sidebar-box-->

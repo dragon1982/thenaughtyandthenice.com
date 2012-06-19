@@ -195,6 +195,14 @@ class Performers_controller extends MY_Controller{
         $data['pageTitle']				= sprintf(lang('%s\'s profile - %s'),$performer['performer']->nickname,SETTINGS_SITE_TITLE);
         $search = prepare_search_options();
         $data = array_merge($data, $search);
+        
+        // Friends
+		if($this->user->id > 0) {
+			$data['friends'] = $this->users->get_friends_data($this->user->id,'user');
+			if(!$data['friends']['request'] = $this->users->get_friend($this->user->id,'user',$performer['performer']->id,'performer')){
+				$data['friends']['request'] = (object)array('id'=>$performer['performer']->id, 'type'=>'performer', 'status'=>'new');
+			}
+		}
         $this->load->view('template',$data);
 	}
 
