@@ -23,6 +23,13 @@
 				$this->load->view('includes/errors');
 			?>
 		</div>
+		<?php 
+			if($this->user->id > 0) {
+				if(isset($friends)) $data['friends'] = $friends;
+				else $data['friends'] = $this->users->get_friends_data($this->user->id,'performer');
+				$this->load->view('relations',$data); 
+			}
+		?>
 		<div id="page">
 			<?php
 				if(isset($_sidebar) && $_sidebar){

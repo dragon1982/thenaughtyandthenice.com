@@ -354,7 +354,8 @@ Class Users extends CI_Model{
 				if($friend->owner && $friend->status == 'pending') $results['requests'][] = $friend;
 				if(!$friend->owner && $friend->status == 'pending') $results['pending'][] = $friend;
 				if($friend->status == 'accepted') $results['accepted'][] = $friend;
-				if($friend->status == 'ban') $results['banned'][] = $friend;
+				if($friend->status == 'ban' && !$friend->owner) $results['banned'][] = $friend;
+				if($friend->status == 'banned' && $friend->owner) $results['banned'][] = $friend;
 				if($friend->status == 'accepted' && $friend->is_chat_online) $results['online'][] = $friend;
 				if($friend->status == 'accepted' && !$friend->is_chat_online) $results['offline'][] = $friend;
 			}

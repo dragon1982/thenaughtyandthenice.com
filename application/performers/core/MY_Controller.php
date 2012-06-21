@@ -85,6 +85,7 @@ class MY_Performer extends MY_Controller{
 		parent::__construct();
 		$this->access->restrict('performers');
 		$this->load->model('messages');
+		$this->load->model('users');
 		$this->user->unread_messages = $this->messages->get_all_received_by_user_id($this->user->id, $this->user->type, FALSE, FALSE, TRUE, TRUE);
 	}
 }

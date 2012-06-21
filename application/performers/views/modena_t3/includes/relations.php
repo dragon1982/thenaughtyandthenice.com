@@ -1,4 +1,4 @@
-<table style="font-size: 16px;">
+<table>
 	<?php if(isset($friends['request'])): ?>
 		<tr>
 			<td colspan="3" align="center" bgcolor="#bbbbbb">

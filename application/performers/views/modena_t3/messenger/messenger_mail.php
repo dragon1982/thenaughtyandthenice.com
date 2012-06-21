@@ -98,7 +98,7 @@ $(document).ready(function(){
 	
 	
 	<div class="title">
-		<h3><?php echo lang('Reply to')?> <strong><?php echo $message->username?></strong> <?php echo lang('(user)')?></h3>
+		<h3><?php echo lang('Reply to')?> <strong><?php echo $message->username?></strong> <?php echo lang("({$message->type})")?></h3>
 	</div>
 	<div class="reply_form">
 		<?php echo form_open('', 'class="reply_form"')?>

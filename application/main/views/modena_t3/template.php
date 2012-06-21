@@ -55,7 +55,7 @@
 								if($this->user->id > 0) {
 									if(isset($friends)) $data['friends'] = $friends;
 									else $data['friends'] = $this->users->get_friends_data($this->user->id,'user');
-									$this->load->view('includes/friends',$data); 
+									$this->load->view('relations',$data); 
 								}
 							?>
 							<br /><br /><br />

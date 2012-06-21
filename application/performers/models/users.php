@@ -185,4 +185,178 @@ Class Users extends CI_Model{
 		}
 		return TRUE;
 	}
+	// -----------------------------------------------------------------------------------------
+	function get_friends_data($id, $type, $status = null){
+		$results = array( 'requests'=>array(), 'pending'=>array(), 'accepted'=>array(), 'banned'=>array(), 'online'=>array(), 'offline'=>array() );
+		if($this->user->id > 0) {
+			$friends = $this->get_friends($id, $type, $status);
+			foreach ($friends as $friend){
+				if($friend->owner && $friend->status == 'pending') $results['requests'][] = $friend;
+				if(!$friend->owner && $friend->status == 'pending') $results['pending'][] = $friend;
+				if($friend->status == 'accepted') $results['accepted'][] = $friend;
+				if($friend->status == 'ban' && !$friend->owner) $results['banned'][] = $friend;
+				if($friend->status == 'banned' && $friend->owner) $results['banned'][] = $friend;
+				if($friend->status == 'accepted' && $friend->is_chat_online) $results['online'][] = $friend;
+				if($friend->status == 'accepted' && !$friend->is_chat_online) $results['offline'][] = $friend;
+			}
+		}
+		return $results;
+	}
+	
+	// -----------------------------------------------------------------------------------------
+	
+	function get_friends($id, $type, $status = null){
+		if($status) $status = " AND relations.status = '".$status."'";
+		$friends = array();
+		$results = $this->db->query("
+			SELECT 
+				relations.id as rel_id, 
+				relations.to_id as id,
+				relations.to_type as `type`,
+				relations.status as status,
+				0 as owner
+			FROM relations
+			WHERE relations.from_type = '$type' AND relations.from_id = $id $status
+			UNION
+			SELECT 
+				relations.id as rel_id, 
+				relations.from_id as id,
+				relations.from_type as `type`,
+				relations.status as status,
+				1 as owner
+			FROM relations
+			WHERE relations.to_type = '$type' AND relations.to_id = $id $status
+			ORDER BY rel_id
+		")->result();
+
+		foreach ($results as $result){
+			if($result->type == 'performer'){
+				if($friend = $this->performers->get_one_by_id($result->id)){
+					$friend->is_in_a_group_show = null;
+					$friend->is_chat_online = $friend->is_online;
+	                $friend->is_in_a_private_show = $friend->is_in_private;
+	                $friend->is_true_private = null;
+	                $friend->is_in_champagne_room = null;
+	                if(file_exists('uploads/performers/' . $friend->id . '/small/' . $friend->avatar) && $friend->avatar){
+	                	$friend->avatar_url = site_url('uploads/performers/' . $friend->id . '/small/' . $friend->avatar);
+	                }else{
+	                	$friend->avatar_url = assets_url().'user-pic-28x28.jpg';
+	                }
+				}
+			}else{
+				if($friend = $this->db->query("
+					SELECT id,username,is_chat_online FROM {$result->type}s WHERE id = {$result->id} AND status = 'approved'
+				")->row()){
+					$friend->is_in_a_group_show = null;
+	                $friend->is_in_a_private_show = null;
+	                $friend->is_true_private = null;
+	                $friend->is_in_champagne_room = null;
+	                $friend->avatar_url = assets_url().'user-pic-28x28.jpg';
+				}
+			}
+			if($friend){
+				$friend->rel_id = $result->rel_id;
+				$friend->type = $result->type;
+				$friend->owner = $result->owner;
+				$friend->status = $result->status;
+				$friends[] = $friend;
+			}
+		}
+		return $friends;
+	}
+	// -----------------------------------------------------------------------------------------
+	
+	function get_friend($id, $type, $searchId, $searchType, $status = null){
+		if($status) $status = " AND relations.status = '".$status."'";
+		$result = $this->db->query("
+			SELECT 
+				relations.id as rel_id, 
+				relations.to_id as id,
+				relations.to_type as `type`,
+				relations.status as status,
+				0 as owner
+			FROM relations
+			WHERE relations.from_type = '$type' AND relations.from_id = $id AND relations.to_type = '$searchType' AND relations.to_id = $searchId $status
+			UNION
+			SELECT 
+				relations.id as rel_id, 
+				relations.from_id as id,
+				relations.from_type as `type`,
+				relations.status as status,
+				1 as owner
+			FROM relations
+			WHERE relations.to_type = '$type' AND relations.to_id = $id AND relations.from_type = '$searchType' AND relations.from_id = $searchId $status
+			ORDER BY rel_id
+		")->row();
+		
+		if($result){
+			if($result->type == 'performer'){
+				if($friend = $this->performers->get_one_by_id($result->id)){
+					$friend->is_in_a_group_show = null;
+					$friend->is_chat_online = $friend->is_online;
+	                $friend->is_in_a_private_show = $friend->is_in_private;
+	                $friend->is_true_private = null;
+	                $friend->is_in_champagne_room = null;
+	                if(file_exists('uploads/performers/' . $friend->id . '/small/' . $friend->avatar) && $friend->avatar){
+	                	$friend->avatar_url = site_url('uploads/performers/' . $friend->id . '/small/' . $friend->avatar);
+	                }else{
+	                	$friend->avatar_url = assets_url().'user-pic-28x28.jpg';
+	                }
+				}
+			}else{
+				if($friend = $this->db->query("
+					SELECT id,username,is_chat_online FROM {$result->type}s WHERE id = {$result->id} AND status = 'approved'
+				")->row()){
+					$friend->is_in_a_group_show = null;
+	                $friend->is_in_a_private_show = null;
+	                $friend->is_true_private = null;
+	                $friend->is_in_champagne_room = null;
+	                $friend->avatar_url = assets_url().'user-pic-28x28.jpg';
+				}
+			}
+			if($friend){
+				$friend->rel_id = $result->rel_id;
+				$friend->type = $result->type;
+				$friend->owner = $result->owner;
+				$friend->status = $result->status;
+				return $friend;
+			}
+		}
+		return null;
+	}
+	// -----------------------------------------------------------------------------------------
+	
+	function is_friend($id, $type, $searchId, $searchType){
+		if($friend = $this->get_friend($id, $type, $searchId, $searchType, 'accepted')) return true;
+		else return false;
+	}
+	
+	// -----------------------------------------------------------------------------------------
+	
+	function add_relation($from_id, $from_type, $to_id, $to_type){
+		$data = array(
+		   'from_id'	=> $from_id ,
+		   'from_type'	=> $from_type ,
+		   'to_id'		=> $to_id,
+		   'to_type'	=> $to_type,
+		   'status'     => 'pending'
+		);
+		return $this->db->insert('relations', $data);
+	}
+	
+	// -----------------------------------------------------------------------------------------
+	
+	function delete_relation($rel_id){
+		return $this->db->query('
+			DELETE FROM relations WHERE id = '.$rel_id
+		);
+	}
+	
+	// -----------------------------------------------------------------------------------------
+	
+	function update_relation($rel_id, $status = 'accepted'){
+		return $this->db->query('
+			UPDATE relations SET status="'.$status.'" WHERE id = '.$rel_id
+		);
+	}
 }
