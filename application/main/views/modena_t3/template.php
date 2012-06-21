@@ -51,7 +51,13 @@
 
 			        </div><!--end content-->
 
-							<?php if($this->user->id > 0) $this->load->view('includes/friends'); ?>
+							<?php 
+								if($this->user->id > 0) {
+									if(isset($friends)) $data['friends'] = $friends;
+									else $data['friends'] = $this->users->get_friends_data($this->user->id,'user');
+									$this->load->view('includes/friends',$data); 
+								}
+							?>
 							<br /><br /><br />
 							<?php if($this->user->id > 0) $this->load->view('includes/chatSidebar')?>
 

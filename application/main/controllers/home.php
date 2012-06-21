@@ -34,8 +34,7 @@ class Home_controller extends MY_Controller {
 	/*
 	 * Prima pagina
 	 */
-	function index() {
-
+	function index() {	
 		$this->load->library('pagination');
 		$this->load->helper('text');
 
@@ -82,11 +81,6 @@ class Home_controller extends MY_Controller {
 
 		$search = prepare_search_options();
 		$data = array_merge($data, $search);
-
-		// Friends
-		if($this->user->id > 0) {
-			$data['friends'] = $this->users->get_friends_data($this->user->id,'user');
-		}
 
 		$this->load->view('template', $data);
 
