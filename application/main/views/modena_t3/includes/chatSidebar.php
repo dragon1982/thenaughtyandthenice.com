@@ -14,7 +14,7 @@
 	                    		<?php elseif($friend->is_in_champagne_room): ?>ico-champagne-room
 	                    		<?php endif; ?>
 	                    	">
-	                        	<a href="javascript:;">
+	                        	<a href="javascript:chatWith('<?php echo $friend->username; ?>_<?php echo $friend->type; ?>');">
 	                            	<img width="28" height="28" class="pic" src="<?php echo $friend->avatar_url; ?>" alt="<?php echo $friend->username; ?>">
 	                                <span class="name"><?php echo ucfirst($friend->username); ?></span>
 	                                <span class="status"><!-- --></span>

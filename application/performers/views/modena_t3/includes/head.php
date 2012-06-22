@@ -99,6 +99,13 @@ Don't steal, it's bad luck!
 <link rel="stylesheet" type="text/css" href="<?php echo assets_url()?>css/style.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo assets_url()?>css/pagination.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo assets_url()?>addons/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+<?php if($this->user->id > 0): ?>
+	<link type="text/css" rel="stylesheet" media="all" href="<?php echo assets_url()?>css/chat/chat.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="<?php echo assets_url()?>css/chat/screen.css" />
+	<!--[if lte IE 7]>
+	<link type="text/css" rel="stylesheet" media="all" href="<?php echo assets_url()?>css/chat/screen_ie.css" />
+	<![endif]-->
+<?php endif; ?>
 <script type="text/javascript" src="<?php echo assets_url()?>js/jquery-1.5.2.min.js"></script>
 <script src="<?php echo assets_url()?>js/jquery.ui.core.js"></script>
 <script src="<?php echo assets_url()?>js/glt.js"></script>
@@ -157,4 +164,5 @@ jQuery(function($){
 
 });
 </script>
+
 </head>

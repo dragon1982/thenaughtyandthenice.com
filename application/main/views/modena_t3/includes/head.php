@@ -111,4 +111,11 @@ jQuery(function($){
 <link rel="stylesheet" href="<?php echo assets_url()?>css/blitzer/jquery-ui-1.8.14.custom.css">
 
 <link rel="stylesheet" href="<?php echo assets_url()?>css/main.css">
+<?php if($this->user->id > 0): ?>
+	<link type="text/css" rel="stylesheet" media="all" href="<?php echo assets_url()?>css/chat/chat.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="<?php echo assets_url()?>css/chat/screen.css" />
+	<!--[if lte IE 7]>
+	<link type="text/css" rel="stylesheet" media="all" href="<?php echo assets_url()?>css/chat/screen_ie.css" />
+	<![endif]-->
+<?php endif; ?>
 </head>

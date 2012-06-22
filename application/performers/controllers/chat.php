@@ -9,9 +9,9 @@ class Chat_controller extends MY_Controller{
 	function __construct(){
 		parent::__construct();
 		if($this->user->id <= 0) die();
-		$this->load->model('performers');
+		$this->load->model('users');
 		require_once BASEPATH.'libraries/Chat.php';
-		$this->chat = new Chat($this->user->id, $this->user->username, 'user');
+		$this->chat = new Chat($this->user->id, $this->user->username, 'performer');
 	}
 	
 	

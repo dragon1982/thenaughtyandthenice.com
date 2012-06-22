@@ -26,7 +26,16 @@ Class Performers extends CI_Model{
 		return $this->db->where('id',$id)->set_memcache_key('performer_id-%s',array($id),100)->limit(1)->get($this->performers)->row();
 	}
 
-
+	// -----------------------------------------------------------------------------------------
+	/**
+	 * Returneaza un user dupa username
+	 * @param $username
+	 * @return unknown_type
+	 */
+	function get_one_by_username($username){
+		return $this->db->where('username',$username)->limit(1)->get($this->performers)->row();
+	}
+	
 	// -----------------------------------------------------------------------------------------
 	/**
 	 * Returneaza detaliile unui performer dupa nickname

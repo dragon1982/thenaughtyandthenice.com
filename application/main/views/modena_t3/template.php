@@ -72,6 +72,8 @@
 		<script src="<?php echo assets_url()?>javascripts/modernizr.foundation.js"></script>
 		<script src="<?php echo assets_url()?>javascripts/foundation.js"></script>
 		<script src="<?php echo assets_url()?>javascripts/app.js"></script>
-
+		<?php if($this->user->id > 0): ?>
+			<script src="<?php echo assets_url()?>js/chat.js.php"></script>
+		<?php endif; ?>
 	</body>
 </html>

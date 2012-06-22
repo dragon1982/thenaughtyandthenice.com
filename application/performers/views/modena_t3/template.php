@@ -47,5 +47,8 @@
 	</div>
 	<div class="clear"></div>
 	<?php $this->load->view('includes/footer')?>
+	<?php if($this->user->id > 0): ?>
+		<script src="<?php echo assets_url()?>js/chat.js.php?app=performer"></script>
+	<?php endif; ?>
 </body>
 </html>
