@@ -7,7 +7,7 @@
             	<div class="sidebar-box-content">
                 	<ul id="chatOnlineUserList" class="chat-users-list">
                 		<?php foreach($friends['online'] as $friend): ?>
-	                    	<li class="item 
+	                    	<li class="item
 	                    		<?php if($friend->is_in_a_group_show): ?>ico-group-show
 	                    		<?php elseif($friend->is_in_a_private_show): ?>ico-private-show
 	                    		<?php elseif($friend->is_true_private): ?>ico-true-private
@@ -65,9 +65,9 @@
         </div><!--end sidebar-->
 
 	  <script type="text/javascript">
-		var $j = jQuery.noConflict();
-		$j(function() {
-			$j('#chatOnlineUserList').slimScroll({
+		//var $j = jQuery.noConflict();
+		$(function() {
+			$('#chatOnlineUserList').slimScroll({
 					height: '200px',
 				  width: '245px',
 				  railVisible: false,
@@ -78,7 +78,7 @@
 				  distance: '0px'
 			  });
 
-			$j('#chatOfflineUserList').slimScroll({
+			$('#chatOfflineUserList').slimScroll({
 				height: '200px',
 			  width: '245px',
 			  railVisible: false,
@@ -90,8 +90,8 @@
 		  });
 		  });
 
-		$j(function() {
-			$j( "#accordion" ).accordion({
+		$(function() {
+			$( "#accordion" ).accordion({
 				  autoHeight: false,
 				});
 		});

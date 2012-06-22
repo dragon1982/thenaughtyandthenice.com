@@ -40,7 +40,7 @@ if (empty($_lang))
 	var base_url = '<?php echo base_url()?>';
 	var assets_url = '<?php echo assets_url()?>';
 </script>
-<script type="text/javascript" src="<?php echo assets_url()?>js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="<?php echo assets_url()?>js/jquery-1.7.2.min.js"></script>
 
 <script type="text/javascript" src="<?php echo assets_url()?>js/jquery.blockUI.js"></script>
 
@@ -98,6 +98,18 @@ jQuery(function($){
 		'width'				: 630,
 		'height'			: 458
 	});
+
+	$("#signin").fancybox({
+		'showCloseButton'	: false,
+		'padding'			: 0,
+		'overlayColor'		: '#000  ',
+		'overlayOpacity'	: 0.6,
+		'type'				: 'iframe',
+		'titleShow'			: false,
+		'href'				: '<?php echo site_url('login')?>',
+		'width'				: 630,
+		'height'			: 458
+	});
 });
 </script>
 
@@ -105,11 +117,11 @@ jQuery(function($){
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
 <script src="<?php echo assets_url()?>js/jquery.ui.core.js"></script>
 <script src="<?php echo assets_url()?>js/jquery.ui.widget.js"></script>
-
 <script src="<?php echo assets_url()?>js/slimScroll.js"></script>
 
-<link rel="stylesheet" href="<?php echo assets_url()?>css/blitzer/jquery-ui-1.8.14.custom.css">
 
+
+<link rel="stylesheet" href="<?php echo assets_url()?>css/blitzer/jquery-ui-1.8.14.custom.css">
 <link rel="stylesheet" href="<?php echo assets_url()?>css/main.css">
 <?php if($this->user->id > 0): ?>
 	<link type="text/css" rel="stylesheet" media="all" href="<?php echo assets_url()?>css/chat/chat.css" />

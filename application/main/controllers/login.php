@@ -11,14 +11,14 @@
  * @property Users $users
  */
 class Login_controller extends MY_Controller{
-	
+
 	/**
 	 * Constructor
 	 */
 	function __construct(){
 		parent::__construct();
 		$this->access->restrict('logged_out');
-		
+
 	}
 
 
@@ -26,20 +26,28 @@ class Login_controller extends MY_Controller{
 	 * Login
 	 */
 	function index() {
+
+		$data['description'] 	= SETTINGS_SITE_DESCRIPTION;
+		$data['keywords'] 		= SETTINGS_SITE_KEYWORDS;
+		$data['pageTitle'] 		= lang('My account').' - '.SETTINGS_SITE_TITLE;
+
 		$this->load->library('form_validation');
-		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_error_delimiters(NULL,NULL);
 		$this->form_validation->set_rules('username',	lang('username'),		'trim|required|alpha_dash|min_length[3]|max_length[25]');
 		$this->form_validation->set_rules('password',	lang('password'),		'trim|required|min_length[3]|verify_login[user]');
 
-		if($this->form_validation->run() === FALSE){
-			$this->session->set_flashdata('msg',array('success'=>FALSE,'message'=>form_error('password')));
-			redirect();
-		} else {
-			redirect();
+		//$run_form_validation = (isset($_POST['run_form_validation'])) ? true : false;
+		if(isset($_POST['run_form_validation'])){
+			if($this->form_validation->run() === FALSE){
+				$this->session->set_flashdata('msg',array('success'=>FALSE,'message'=>form_error('password')));
+				$data['succes'] = false;
+				$this->load->view('static_login', $data);
+			} else {
+				$data['succes'] = true;
+				$this->load->view('static_login', $data);
+			}
+		} else{
+			$this->load->view('static_login', $data);
 		}
-	}
-	
-	function static_login() {
-		$this->load->view('static_login');
 	}
 }

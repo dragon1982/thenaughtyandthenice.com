@@ -33,9 +33,9 @@ if (defined('ENVIRONMENT'))
 	switch (ENVIRONMENT)
 	{
 		case 'development':
-			error_reporting(E_ALL);
+			error_reporting(E_ALL & ~E_STRICT & ~E_DEPRECATED & ~E_USER_DEPRECATED);
 		break;
-	
+
 		case 'testing':
 		case 'production':
 			error_reporting(0);
@@ -72,42 +72,42 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	
+
 	require_once 'settings.php';
-	
-	
+
+
 	$uri = ( isset( $_SERVER['REQUEST_URI'] ) && strlen($_SERVER['REQUEST_URI']) > 1)?$_SERVER['REQUEST_URI'].'/':NULL;
-	
+
 	if(strpos($uri,WEB_URL . PREFORMERS_URL . '/') === 0){
 		$application_folder = 'application/performers';
 		$extended_application = 'extended/performers';
-		define('IGNORE_URI', PREFORMERS_URL);		
+		define('IGNORE_URI', PREFORMERS_URL);
 	}
 	elseif(strpos($uri,WEB_URL . STUDIOS_URL . '/') === 0)
 	{
 		$application_folder = 'application/studios';
 		$extended_application = 'extended/studios';
-		define('IGNORE_URI', STUDIOS_URL);					
+		define('IGNORE_URI', STUDIOS_URL);
 	}
 	elseif(strpos($uri,WEB_URL . AFFILIATES_URL . '/') === 0)
 	{
 		$application_folder = 'application/affiliates';
 		$extended_application = 'extended/affiliates';
-		define('IGNORE_URI', AFFILIATES_URL);					
+		define('IGNORE_URI', AFFILIATES_URL);
 	}
 	elseif(strpos($uri,WEB_URL . ADMINS_URL . '/') === 0)
 	{
 		$application_folder = 'application/admin';
 		$extended_application = 'extended/admin';
-		define('IGNORE_URI', ADMINS_URL);					
+		define('IGNORE_URI', ADMINS_URL);
 	}
 	else
-	{			
+	{
 		$application_folder = 'application/main';
 		$extended_application = 'extended/main';
 		define('IGNORE_URI','SMGSECRETNOTUSERDDDDDDDDDDDD');
 	}
-		
+
 
 /*
  * --------------------------------------------------------------------
@@ -223,20 +223,20 @@ if (defined('ENVIRONMENT'))
 
 		define('APPPATH',    BASEPATH.$application_folder.'/');
 	}
-	
-	
+
+
 	if (is_dir($extended_application))
 	{
 		define('EXTPATH','extended/');
 		define('APPEXPATH', $extended_application.'/');
 		define('APP_DEFAULT_PATH','application/');
 	}
-	
+
 	if( ! APP_INSTALLED ){
 		if( end(explode('/',$_SERVER['REQUEST_URI'])) !== 'install'){
-			$url = explode('index.php',$_SERVER['PHP_SELF']);					
+			$url = explode('index.php',$_SERVER['PHP_SELF']);
 			header('Location: http://' . $_SERVER['SERVER_NAME'].$url[0].'install');
-		}			
+		}
 	} else {
 		if( file_exists('application/main/controllers/install.php')){
 			@unlink('application/main/controllers/install.php');

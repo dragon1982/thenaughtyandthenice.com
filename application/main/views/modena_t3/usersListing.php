@@ -35,9 +35,9 @@
                     </ul><!--end list-t1-->
 
 	  <script type="text/javascript">
-		var $j = jQuery.noConflict();
-		$j(function() {
-			$j('#usersListing').slimScroll({
+	  //var $j = jQuery.noConflict();
+		$(function() {
+			$('#usersListing').slimScroll({
 					height: '<?php echo $pageViewHeight ?>px',
 				  width: '821px',
 				  railVisible: true,

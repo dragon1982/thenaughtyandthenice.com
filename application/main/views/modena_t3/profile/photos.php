@@ -69,7 +69,7 @@ jQuery(function($) {										// Initially set opacity on thumbs and add
                                     <div id="free" class="photos-list clearfix">
 																			<?php foreach ($photos as $photo): ?>
                                         <div class="photo-item">
-																		        <a class="thumb" rel="my_photos" title="<?php echo $photo->title?>" href="<?php echo main_url('uploads/performers/' . $performer->id .'/' . $photo->name_on_disk)?>">
+																		        <a class="thumb" rel="lightbox[free_photos]" title="<?php echo $photo->title?>" href="<?php echo main_url('uploads/performers/' . $performer->id .'/' . $photo->name_on_disk)?>">
 			        																<img src="<?php echo main_url('uploads/performers/' . $performer->id .'/small/' . $photo->name_on_disk)?>" title="<?php echo $photo->title?>" />
 																						</a>
                                             <div class="photo-item-decoration"><!-- --></div>
@@ -97,7 +97,7 @@ jQuery(function($) {										// Initially set opacity on thumbs and add
                                     <div id="paid_gal" class="photos-list clearfix">
 																			<?php foreach ($photos_paid as $photo): ?>
                                         <div class="photo-item">
-																			      <a <?php echo (($has_paid)?'class="thumb" rel="my_paid"':(($this->user->id > 0)?'class="pay_gallery thumb"':'class="signup thumb"'))?> title="<?php echo $photo->title?>" href="<?php echo ($has_paid)?main_url('photo/' . $photo->photo_id):main_url('buy-access/' . $performer->id. '?rand=' . mt_rand(10000,99999))?>">
+																			      <a <?php echo (($has_paid)?'class="thumb" rel="lightbox[my_paid]"':(($this->user->id > 0)?'class="pay_gallery thumb"':'class="signup thumb"'))?> title="<?php echo $photo->title?>" href="<?php echo ($has_paid)?main_url('photo/' . $photo->photo_id):main_url('buy-access/' . $performer->id. '?rand=' . mt_rand(10000,99999))?>">
 																			      	<img src="<?php echo main_url('photo/thumb/' . $photo->photo_id . '?rand=' . mt_rand(10000,99999))?>" title="<?php echo $photo->title?>" />
 																						</a>
                                             <div class="photo-item-decoration"><!-- --></div>

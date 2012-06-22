@@ -7,18 +7,18 @@
 }
 
 .chatboxhead {
-	background-color: #f99d39;
+	background-color: #6ACBEF;
 	padding:7px;
 	color: #ffffff;
 
-	border-right:1px solid #f99d39;
-	border-left:1px solid #f99d39;
+	border-right:1px solid #6ACBEF;
+	border-left:1px solid #6ACBEF;
 }
 
 .chatboxblink {
-	background-color: #176689;
-	border-right:1px solid #176689;
-	border-left:1px solid #176689;
+	background-color: #FFD666;
+	border-right:1px solid #FFD666;
+	border-left:1px solid #FFD666;
 }
 
 .chatboxcontent {
@@ -55,7 +55,7 @@
 }
 
 .chatboxtextareaselected {
-	border: 2px solid #f99d39;
+	border: 2px solid #6ACBEF;
 	margin:0;
 }
 
@@ -89,5 +89,8 @@
 }
 
 .chatboxtitle {
-	float: left;
+	cursor: pointer;
+  float: left;
+  font-size: 11px;
+  font-weight: bold;
 }

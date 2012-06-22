@@ -1,7 +1,10 @@
 <!-- lightbox-->
-<link rel="stylesheet" type="text/css" href="<?php echo assets_url() ?>css/jquery.lightbox-0.5.css" />
-<script type="text/javascript" src="<?php echo assets_url() ?>js/jquery.lightbox-0.5.min.js"></script>
+<script src="<?php echo assets_url() ?>addons/lightbox/js/lightbox.js"></script>
+<link href="<?php echo assets_url() ?>addons/lightbox/css/lightbox.css" rel="stylesheet" />
+
 <script src="<?php echo assets_url() ?>js/jquery.ui.stars.min.js"></script>
+
+
 <!-- jQuery rating -->
 
 <script type="text/javascript">
@@ -32,8 +35,10 @@
 			$('#'+$(this).attr('id') + '_content').show();
 			if($(this).attr('id') != 'profile'){
 				$('#reviews').hide();
+				$('#latest-photos').hide();
 			}else{
 				$('#reviews').show();
+				$('#latest-photos').show();
 			}
 
 //			if($(this).attr('id') == 'pictures' || $(this).attr('id') == 'videos'){
@@ -85,11 +90,12 @@
 	});
 </script>
 
-
+<?php include_once("/home/ionut/dev/thenaughtyandthenice.com/assets/modena_t3/addons/rating/_drawrating.php")?>
             <article class="set-bott-1">
 
                 <header class="box-header clearfix">
                     <h1 class="article-title left"><?php echo $performer->nickname?></h1>
+                    <div class="score">- Score: <strong><?php echo getPerformerScore($performer->id)?></strong></div>
                     <nav class="model-nav right">
                     	<ul>
                         	<li id="profile" class="selected menu_item"><a class="ico-profile" href="javascript:;"><span><?php echo lang('My Profile') ?></span></a></li>
@@ -106,42 +112,65 @@
 
                 		<div class="profile-left-col">
                     	<div class="box-t1 set-bott-2">
-                        	<a href="javscript:;">
+                        	<a href="<?php echo main_url('uploads/performers/' . $performer->id .'/' . $performer->avatar)?>" rel="lightbox">
                         		<img src="<?php echo ($performer->avatar != '') ? main_url('uploads/performers/' . $performer->id . '/medium/' . $performer->avatar) : assets_url().'images/poza_tarfa_medium.jpg'?>" alt="" width="178">
                         	</a>
 
-													<?php if(isset($rating)):?>
-													<div class="rate">
-														<div class="stars">
-															<?php $rating = round($rating * 4);
-															for ($i = 0; $i < 21; $i++):?>
-																<?php if ($i == $rating):?>
-																	<input name="rating" type="radio" class="star" value="<?php echo $i/4?>" checked="checked"/>
-																<?php else:?>
-																	<input name="rating" type="radio" class="star" value="<?php echo $i/4?>"/>
-																<?php endif?>
-															<?php endfor?>
-														</div>
-														<span class="bold">
-															<?php if ($ratings_count == 1): ?>
-																<?php echo lang('1 vote')?>
-															<?php else:?>
-																<?php echo sprintf(lang('%s votes'),$ratings_count)?>
-															<?php endif?>
-														</span>
-													</div>
-													<?php endif?>
+                          <div class="rate clearfix">
+                          	<div>Rate:</div>
+														<?php
+														$user_id = ($this->user->id > 0) ? $this->user->id : null;
+														echo $rating = rating_bar($performer->id,5,'',$user_id, site_url($this->uri->uri_string()));
+														?>
+                          </div>
 
                         </div><!-- end box-t1 -->
 
-                        <a class="btn-nice-4 set-bott-2" href="javascript:;"><span class="ico-messages">Private Chat</span></a>
+                        <a class="btn-nice-4 set-bott-2" href="javascript:;"><span class="ico-private-messages">Private Chat</span></a>
                         <?php if($this->user->id > 0):?>
-                        <a class="btn-nice-3 set-bott-2 send_message" href="javascript:;"><span class="ico-messages"><?php echo lang('send message')?></span></a>
+                        	<a class="btn-nice-3 set-bott-2 send_message" href="javascript:;"><span class="ico-messages"><?php echo lang('send message')?></span></a>
+
+													<?php if(isset($friends['request'])): ?>
+														<tr>
+															<td colspan="3" align="center" bgcolor="#bbbbbb">
+																<?php if($friends['request']->status == 'new'): ?>
+																	<?php echo form_open('relation/add', array('id'=>'add_relation_form', 'method'=>'post', 'name' => 'add_relation_form_'.$performer->nickname)); ?>
+																		<input type="hidden" name="id" value="<?php echo $friends['request']->id; ?>" />
+																		<input type="hidden" name="type" value="<?php echo $friends['request']->type; ?>" />
+																		<a class="btn-nice-3 set-bott-2" href="javascript:;" onclick="javascript:document.add_relation_form_<?php echo $performer->nickname?>.submit();"><span class="ico-add-friend">Add friend</span></a>
+																	</form>
+																<?php elseif($friends['request']->status == 'pending'): ?>
+																	<?php echo form_open('relation/delete', array('id'=>'delete_relation_form', 'method'=>'post', 'name'=>'delete_relation_form_'.$performer->nickname)); ?>
+																		<input type="hidden" name="rel_id" value="<?php echo $friends['request']->rel_id; ?>" />
+																		<a class="btn-nice-3 set-bott-2" href="javascript:;" onclick="javascript:document.delete_relation_form_<?php echo $performer->nickname?>.submit();"><span class="ico-remove-friend">Cancel friend request</span></a>
+																	</form>
+																<?php elseif($friends['request']->status == 'ban'): ?>
+																	The user is banned
+																<?php elseif($friends['request']->status == 'banned'): ?>
+																	You were banned by this user
+																<?php endif; ?>
+															</td>
+														</tr>
+													<?php endif; ?>
                         <?php endif;?>
-                        <a class="btn-nice-3 set-bott-2" href="javascript:;"><span class="ico-add-friend">Add friend</span></a>
+
                         <a class="btn-nice-3 set-bott-2" href="<?php echo site_url(($favorite)? 'remove-favorite/' . $performer->nickname : 'add-favorite/' . $performer->nickname)?>">
                         	<span class="ico-add-favorite"><?php echo ( ! $favorite)?lang('add favorite'):lang('remove favorite')?></span>
                         </a>
+
+                        <div class="clock set-top-1 set-bott-1 clearfix">
+                        	<div class="clock-title-1"><span class="color-1">Next show</span> will start in</div>
+                        	<div class="left-part">
+                            	<div class="time-decoration"><!-- --></div>
+                            	<div class="time-no">12</div>
+                                <div class="time-desc">Minutes</div>
+                            </div>
+                            <div class="right-part">
+                            	<div class="time-decoration"><!-- --></div>
+                            	<div class="time-no">32</div>
+                                <div class="time-desc">Seconds</div>
+                            </div>
+                        </div><!-- end clock -->
 
 												<?php $buttons =  $this->performers->display_buttons($performer)?>
 												<?php $i = 0;?>

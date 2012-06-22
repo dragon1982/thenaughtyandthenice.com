@@ -1,0 +1,81 @@
+		
+	 /* Nicolas Gallagher's micro clearfix */
+		 .row:before, .row:after, .clearfix:before, .clearfix:after { content:""; display:table; }
+		 .row:after, .clearfix:after { clear: both; }
+		 .row, .clearfix { zoom: 1; }
+		 
+	
+	.prefix20 { margin-left:20px; }
+	
+	.form-t1 {width:630px; height:458px; background:url(../images/bg-form-2.png) no-repeat 0 0; font-family:Arial, Helvetica, sans-serif; position:relative;}
+	.form-header { font-size:30px; color:#55080d; padding:18px 20px 12px 20px;}
+	
+	.form-t1-content { padding:30px 40px; width:300px;}
+	
+	.form-line-2 { border-bottom:1px solid #b0555e; padding:8px 0; }
+	
+	.nice-input-2 { 
+	
+			font-size:13px; font-weight:bold; color:#333;
+			padding:12px 5px 10px 10px;
+			margin-bottom:3px;
+			-webkit-border-radius: 5px; border-radius: 5px; border:1px solid #fff; 
+			background: #bcbcbc; /* Old browsers */
+			background: -moz-linear-gradient(top, #bcbcbc 0%, #c8c8c8 11%, #f6f6f6 39%, #fefefe 47%, #ffffff 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#bcbcbc), color-stop(11%,#c8c8c8), color-stop(39%,#f6f6f6), color-stop(47%,#fefefe), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, #bcbcbc 0%,#c8c8c8 11%,#f6f6f6 39%,#fefefe 47%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, #bcbcbc 0%,#c8c8c8 11%,#f6f6f6 39%,#fefefe 47%,#ffffff 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top, #bcbcbc 0%,#c8c8c8 11%,#f6f6f6 39%,#fefefe 47%,#ffffff 100%); /* IE10+ */
+			background: linear-gradient(top, #bcbcbc 0%,#c8c8c8 11%,#f6f6f6 39%,#fefefe 47%,#ffffff 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bcbcbc', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+	}
+	
+	input.small { width:121px; }
+	input.large { width:280px; }
+	.input-desc { margin-left:2px; font-size:11px; color:#c1a5a7; }
+	
+	.form-line-left, .form-line-right { float:left; width:140px; }
+	
+	.submit-btn-2 {
+		margin-top:20px;
+		width:300px; height:50px;
+		cursor:pointer;
+		font-size:18px; font-weight:bold; color:#58060b;
+		border:1px solid #fcfb9c;
+		-webkit-border-radius: 3px; border-radius: 3px; 
+		background: #ebea8f; /* Old browsers */
+		background: -moz-linear-gradient(top, #ebea8f 0%, #e5e36d 2%, #d7d55f 32%, #b8b640 83%, #b1af39 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebea8f), color-stop(2%,#e5e36d), color-stop(32%,#d7d55f), color-stop(83%,#b8b640), color-stop(100%,#b1af39)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #ebea8f 0%,#e5e36d 2%,#d7d55f 32%,#b8b640 83%,#b1af39 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #ebea8f 0%,#e5e36d 2%,#d7d55f 32%,#b8b640 83%,#b1af39 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #ebea8f 0%,#e5e36d 2%,#d7d55f 32%,#b8b640 83%,#b1af39 100%); /* IE10+ */
+		background: linear-gradient(top, #ebea8f 0%,#e5e36d 2%,#d7d55f 32%,#b8b640 83%,#b1af39 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebea8f', endColorstr='#b1af39',GradientType=0 ); /* IE6-9 */
+		
+	 }
+	
+
+.form-footer { background:url(../images/register-form-more-btn.png) no-repeat 0 0; height:55px; position:absolute; right:0; bottom:0; padding:15px 20px 0 0; text-align:right; color:#fff;}
+.form-footer a { color:#e2e16b; font-weight:bold; }
+
+
+/*	--------------------------------------------------
+	Alerts
+	-------------------------------------------------- */
+
+	div.alert-box { display: block; padding: 6px 7px; font-weight: bold; font-size: 13px; background: #eee; border: 1px solid rgba(0,0,0,0.1); margin-bottom: 12px; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; text-shadow: 0 1px rgba(255,255,255,0.9); position: relative; }
+	.alert-box.success { background-color: #7fae00; color: #fff; text-shadow: 0 -1px rgba(0,0,0,0.3); }
+	.alert-box.warning { background-color: #f68b01; color: #fff; text-shadow: 0 -1px rgba(0,0,0,0.3); }
+	.alert-box.error { background-color: #c00000; color: #fff; text-shadow: 0 -1px rgba(0,0,0,0.3); }
+	
+	.alert-box a.close { color: #000; position: absolute; right: 4px; top: 0; font-size: 18px; opacity: 0.2; padding: 4px; }
+	.alert-box a.close:hover,.alert-box a.close:focus { opacity: 0.4; }
+input.error { color:#c00000!important; font-style:italic;}
+
+.form-t1-liks {padding:30px 0 0 0; text-align:center;}
+.form-t1-liks span { color:#fff; padding:0 5px; }
+.form-t1-liks a { color:#fff; text-decoration:underline;}
+.form-t1-liks a:hover { text-decoration:none;}
+
+.fancy_box_close { position:absolute; right:10px; top:10px; cursor:pointer;}
+

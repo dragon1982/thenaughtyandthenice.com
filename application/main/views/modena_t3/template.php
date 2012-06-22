@@ -51,11 +51,11 @@
 
 			        </div><!--end content-->
 
-							<?php 
+							<?php
 								if($this->user->id > 0) {
 									if(isset($friends)) $data['friends'] = $friends;
 									else $data['friends'] = $this->users->get_friends_data($this->user->id,'user');
-									$this->load->view('relations',$data); 
+									$this->load->view('relations',$data);
 								}
 							?>
 							<br /><br /><br />
@@ -68,12 +68,12 @@
 		</div><!--end site-decoration-->
 
 		<!-- Included JS Files -->
-		<script src="<?php echo assets_url()?>javascripts/jquery.min.js"></script>
 		<script src="<?php echo assets_url()?>javascripts/modernizr.foundation.js"></script>
 		<script src="<?php echo assets_url()?>javascripts/foundation.js"></script>
 		<script src="<?php echo assets_url()?>javascripts/app.js"></script>
 		<?php if($this->user->id > 0): ?>
-			<script src="<?php echo assets_url()?>js/chat.js.php"></script>
+			<script type="text/javascript" src="<?php echo assets_url()?>js/jquery-1.7.2.min.js"></script>
+			<script src="<?php echo assets_url()?>js/chat.js.frontend.php"></script>
 		<?php endif; ?>
 	</body>
 </html>

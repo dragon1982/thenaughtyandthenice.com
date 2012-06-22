@@ -10,9 +10,9 @@ jQuery(function($){
 		}
 	});
 
-	
+
 	var validator = $(".contact_us").validate({
-		 
+
 		success: function(label) {
 	    	label.addClass("valid");
 	   },
@@ -27,36 +27,53 @@ jQuery(function($){
 				minlength: 2,
 				maxlength: 1500
 			}
-		}, 
+		},
 		messages: {
 			subject: 					"&nbsp;",
 			message: 					"&nbsp;"
 		},
-		
+
 		submitHandler: function(form) {
 			form.submit();
 		},
 		debug: true
 	});
-}); 
+});
 </script>
-<?php echo form_open('performers/contact', 'class="contact_us"') ?>
-<div class="gray italic register_performer profile_contact">
-		<?php echo form_hidden('performer_id', $performer->id ) ?>
-	<div>
-		<label class="narrow_label" style="text-align: left;"><span class="gray italic bold"><?php echo lang('Subject') ?></span></label>
-		<?php echo form_input(array('name' => 'subject', 'id' => 'subject'), set_value('subject'))?>
-		<span></span>
-	</div>
-	<div>
-		<label class="narrow_label" style="text-align: left;"><span class="gray italic bold"><?php echo lang('Message') ?></span></label>
-		<?php echo form_textarea(array('name' => 'message', 'id' => 'message') , set_value('message'))?>
-		<span></span><span style="vertical-align:top"></span>
-		
-	</div>
-	<div>
-		<label  class="narrow_label"></label>
-		<span onclick="$('.contact_us').validate()"><button class="red" style="width:343px;"><?php echo lang('Submit') ?></button></span>
-	</div>
+
+<div class="box-header-2">
+	<h2 class="title1">Contact</h2>
 </div>
-<?php echo form_close()?>
+
+
+<?php echo form_open('performers/contact', 'class="small-form"') ?>
+<?php echo form_hidden('performer_id', $performer->id ) ?>
+
+		<div class="form-line clearfix">
+    	<div class="form-left">
+        	<label><?php echo lang('Subject') ?></label>
+        </div>
+        <div class="form-right">
+        	<?php echo form_input(array('name' => 'subject', 'id' => 'subject', 'class' => 'nice-input medium'), set_value('subject'))?>
+        </div>
+    </div><!--end form-line-->
+
+    <div class="form-line clearfix">
+    	<div class="form-left">
+        	<label><?php echo lang('Message') ?></label>
+      </div>
+    	<div class="form-right">
+      	<div class="nice-textarea medium">
+        			<?php echo form_textarea(array('name' => 'message', 'id' => 'message') , set_value('message'))?>
+        </div>
+      </div>
+    </div><!--end form-line-->
+
+    <div class="form-line clearfix" style="border:0;">
+    	<div class="form-left"></div>
+         <div class="form-right">
+        		<span onclick="$('.contact_us').validate()"><button class="nice-submit medium" style="width:343px;"><?php echo lang('Submit') ?></button></span>
+        </div>
+    </div><!--end form-line-->
+
+</form>
