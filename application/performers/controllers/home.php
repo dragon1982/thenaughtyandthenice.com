@@ -412,6 +412,12 @@ Class Home_controller extends MY_Performer{
             			time(), 
             			ip2long($this->input->ip_address())
 		);
+
+		session_start();
+		if(isset($_SESSION['chatHistory'])) unset($_SESSION['chatHistory']);
+		if(isset($_SESSION['tsChatBoxes'])) unset($_SESSION['tsChatBoxes']);
+		if(isset($_SESSION['openChatBoxes'])) unset($_SESSION['openChatBoxes']);
+		
 		redirect('login');
 	}
 	

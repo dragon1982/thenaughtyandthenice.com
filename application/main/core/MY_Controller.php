@@ -30,6 +30,8 @@ class MY_Controller extends CI_Controller{
 		}elseif($this->session->userdata('type') == 'performer'){
 			redirect(main_url().PREFORMERS_URL);
 		}
+		
+		$this->load->model('friends');
 	}
 }
 
@@ -58,7 +60,6 @@ class MY_Users extends MY_Controller{
 			$this->user->credits -= $watcher->user_paid_chips;
 			$this->active_session = $watcher; 
 		}
-		
 		
 	}
 }

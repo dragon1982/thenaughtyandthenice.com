@@ -1,7 +1,6 @@
 <?php
 $_lang = $this->config->item('lang_selected');
-if (empty($_lang))
-{
+if (empty($_lang)) {
     $_lang = "en";
 }
 ?>
@@ -118,8 +117,6 @@ jQuery(function($){
 <script src="<?php echo assets_url()?>js/jquery.ui.core.js"></script>
 <script src="<?php echo assets_url()?>js/jquery.ui.widget.js"></script>
 <script src="<?php echo assets_url()?>js/slimScroll.js"></script>
-
-
 
 <link rel="stylesheet" href="<?php echo assets_url()?>css/blitzer/jquery-ui-1.8.14.custom.css">
 <link rel="stylesheet" href="<?php echo assets_url()?>css/main.css">

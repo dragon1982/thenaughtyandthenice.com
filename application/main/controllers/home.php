@@ -34,7 +34,7 @@ class Home_controller extends MY_Controller {
 	/*
 	 * Prima pagina
 	 */
-	function index() {	
+	function index() {
 		$this->load->library('pagination');
 		$this->load->helper('text');
 

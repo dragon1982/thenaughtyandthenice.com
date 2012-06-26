@@ -26,7 +26,7 @@
 		<?php 
 			if($this->user->id > 0) {
 				if(isset($friends)) $data['friends'] = $friends;
-				else $data['friends'] = $this->users->get_friends_data($this->user->id,'performer');
+				else $data['friends'] = $this->friends->get_data($this->user->id);
 				$this->load->view('relations',$data); 
 			}
 		?>
@@ -48,7 +48,18 @@
 	<div class="clear"></div>
 	<?php $this->load->view('includes/footer')?>
 	<?php if($this->user->id > 0): ?>
-		<script src="<?php echo assets_url()?>js/chat.js.php?app=performer"></script>
+		<script type="text/javascript">
+			var friends = new Array();
+			<?php foreach($data['friends']['online'] as $key => $friend): ?>
+				var friend = new Object;
+				var label = "<?php echo $friend->id.'_'.$friend->type; ?>";
+				friend.id = "<?php echo $friend->id; ?>";
+				friend.type = "<?php echo $friend->type; ?>";
+				friend.username = "<?php echo $friend->username; ?>";
+				friends[label] = friend;
+			<?php endforeach; ?>
+		</script>
+		<script src="<?php echo assets_url()?>js/chat_performer.js"></script>
 	<?php endif; ?>
 </body>
 </html>

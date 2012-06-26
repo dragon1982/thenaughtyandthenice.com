@@ -89,8 +89,7 @@
 
 	});
 </script>
-
-<?php include_once("/home/ionut/dev/thenaughtyandthenice.com/assets/modena_t3/addons/rating/_drawrating.php")?>
+<?php include_once($_SERVER['DOCUMENT_ROOT']."/assets/modena_t3/addons/rating/_drawrating.php")?>
             <article class="set-bott-1">
 
                 <header class="box-header clearfix">

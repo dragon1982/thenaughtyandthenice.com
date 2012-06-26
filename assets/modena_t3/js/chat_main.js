@@ -17,10 +17,6 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
-<?php
-	if(isset($_GET['app'])) $app = '/'.trim($_GET['app']);
-	else $app = null;
-?>
 var $j = jQuery.noConflict();
 
 var windowFocus = true;
@@ -83,7 +79,7 @@ function createChatBox(chatboxtitle,minimizeChatBox) {
 
 	$j(" <div />" ).attr("id","chatbox_"+chatboxtitle)
 	.addClass("chatbox")
-	.html('<div class="chatboxhead"><div class="chatboxtitle" onclick="javascript:toggleChatBoxGrowth(\''+chatboxtitle+'\')">'+extract(chatboxtitle,1)+' ('+extract(chatboxtitle,2)+')'+'</div><div class="chatboxoptions"><a href="javascript:void(0)" onclick="javascript:toggleChatBoxGrowth(\''+chatboxtitle+'\')">-</a> <a href="javascript:void(0)" onclick="javascript:closeChatBox(\''+chatboxtitle+'\')">X</a></div><br clear="all"/></div><div class="chatboxcontent"></div><div class="chatboxinput"><textarea class="chatboxtextarea" onkeydown="javascript:return checkChatBoxInputKey(event,this,\''+chatboxtitle+'\');"></textarea></div>')
+	.html('<div class="chatboxhead"><div class="chatboxtitle" onclick="javascript:toggleChatBoxGrowth(\''+chatboxtitle+'\')">'+user(chatboxtitle,'username')+' ('+user(chatboxtitle,'type')+')'+'</div><div class="chatboxoptions"><a href="javascript:void(0)" onclick="javascript:toggleChatBoxGrowth(\''+chatboxtitle+'\')">-</a> <a href="javascript:void(0)" onclick="javascript:closeChatBox(\''+chatboxtitle+'\')">X</a></div><br clear="all"/></div><div class="chatboxcontent"></div><div class="chatboxinput"><textarea class="chatboxtextarea" onkeydown="javascript:return checkChatBoxInputKey(event,this,\''+chatboxtitle+'\');"></textarea></div>')
 	.appendTo($j( "body" ));
 
 	$j("#chatbox_"+chatboxtitle).css('bottom', '0px');
@@ -158,7 +154,7 @@ function chatHeartbeat(){
 			if (newMessagesWin[x] == true) {
 				++blinkNumber;
 				if (blinkNumber >= blinkOrder) {
-					document.title = x+' says...';
+					document.title = user(x,'username')+' says...';
 					titleChanged = 1;
 					break;
 				}
@@ -188,7 +184,7 @@ function chatHeartbeat(){
 	}
 
 	$j.ajax({
-	  url: "<?php echo $app; ?>/chat/heartbeat",
+	  url: "/chat/heartbeat",
 	  cache: false,
 	  dataType: "json",
 	  success: function(data) {
@@ -215,7 +211,7 @@ function chatHeartbeat(){
 				} else {
 					newMessages[chatboxtitle] = true;
 					newMessagesWin[chatboxtitle] = true;
-					$j("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">'+extract(item.f,1)+':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">'+item.m+'</span></div>');
+					$j("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">'+user(item.f,'username')+':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">'+item.m+'</span></div>');
 				}
 
 				$j("#chatbox_"+chatboxtitle+" .chatboxcontent").scrollTop($j("#chatbox_"+chatboxtitle+" .chatboxcontent")[0].scrollHeight);
@@ -244,7 +240,7 @@ function closeChatBox(chatboxtitle) {
 	$j('#chatbox_'+chatboxtitle).css('display','none');
 	restructureChatBoxes();
 
-	$j.post("<?php echo $app; ?>/chat/close", { chatbox: chatboxtitle} , function(data){
+	$j.post("/chat/close", { chatbox: chatboxtitle} , function(data){
 	});
 
 }
@@ -299,9 +295,9 @@ function checkChatBoxInputKey(event,chatboxtextarea,chatboxtitle) {
 		$j(chatboxtextarea).focus();
 		$j(chatboxtextarea).css('height','44px');
 		if (message != '') {
-			$j.post("<?php echo $app; ?>/chat/send", {to: chatboxtitle, message: message} , function(data){
+			$j.post("/chat/send", {to: chatboxtitle, message: message} , function(data){
 				message = message.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;");
-				$j("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">'+extract(username,1)+':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">'+message+'</span></div>');
+				$j("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">me:&nbsp;&nbsp;</span><span class="chatboxmessagecontent">'+message+'</span></div>');
 				$j("#chatbox_"+chatboxtitle+" .chatboxcontent").scrollTop($j("#chatbox_"+chatboxtitle+" .chatboxcontent")[0].scrollHeight);
 			});
 		}
@@ -328,7 +324,7 @@ function checkChatBoxInputKey(event,chatboxtextarea,chatboxtitle) {
 
 function startChatSession(){
 	$j.ajax({
-	  url: "<?php echo $app; ?>/chat",
+	  url: "/chat",
 	  cache: false,
 	  dataType: "json",
 	  success: function(data) {
@@ -351,7 +347,7 @@ function startChatSession(){
 				if (item.s == 2) {
 					$j("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxinfo">'+item.m+'</span></div>');
 				} else {
-					$j("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">'+extract(item.f,1)+':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">'+item.m+'</span></div>');
+					$j("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">'+user(item.f,'username')+':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">'+item.m+'</span></div>');
 				}
 			}
 		});
@@ -415,8 +411,7 @@ function startChatSession(){
     };
 })(jQuery);
 
-function extract(str,elem){
-	var arr = str.split('_');
-	if(elem == 1) return arr[0];
-	else return arr[1];
+function user(label,field){
+	if(typeof friends[label] != 'undefined') return friends[label][field];
+	return null;
 }

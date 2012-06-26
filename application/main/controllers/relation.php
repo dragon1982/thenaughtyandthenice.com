@@ -2,13 +2,12 @@
 /**
  */
 
-Class Relation_controller extends MY_Controller{
+Class Relation_controller extends MY_Users{
 	
 	//constructor
 	function __construct(){
 		parent::__construct();
-		$this->load->model('users');
-		$this->load->model('performers');		
+		$this->load->model('relation');	
 	}
 
 	// ------------------------------------------------------------------------	
@@ -16,10 +15,10 @@ Class Relation_controller extends MY_Controller{
 	function add() {
 		$id = $this->input->post('id', null);
 		$type = $this->input->post('type', null);
-		if(!$friend = $this->users->get_friend($this->user->id,'user',$id,$type)){
-			$this->users->add_relation($this->user->id,'user',$id,$type);
+		if(!$friend = $this->friends->get_one($this->user->id,$id,$type)){
+			$this->relation->add($this->user->id,$id,$type);
 		}
-		redirect();
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 	
 	// ------------------------------------------------------------------------	
@@ -27,10 +26,10 @@ Class Relation_controller extends MY_Controller{
 	function delete() {
 		$rel_id = $this->input->post('rel_id', null);
 		$rel_ids = array();
-		$friends = $this->users->get_friends($this->user->id,'user');
+		$friends = $this->friends->get($this->user->id);
 		foreach($friends as $friend) $rel_ids[] = $friend->rel_id;
-		if(in_array($rel_id, $rel_ids)) $this->users->delete_relation($rel_id);
-		redirect();
+		if(in_array($rel_id, $rel_ids)) $this->relation->delete($rel_id);
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 	
 	// ------------------------------------------------------------------------	
@@ -38,12 +37,12 @@ Class Relation_controller extends MY_Controller{
 	function accept() {
 		$rel_id = $this->input->post('rel_id', null);
 		$rel_ids = array();
-		$friends = $this->users->get_friends($this->user->id,'user','pending');
+		$friends = $this->friends->get($this->user->id,'pending');
 		foreach($friends as $friend) {
 			if($friend->owner) $rel_ids[] = $friend->rel_id;
 		}
-		if(in_array($rel_id, $rel_ids)) $this->users->update_relation($rel_id);
-		redirect();
+		if(in_array($rel_id, $rel_ids)) $this->relation->update($rel_id,'accepted');
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 	
 	// ------------------------------------------------------------------------	
@@ -51,13 +50,14 @@ Class Relation_controller extends MY_Controller{
 		$this->load->model('performers');
 		$rel_id = $this->input->post('rel_id', null);
 		$rel_ids = array();
-		$friends = $this->users->get_friends($this->user->id,'user','accepted');
+		$friends = $this->friends->get($this->user->id,'accepted');
 		foreach($friends as $friend) {
 			if($friend->rel_id == $rel_id){
-				$this->users->update_relation($rel_id, $friend->owner?'banned':'ban');
+				$this->relation->update($rel_id, $friend->owner?'banned':'ban');
 				break;
 			}
 		}
-		redirect();
+		redirect($_SERVER['HTTP_REFERER']);
 	}
+	
 }

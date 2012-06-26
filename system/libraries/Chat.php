@@ -1,20 +1,15 @@
 <?php
 
-class Chat {
-	
-	private $CI;
+class Chat extends CI_Model{
+
 	private $table = 'messages';
 	private $id;
-	private $username;
 	private $type;
 	
-	function __construct($id, $username, $type){
+	function __construct($id, $type){
 		$this->id = $id;
-		$this->username = $username;
 		$this->type = $type;
-		$this->CI =& get_instance();
 		if(!isset($_SESSION)) session_start();
-		$_SESSION['username'] = $this->username.'_'.$this->type;
 	}
 	
 	function __destruct() {
@@ -29,15 +24,14 @@ class Chat {
 	
 	function heartbeat() {
 		
-		$results = $this->CI->db->where('to_id',$this->id)->where('to_type',$this->type)->where('readed_by_recipient',0)->order_by('id')->get($this->table)->result_array();
+		$results = $this->db->where('to_id',$this->id)->where('to_type',$this->type)->where('readed_by_recipient',0)->order_by('id')->get($this->table)->result_array();
 		$items = '';
 
 		$chatBoxes = array();
 
 		foreach($results as $chat) {
-			$result = $this->CI->db->where('id',$chat['from_id'])->get($chat['from_type'].'s')->row();
-			$chat['username'] = $result->username;
-			$label = $chat['username'].'_'.$chat['from_type'];
+			$result = $this->db->where('id',$chat['from_id'])->get($chat['from_type'].'s')->row();
+			$label = $chat['from_id'].'_'.$chat['from_type'];
 
 			if (!isset($_SESSION['openChatBoxes'][$label]) && isset($_SESSION['chatHistory'][$label])) {
 				$items = $_SESSION['chatHistory'][$label];
@@ -102,7 +96,7 @@ EOD;
 		}
 	}
 	
-		$this->CI->db->where('to_id',$this->id)->where('to_type',$this->type)->where('readed_by_recipient',0)->update($this->table, array('readed_by_recipient'=>1)); 
+		$this->db->where('to_id',$this->id)->where('to_type',$this->type)->where('readed_by_recipient',0)->update($this->table, array('readed_by_recipient'=>1)); 
 		
 		if ($items != '') {
 			$items = substr($items, 0, -1);
@@ -146,7 +140,7 @@ EOD;
 	header('Content-type: application/json');
 	?>
 	{
-			"username": "<?php echo $_SESSION['username'];?>",
+			"username": "<?php echo $this->id.'_'.$this->type; ?>",
 			"items": [
 				<?php echo $items;?>
 	        ]
@@ -158,9 +152,9 @@ EOD;
 		exit(0);
 	}
 
-	function send($to_id, $to_username, $to_type, $message = null, $subject = 'Chat message') {
-		$label = $to_username.'_'.$to_type;
-		$from = $_SESSION['username'];
+	function send($to_id, $to_type, $message = null, $subject = 'Chat message') {
+		$label = $to_id.'_'.$to_type;
+		$from = $this->id.'_'.$this->type;
 		$_SESSION['openChatBoxes'][$label] = date('Y-m-d H:i:s', time());
 
 		$messagesan = $this->sanitize($message);
@@ -190,14 +184,14 @@ EOD;
 		   'date'		=> time()
 		);
 
-		$this->CI->db->insert($this->table, $data);
+		$this->db->insert($this->table, $data);
 
 		echo "1";
 		exit(0);
 	}
 
 	function close() {
-		$chatbox = $this->username.'_'.$this->type;
+		$chatbox = $this->id.'_'.$this->type;
 		unset($_SESSION['openChatBoxes'][chatbox]);
 
 		echo "1";
@@ -212,9 +206,8 @@ EOD;
 		return $text;
 	}
 	
-	  public function __call($method, $args)
-	  {
-	    $attribute = lcfirst(substr($method, 3));
+	  public function __call($method, $args) {
+	    $attribute = strtolower(substr($method, 3));
 	    if(strstr($method,'get') == $method) return $this->$attribute;
 	    else return null;
 	  }

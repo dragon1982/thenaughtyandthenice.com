@@ -3,7 +3,7 @@ require_once(BASEPATH.'libraries/General_Friends.php');
 
 class Friends extends General_Friends{
 	
-	var $type = 'user';
+	var $type = 'performer';
 	var $parent;
 	
 	function __construct(){

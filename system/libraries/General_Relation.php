@@ -1,75 +1,43 @@
 <?php
 
-class General_Relation {
+class General_Relation extends CI_Model {
 	
-	private static $table = 'relations';
-	private static $db;
-	private $id;
-	private $from_id;
-	private $from_type;
-	private $to_id;
-	private $to_type;
-	private $status;
-	
+	private $table = 'relations';
+
 	// -----------------------------------------------------------------------------------------
 	
-	public function __construct($id){
-		$id = intval($id);
-		if(!$relation = self::db()->where('id',$id)->limit(1)->get(self::$table)->row()) {
-			throw new Exception('Relation not found');	
-		}else{
-			$this->id = $id;
-			$this->refresh($relation);
-		}
+	function get($id){
+		return $this->db->where('id',$id)->limit(1)->get($this->table)->row();
 	}
 	
 	// -----------------------------------------------------------------------------------------
 	
-	private static function db(){
-		if(!self::$db) {
-			$model = new CI_Model;
-			self::$db = $model->db;
-		}
-		return self::$db;
-	}
-	
-	// -----------------------------------------------------------------------------------------
-	
-	private function refresh($relation = null){
-		if(!$relation) $relation = $this->db->where('id',$this->id)->limit(1)->get(self::$table)->row();
-		$this->from_id = $relation->from_id;
-		$this->from_type = $relation->from_type;
-		$this->to_id = $relation->to_id;
-		$this->to_type = $relation->to_type;
-		$this->status = $relation->status;
-	}
-	
-	// -----------------------------------------------------------------------------------------
-	
-	public static function add($from_id, $from_type, $to_id, $to_type){
+	function add($from_id, $from_type, $to_id, $to_type, $status = 'pending'){
 		$data = array(
 		   'from_id'	=> $from_id ,
 		   'from_type'	=> $from_type ,
 		   'to_id'		=> $to_id,
 		   'to_type'	=> $to_type,
-		   'status'     => 'pending'
+		   'status'     => $status
 		);
-		if(self::db()->insert(self::$table, $data)){
-			return new Relation(self::db()->insert_id());
-		}
-	}
-	
-	
-	// -----------------------------------------------------------------------------------------
-	
-	function delete(){
-		self::db()->delete(self::$table, array('id' => $this->id)); 
+		$this->db->trans_start();
+		$this->db->insert($this->table, $data);
+		$id = $this->db->insert_id();
+		$this->db->trans_complete();
+		return $id;
 	}
 	
 	// -----------------------------------------------------------------------------------------
 	
-	function update($data){
-		self::db()->where('id', $this->id);
-		return self::db()->update(self::$table, $data); 
+	function update($id, $status){
+		$data = array('status' => $status);
+		$this->db->where('id', $id);
+		return $this->db->update($this->table, $data); 
+	}	
+	
+	// -----------------------------------------------------------------------------------------
+	
+	function delete($id){
+		return $this->db->delete($this->table, array('id' => $id)); 
 	}
 }

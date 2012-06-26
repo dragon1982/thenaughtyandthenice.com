@@ -18,6 +18,8 @@ class MY_Controller extends CI_Controller{
 		if(SETTINGS_DEBUG){
 			$this->output->enable_profiler();
 		}
+		
+		$this->load->model('friends');
 	}
 }
 

@@ -14,9 +14,9 @@
 	                    		<?php elseif($friend->is_in_champagne_room): ?>ico-champagne-room
 	                    		<?php endif; ?>
 	                    	">
-	                        	<a href="javascript:chatWith('<?php echo $friend->username; ?>_<?php echo $friend->type; ?>');">
+	                        	<a href="javascript:chatWith('<?php echo $friend->id; ?>_<?php echo $friend->type; ?>');">
 	                            	<img width="28" height="28" class="pic" src="<?php echo $friend->avatar_url; ?>" alt="<?php echo $friend->username; ?>">
-	                                <span class="name"><?php echo ucfirst($friend->username); ?></span>
+	                                <span class="name"><?php echo $friend->username; ?></span>
 	                                <span class="status"><!-- --></span>
 	                            </a>
 	                        </li>
@@ -54,7 +54,7 @@
 	                    	<li class="item ico-group-show">
 	                        	<a href="javascript:;">
 	                            	<img width="28" height="28" class="pic" src="<?php echo $friend->avatar_url; ?>" alt="<?php echo $friend->username; ?>">
-	                                <span class="name"><?php echo ucfirst($friend->username); ?></span>
+	                                <span class="name"><?php echo $friend->username; ?></span>
 	                            </a>
 	                        </li>
 	                    <?php endforeach; ?>
