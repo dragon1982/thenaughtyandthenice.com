@@ -2,3 +2,8 @@
 .buildpath
 .project
 
+application/admin/logs/
+application/main/logs/
+application/performers/logs/
+application/studios/logs/
+application/affiliates/logs/
