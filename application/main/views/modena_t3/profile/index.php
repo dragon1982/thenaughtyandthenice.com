@@ -129,28 +129,24 @@
                         <?php if($this->user->id > 0):?>
                         	<a class="btn-nice-3 set-bott-2 send_message" href="javascript:;"><span class="ico-messages"><?php echo lang('send message')?></span></a>
 
-													<?php if(isset($friends['request'])): ?>
-														<tr>
-															<td colspan="3" align="center" bgcolor="#bbbbbb">
-																<?php if($friends['request']->status == 'new'): ?>
-																	<?php echo form_open('relation/add', array('id'=>'add_relation_form', 'method'=>'post', 'name' => 'add_relation_form_'.$performer->nickname)); ?>
-																		<input type="hidden" name="id" value="<?php echo $friends['request']->id; ?>" />
-																		<input type="hidden" name="type" value="<?php echo $friends['request']->type; ?>" />
-																		<a class="btn-nice-3 set-bott-2" href="javascript:;" onclick="javascript:document.add_relation_form_<?php echo $performer->nickname?>.submit();"><span class="ico-add-friend">Add friend</span></a>
-																	</form>
-																<?php elseif($friends['request']->status == 'pending'): ?>
-																	<?php echo form_open('relation/delete', array('id'=>'delete_relation_form', 'method'=>'post', 'name'=>'delete_relation_form_'.$performer->nickname)); ?>
-																		<input type="hidden" name="rel_id" value="<?php echo $friends['request']->rel_id; ?>" />
-																		<a class="btn-nice-3 set-bott-2" href="javascript:;" onclick="javascript:document.delete_relation_form_<?php echo $performer->nickname?>.submit();"><span class="ico-remove-friend">Cancel friend request</span></a>
-																	</form>
-																<?php elseif($friends['request']->status == 'ban'): ?>
-																	The user is banned
-																<?php elseif($friends['request']->status == 'banned'): ?>
-																	You were banned by this user
-																<?php endif; ?>
-															</td>
-														</tr>
-													<?php endif; ?>
+							<?php if(isset($friends['request'])): ?>
+										<?php if($friends['request']->status == 'new'): ?>
+											<?php echo form_open('relation/add', array('id'=>'add_relation_form', 'method'=>'post', 'name' => 'add_relation_form_'.$performer->nickname)); ?>
+												<input type="hidden" name="id" value="<?php echo $friends['request']->id; ?>" />
+												<input type="hidden" name="type" value="<?php echo $friends['request']->type; ?>" />
+												<a class="btn-nice-3 set-bott-2" href="javascript:;" onclick="javascript:document.add_relation_form_<?php echo $performer->nickname?>.submit();"><span class="ico-add-friend">Add friend</span></a>
+											</form>
+										<?php elseif($friends['request']->status == 'pending'): ?>
+											<?php echo form_open('relation/delete', array('id'=>'delete_relation_form', 'method'=>'post', 'name'=>'delete_relation_form_'.$performer->nickname)); ?>
+												<input type="hidden" name="rel_id" value="<?php echo $friends['request']->rel_id; ?>" />
+												<a class="btn-nice-3 set-bott-2" href="javascript:;" onclick="javascript:document.delete_relation_form_<?php echo $performer->nickname?>.submit();"><span class="ico-remove-friend">Cancel friend request</span></a>
+											</form>
+										<?php elseif($friends['request']->status == 'ban'): ?>
+											The user is banned
+										<?php elseif($friends['request']->status == 'banned'): ?>
+											You were banned by this user
+										<?php endif; ?>
+							<?php endif; ?>
                         <?php endif;?>
 
                         <a class="btn-nice-3 set-bott-2" href="<?php echo site_url(($favorite)? 'remove-favorite/' . $performer->nickname : 'add-favorite/' . $performer->nickname)?>">

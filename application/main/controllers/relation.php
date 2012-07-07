@@ -18,7 +18,7 @@ Class Relation_controller extends MY_Users{
 		if(!$friend = $this->friends->get_one($this->user->id,$id,$type)){
 			$this->relation->add($this->user->id,$id,$type);
 		}
-		redirect($_SERVER['HTTP_REFERER']);
+		redirect($this->agent->referrer());
 	}
 	
 	// ------------------------------------------------------------------------	
@@ -29,7 +29,7 @@ Class Relation_controller extends MY_Users{
 		$friends = $this->friends->get($this->user->id);
 		foreach($friends as $friend) $rel_ids[] = $friend->rel_id;
 		if(in_array($rel_id, $rel_ids)) $this->relation->delete($rel_id);
-		redirect($_SERVER['HTTP_REFERER']);
+		redirect($this->agent->referrer());
 	}
 	
 	// ------------------------------------------------------------------------	
@@ -42,7 +42,7 @@ Class Relation_controller extends MY_Users{
 			if($friend->owner) $rel_ids[] = $friend->rel_id;
 		}
 		if(in_array($rel_id, $rel_ids)) $this->relation->update($rel_id,'accepted');
-		redirect($_SERVER['HTTP_REFERER']);
+		redirect($this->agent->referrer());
 	}
 	
 	// ------------------------------------------------------------------------	
@@ -57,7 +57,7 @@ Class Relation_controller extends MY_Users{
 				break;
 			}
 		}
-		redirect($_SERVER['HTTP_REFERER']);
+		redirect($this->agent->referrer());
 	}
 	
 }

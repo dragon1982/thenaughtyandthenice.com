@@ -51,15 +51,13 @@
 
 			        </div><!--end content-->
 
-							<?php if($this->user->id > 0) $this->load->view('includes/chatSidebar'); ?>
 							<?php
 								if($this->user->id > 0) {
 									if(isset($friends)) $data['friends'] = $friends;
 									else $data['friends'] = $this->friends->get_data($this->user->id);
-									$this->load->view('relations',$data);
+									$this->load->view('includes/chatSidebar',$data);
 								}
 							?>
-							<br /><br /><br />
 
 						</div><!--end wrapper-->
 

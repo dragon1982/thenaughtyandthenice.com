@@ -85,32 +85,51 @@ class General_Friends extends CI_Model{
 		if($result->type == 'performer'){
 			if($friend = $this->db->query("
 				SELECT 
-					id,
-					username,
-					is_online as is_chat_online,
-					is_in_private as is_in_a_private_show,
-					avatar
-				FROM {$result->type}s 
-				WHERE id = {$result->id}
+					t1.id,
+					t1.username,
+					t1.is_online as is_chat_online,
+					t1.is_in_private as is_in_a_private_show,
+					t1.avatar,
+					t1.country_code,
+					t1.city,
+					t2.birthday
+				FROM performers as t1
+				INNER JOIN performers_profile as t2 ON t1.id = t2.performer_id
+				WHERE t1.id = {$result->id}
 			")->row()){
 				$friend->is_in_a_group_show = null;
 				$friend->is_true_private = null;
                 $friend->is_in_champagne_room = null;
+                $friend->age = $this->get_age($friend->birthday);
+                $friend->page = '/'.$friend->username;
                 if(file_exists('uploads/performers/' . $friend->id . '/small/' . $friend->avatar) && $friend->avatar){
-                	$friend->avatar_url = site_url('uploads/performers/' . $friend->id . '/small/' . $friend->avatar);
+                	$friend->small_pic = site_url('uploads/performers/' . $friend->id . '/small/' . $friend->avatar);
+                	$friend->large_pic = $friend->small_pic ;
                 }else{
-                	$friend->avatar_url = assets_url().'user-pic-28x28.jpg';
+	                $friend->small_pic = assets_url().'user-pic-28x28.jpg';
+	                $friend->large_pic = assets_url().'pic-178.png';
                 }
 			}
-		}else{
+		}else if($result->type == 'user'){
 			if($friend = $this->db->query("
-				SELECT id,username,is_chat_online FROM {$result->type}s WHERE id = {$result->id} AND status = 'approved'
+				SELECT 
+					t1.id,
+					t1.username,
+					t1.is_chat_online,
+					t2.country_code 
+				FROM users as t1 
+				INNER JOIN users_detail as t2 ON t1.id = t2.user_id
+				WHERE t1.id = {$result->id} AND t1.status = 'approved'
 			")->row()){
 				$friend->is_in_a_group_show = null;
                 $friend->is_in_a_private_show = null;
                 $friend->is_true_private = null;
                 $friend->is_in_champagne_room = null;
-                $friend->avatar_url = assets_url().'user-pic-28x28.jpg';
+                $friend->city = null;
+                $friend->age = null;
+                $friend->small_pic = assets_url().'user-pic-28x28.jpg';
+                $friend->large_pic = assets_url().'pic-178.png';
+                $friend->page = 'javascript:;';
 			}
 		}
 		if($friend){
@@ -121,6 +140,31 @@ class General_Friends extends CI_Model{
 		}
 		return $friend;
 	}
+	
+	private function get_age($iTimestamp) 
+	{
+	    $iAge = date('Y') - date('Y', $iTimestamp);
+	    
+	    if(date('n') < date('n', $iTimestamp)) 
+	    {
+	        return --$iAge;
+	    } 
+	    elseif(date('n') == date('n', $iTimestamp)) 
+	    {
+	        if(date('j') < date('j', $iTimestamp)) 
+	        {
+	            return $iAge - 1;
+	        } 
+	        else 
+	        {
+	            return $iAge;
+	        }
+	    } 
+	    else 
+	    {
+	        return $iAge;
+	    }
+	}  
 	
 	// -----------------------------------------------------------------------------------------
 	

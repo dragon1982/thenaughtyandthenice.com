@@ -15,7 +15,7 @@
 	                    		<?php endif; ?>
 	                    	">
 	                        	<a href="javascript:chatWith('<?php echo $friend->id; ?>_<?php echo $friend->type; ?>');">
-	                            	<img width="28" height="28" class="pic" src="<?php echo $friend->avatar_url; ?>" alt="<?php echo $friend->username; ?>">
+	                            	<img width="28" height="28" class="pic" src="<?php echo $friend->small_pic; ?>" alt="<?php echo $friend->username; ?>">
 	                                <span class="name"><?php echo $friend->username; ?></span>
 	                                <span class="status"><!-- --></span>
 	                            </a>
