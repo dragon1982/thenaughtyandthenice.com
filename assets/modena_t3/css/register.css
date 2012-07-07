@@ -15,7 +15,7 @@
 	.form-line-2 { border-bottom:1px solid #b0555e; padding:8px 0; }
 	
 	.nice-input-2 { 
-	
+			font-family:Arial, Helvetica, sans-serif;
 			font-size:13px; font-weight:bold; color:#333;
 			padding:12px 5px 10px 10px;
 			margin-bottom:3px;
@@ -37,6 +37,7 @@
 	.form-line-left, .form-line-right { float:left; width:140px; }
 	
 	.submit-btn-2 {
+		font-family:Arial, Helvetica, sans-serif;
 		margin-top:20px;
 		width:300px; height:50px;
 		cursor:pointer;
@@ -72,7 +73,7 @@
 	.alert-box a.close:hover,.alert-box a.close:focus { opacity: 0.4; }
 input.error { color:#c00000!important; font-style:italic;}
 
-.form-t1-liks {padding:30px 0 0 0; text-align:center;}
+.form-t1-liks {padding:30px 0 0 0; text-align:center; font-size:15px;}
 .form-t1-liks span { color:#fff; padding:0 5px; }
 .form-t1-liks a { color:#fff; text-decoration:underline;}
 .form-t1-liks a:hover { text-decoration:none;}

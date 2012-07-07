@@ -49,6 +49,8 @@ $route['reset-password']			= 'home/reset_password';
 $route['forgot-password']			= 'home/forgot_password';
 $route['activate']					= 'home/activate';
 
+$route['champagne-room']					= 'champagne_room';
+
 $route['logout']					= 'user/logout';
 $route['favorites']					= 'user/favorites';
 $route['add-favorite/(:any)']		= 'user/add_favorite/$1';

@@ -1,5 +1,5 @@
 <?php $this->load->view('includes/head')?>
-	<body>
+	<body class="<?php echo (isset($bodyClass)) ? $bodyClass : ''?>">
 
 		<div id="site-decoration">
 		    <div id="site-decoration-content">
@@ -14,10 +14,6 @@
 														$this->load->view('includes/menu_performer');
 													}else{
 														$this->load->view('includes/menu');
-													}
-
-													if(isset($_categories) && $_categories && is_array($categories)){
-														//$this->load->view('includes/_categories');
 													}
 
 													$this->load->view('includes/errors');
@@ -39,10 +35,14 @@
 
 		    		<div id="wrapper" class="clearfix">
 			        <div id="content">
-										<?php
-											if(isset($_sidebar) && $_sidebar){
-												$this->load->view('includes/_sidebar');
-											}elseif(isset($page)){
+			        			<?php if ($this->router->class == 'home_controller') $this->load->view('includes/_champagne_room_banner');
+
+											if(isset($_categories)){
+												if($_categories && is_array($categories) && ($this->router->class == 'performers_controller'))
+													$this->load->view('includes/_categories');
+											}
+
+											if(isset($page)){
 												$this->load->view($page);
 											}
 										?>
@@ -51,15 +51,15 @@
 
 			        </div><!--end content-->
 
-							<?php 
+							<?php if($this->user->id > 0) $this->load->view('includes/chatSidebar'); ?>
+							<?php
 								if($this->user->id > 0) {
 									if(isset($friends)) $data['friends'] = $friends;
 									else $data['friends'] = $this->friends->get_data($this->user->id);
-									$this->load->view('relations',$data); 
+									$this->load->view('relations',$data);
 								}
 							?>
 							<br /><br /><br />
-							<?php if($this->user->id > 0) $this->load->view('includes/chatSidebar'); ?>
 
 						</div><!--end wrapper-->
 

@@ -42,7 +42,7 @@ class Home_controller extends MY_Controller {
 		//seteaza filtrele pentru pagina actuala
 		$settings = initialize_filters($filters,$order_by = NULL,'online-listing');
 
-		$config['per_page']		= 10;
+		$config['per_page']		= (($this->user->id > 0)) ? 12 : 9;
 		$config['base_url'] 	= site_url('performers/page/');
 		$config['total_rows']   = $this->performers->get_multiple_performers($settings['filters'],$this->pagination->per_page,(int)$this->uri->segment(3),$settings['order_by'],TRUE);
 		$this->pagination->initialize($config);
@@ -52,9 +52,12 @@ class Home_controller extends MY_Controller {
 		$data['categories'] 			= $this->categories->get_all_categories();
 
 		//$data['performers_random']		= $this->performers->get_multiple_performers(array(),9,FALSE,array('rand'=>TRUE));
-		$data['performers'] = $this->performers->get_multiple_performers(array(),9,FALSE,array('rand'=>TRUE));
+		$data['performers'] = $this->performers->get_multiple_performers(array(),40,FALSE,array('rand'=>TRUE));
 		//$data['performers_in_private']	= $this->performers->get_multiple_performers(array('is_in_private'=>1),5,FALSE,array('rand'=>TRUE));
 		$data['pageViewHeight'] 	= 634;
+
+		$data['bodyClass'] = '';
+		if($this->user->id > 0) $data['bodyClass'] .= 'logged-in'.' ';
 
 		$this->load->model('performers_videos');
 		$data['videos_free'] 			= $this->performers_videos->get_multiple_videos(array('type'=>0),4,0,FALSE,TRUE);

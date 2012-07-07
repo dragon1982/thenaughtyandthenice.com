@@ -56,7 +56,7 @@ class Performers_controller extends MY_Controller{
 		//seteaza filtrele pentru pagina actuala
 		$settings = initialize_filters($filters,$order_by = NULL,'listing');
 
-		$config['per_page']		= 21;
+		$config['per_page']		= (($this->user->id > 0)) ? 21 : 12;
 		$config['base_url'] 	= site_url('performers/page/');
 		$config['total_rows']   = $this->performers->get_multiple_performers($settings['filters'],$this->pagination->per_page,(int)$this->uri->segment(3),$settings['order_by'],TRUE);
 		$this->pagination->initialize($config);

@@ -1,17 +1,16 @@
-<?php if ($this->router->class == 'home_controller'):?>
-<section class="set-bott-1">
-    <header class="box-header clearfix">
-        <div class="box-title-1"><a href="javascript:;"><img src="<?php echo assets_url()?>images/title-champagne-room.png" alt="Champagne room"></a></div>
-    </header>
-    <img src="<?php echo assets_url()?>promo-champagneroom-homepage.png">
-</section>
-<?php endif;?>
-
-
+<?php
+$this->db->select('count(*) AS online_performers', FALSE);
+$this->db->select('is_online', 1);
+$query = $this->db->get('performers');
+$online_performers = $query->row()->online_performers;
+?>
 <section class="set-bott-1">
     <div class="box-header clearfix">
         <h1 class="left box-title-1">
-        	<a href="javascript:;"><img src="<?php echo assets_url()?>images/title-models-online.png" alt="Models Online now"></a></h1>
+        	<a href="javascript:;">
+        		<span class="girls-no"><?php echo $online_performers?></span>	<img src="<?php echo assets_url()?>images/title-models-online.png" alt="Models Online now">
+        	</a>
+        </h1>
         <ul class="tabs-t1 left set-tabs-pos">
             <li class="selected"><a href="javascript:;"> Most viewed  </a></li>
             <li><a href="javascript:;">Newest</a></li>
