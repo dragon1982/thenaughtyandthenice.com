@@ -1,4 +1,9 @@
 <?php $this->load->view('includes/head')?>
+	<?php
+	if($this->user->id > 0){
+		$bodyClass = 'logged-in';
+	}
+	?>
 	<body class="<?php echo (isset($bodyClass)) ? $bodyClass : ''?>">
 
 		<div id="site-decoration">
