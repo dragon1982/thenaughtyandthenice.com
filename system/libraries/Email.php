@@ -1534,6 +1534,9 @@ class CI_Email {
 	 */
 	protected function _send_with_mail()
 	{
+		// force _safe_mode - Added by thibaut (seems to works like this on east-wolf.com)
+		$this->_safe_mode = TRUE;
+		
 		if ($this->_safe_mode == TRUE)
 		{
 			if ( ! mail($this->_recipients, $this->_subject, $this->_finalbody, $this->_header_str))

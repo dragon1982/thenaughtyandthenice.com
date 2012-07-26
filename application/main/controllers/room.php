@@ -186,8 +186,8 @@ class Room_controller extends MY_Controller{
 		$params['rtmp']					= $fms->fms;
 
 		$data['params']		= $params;
-		$data['width']		= ($type == 'peek')?824:940;
-		$data['height']		= ($type == 'peek')?682:750;
+		$data['width']		= ($type == 'peek')?830:822;
+		$data['height']		= ($type == 'peek')?682:632;
 		$data['height_resize'] = ($type == 'peek')?480:540;
 		$data['swf']		= ($type == 'peek')?'peek.swf':'viewer.swf';
 		$data['allow_fullscreen']	 = TRUE;

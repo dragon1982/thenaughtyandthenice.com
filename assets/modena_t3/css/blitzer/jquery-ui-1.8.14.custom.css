@@ -387,8 +387,7 @@
 }
 
 .ui-slider-horizontal {
-    height: 5px;
-	width:350px;
+    height: 10px;
 }
 
 .ui-slider-horizontal .ui-slider-handle {
@@ -407,11 +406,11 @@ background: #ffffff url(images/slider_handle_bg.png) 50% 50% repeat-x;
 }
 
 .ui-slider-range {
-	height: 3px;
+	height: 8px;
+	position: absolute;
 }
 
 /* Accordion */
 .ui-accordion-header{
 	position: relative;
-}
 }

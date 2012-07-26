@@ -1,5 +1,5 @@
 		            <div class="account-info">
-		            	<a id="register" class="btn-nice-1 sufix10" href="<?php echo site_url('register')?>">Register <span>(FREE)</span></a>
+		            	<a id="become-member" class="btn-nice-1 sufix10" href="<?php echo site_url('register')?>">Register <span>(FREE)</span></a>
 		                Already a member? <a id="signin" class="btn-nice-2 prefix5" href="<?php echo site_url('login')?>">Sign In</a>
 		            </div><!--end right-->
 

@@ -1,4 +1,9 @@
 <?php $this->load->view('includes/head')?>
+	<?php
+	if($this->user->id > 0){
+		$bodyClass = 'logged-in';
+	}
+	?>
 	<body class="<?php echo (isset($bodyClass)) ? $bodyClass : ''?>">
 
 		<div id="site-decoration">
@@ -37,7 +42,7 @@
 			        <div id="content">
 			        			<?php if ($this->router->class == 'home_controller') $this->load->view('includes/_champagne_room_banner');
 
-											if(isset($_categories)){
+											if((isset($_categories)) && (isset($show_categories))){
 												if($_categories && is_array($categories) && ($this->router->class == 'performers_controller'))
 													$this->load->view('includes/_categories');
 											}

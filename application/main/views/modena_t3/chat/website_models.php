@@ -6,11 +6,11 @@
 			document.location = '<?php echo site_url($params['performerNick'] . '/review?id=' . $params['uniqId'])?>';
 		}
 	}
-	
+
 	function enterChatChoice(chatType,link){
-		document.location = link;						
-	}		
-	
+		document.location = link;
+	}
+
 	function update_chips(){
 		var user_id = <?php echo $this->user->id?>;
 		$.ajax({
@@ -18,14 +18,14 @@
             type: 'get',
             dataType: "json",
             success: function(response) {
-				
+
 				$('#user_chips').html(response.credits);
 				$('#head_user_chips').html(response.credits);
-				
+
 				if(!response.rem_time){
 					response.rem_time = 'n/a'
 				}
-				
+
 				$('#time_remaining').html(response.rem_time + ' <?php echo lang('minute(s)')?>');
             }
         });
@@ -42,10 +42,10 @@
 	function large1(){
 		$('#flashContent').find('object').height('750');
 	}
-	
+
 	window.history.forward();
-	function noBack(){ window.history.forward(); }	
-	
+	function noBack(){ window.history.forward(); }
+
 	$(document).ready(function(){
 		noBack();
 	<?php if($this->user->id > 0):?>
@@ -53,7 +53,81 @@
 	<?php endif?>
 	});
 </script>
-<div class="black_box_bg_middle"><div class="black_box_bg_top"><div class="black_box">
+
+
+            <article class="set-bott-1">
+                <header class="box-header clearfix">
+                    <h1 class="article-title left"><?php echo $params['performerNick']?></h1>
+                    <nav class="model-nav right">
+                    	<ul>
+                        	<li><a class="ico-profile" href="<?php echo site_url($params['performerNick'])?>" target="_blank"><span>My profile</span></a></li>
+                            <li><a class="ico-photos" href="<?php echo site_url($params['performerNick'] . '?tab=pictures')?>" target="_blank"><span>My photos</span></a></li>
+                            <li><a class="ico-videos" href="<?php echo site_url($params['performerNick'] . '?tab=videos')?>" target="_blank"><span>My videos</span></a></li>
+                            <li><a class="ico-schedule" href="<?php echo site_url($params['performerNick'] . '?tab=schedule')?>" target="_blank"><span>Schedule</span></a></li>
+                            <li><a class="ico-contact" href="<?php echo site_url($params['performerNick'] . '?tab=contact')?>" target="_blank"><span>Contact</span></a></li>
+                        </ul>
+                    </nav>
+                </header><!--end box-header-->
+
+                <div class="profile clearfix">
+
+                    <article>
+                        <header class="chat-topic clearfix">
+                            <div class="chat-topic-decoration"><!-- --></div>
+                            <div class="chat-topic-left">
+                                <div class="chat-topic-left-content">
+                                    <h1>I'll make you feel right at home XoXo </h1>
+                                </div>
+                            </div>
+                            <div class="chat-topic-right">
+                                <div class="clock-label">
+                                    <div class="clock-label-content">
+                                        Untill the show ends...
+                                        <div class="clock-label-arrow"><!-- --></div>
+                                    </div>
+                                </div>
+
+                                <div class="chat-clock clearfix">
+                                    <div class="left-part">
+                                        <div class="time-decoration"><!-- --></div>
+                                        <div class="time-no">12</div>
+                                        <div class="time-desc">Minutes</div>
+                                    </div>
+                                    <div class="right-part">
+                                        <div class="time-decoration"><!-- --></div>
+                                        <div class="time-no">32</div>
+                                        <div class="time-desc">Seconds</div>
+                                    </div>
+                                </div><!--end chat-clock-->
+
+                            </div><!--end chat-topic-right-->
+
+                        </header><!--end chat-topic -->
+
+                        <div class="chat-profile">
+                            <?php echo $this->load->view('flash_component')?>
+                        </div>
+
+                    </article>
+
+                    <article class="box-t4">
+                    	<div class="box-t4-content">
+                        	<div class="pic-frame-1 left"><a href="javascript:;"><img src="<?php echo assets_url()?>pic-178.png" alt=""></a></div>
+                            <h1 class="promo-title"><a href="javascript:;">Shanon Nice Champagne show</a></h1>
+                            <div class="promo-desc">Showtype: <a href="javascript:;">lesbian</a>, <a href="javascript:;">threesome</a></div>
+                            <div class="promo-desc"><a href="javascript:;">23</a> tickets left</div>
+                            <a href="javascript:;" class="btn-nice-1">Buy tickets!</a>
+                        </div><!--end box-t4-content-->
+                    </article>
+
+                </div><!--end profile-->
+
+
+
+            </article>
+
+
+
 	<div class="content">
 		<div class="title">
 			<?php $title_chat = lang('Performer\'s Chat Room') ?>
@@ -90,45 +164,6 @@
 				<span class="info_value italic red" id="time_remaining"></span>
 			</div>
 		</div>
-		<div id="profile" style="width: 600px;margin: 15px auto 0;height: 33px;">
-			<div class="red_h_sep"></div>
-			<div class="menu">
-				<div class="menu_item" id="profile">
-					<span id="profile" class="btn" style="cursor:pointer;"><a href="<?php echo site_url($params['performerNick'])?>" target="_blank"><span class="helvetica italic"><?php echo lang('My Profile') ?></span></a></span><span class="r"></span>
-				</div>
-				<div class="menu_item" id="pictures">
-					<span id="pictures" class="btn" style="cursor:pointer;"><a href="<?php echo site_url($params['performerNick'] . '?tab=pictures')?>" target="_blank"><span class="helvetica italic"><?php echo sprintf(lang('My Photos (%s)'),$photos_nr)?></span></a></span><span class="r"></span>
-				</div>
-				<div class="menu_item" id="videos">
-					<span id="videos" class="btn" style="cursor:pointer;"><a href="<?php echo site_url($params['performerNick'] . '?tab=videos')?>" target="_blank"><span class="helvetica italic"><?php echo sprintf(lang('My Videos (%s)'),$videos_nr)?></span></a></span><span class="r"></span>
-				</div>
-				<div class="menu_item" id="schedule">
-					<span id="schedule" class="btn" style="cursor:pointer;"><a href="<?php echo site_url($params['performerNick'] . '?tab=schedule')?>" target="_blank"><span class="helvetica italic"><?php echo lang('Schedule') ?></span></a></span><span class="r"></span>
-				</div>
-				<div class="menu_item" id="contact">
-					<span id="contact" class="btn" style="cursor:pointer;"><a href="<?php echo site_url($params['performerNick'] . '?tab=contact')?>" target="_blank"><span class="helvetica italic"><?php echo lang('Contact') ?></span></a></span><span class="r"></span>
-				</div>
-			</div>
-			<div class="red_h_sep"></div>
-		</div>
-		<div id="flashContent" style="width:100%; text-align: center;">
-			<?php echo $this->load->view('flash_component')?>
-		</div>
-		<?php if(sizeof($performers) > 1):?>	
-			<div class="title">
-				<?php $title_chat = lang('Other performers') ?>
-				<span class="eutemia "><?php echo substr($title_chat,0,1) ?></span><span class="helvetica "><?php echo substr($title_chat,1) ?></span>
-			</div>		
-			<div id="performer_list">
-							
-					<?php foreach($performers as $performer):?>
-						<?php if($performer->nickname === $params['performerNick']) continue;//nu afisez performerul current care e in chat?>
-						<?php $this->load->view('performer',array('performer'=>$performer))?>
-					<?php endforeach?>	
-				
-			</div>
-		<?php endif?>
-		<div class="clear"></div>
+
+
 	</div>
-</div>
-</div></div><div class="black_box_bg_bottom"></div>

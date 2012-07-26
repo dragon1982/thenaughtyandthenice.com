@@ -830,19 +830,20 @@ a.next-show-btn { font-size:15px; width:100px; display:block; text-align:center;
 
 .price_range_pos, .age_range_pos {	left: 20px;    position: relative;    width: 165px; font-size:15px; color:#fff;	}
 	
-.advanced_search #price, .advanced_search #age {float: right;}
+.advanced_search #price, .advanced_search #age {float: right; }
+.advanced_search {margin-bottom: 10px; }
 
 #slider_container, #slider_container_2 {    bottom: 11px;    left: 212px;    position: relative;}
 
-.search-dragger-item { float:left; margin-right:5px;}
-.search-dragger-label { font-size:18px;width:520px; text-align:center; margin-bottom:-20px; color:#fff; text-shadow: 1px 1px 0px #3b6577; filter: dropshadow(color=#3b6577, offx=1, offy=1); }
-.search-dragger { width:522px; color:#fff; font-size:15px; font-weight:bold; }
+.search-dragger-item { float:left; margin-right:5px; margin-bottom:10px; width:380px; }
+.search-dragger-label { font-size:18px; text-align:center; margin-bottom:-20px; color:#fff; text-shadow: 1px 1px 0px #3b6577; filter: dropshadow(color=#3b6577, offx=1, offy=1); }
+.search-dragger { width:360px; color:#fff; font-size:15px; font-weight:bold; }
 
-.no-label { background:#2e6d86; padding:3px 5px; }
+.no-label { background:#2e6d86; padding:3px 5px; margin-bottom: 10px;}
 
 
 .logged-in .advanced_search_container select { width:249px;}
-.logged-in  .search-dragger-item  { float:none; margin-bototm:30px; width:100%;}
+.logged-in  .search-dragger-item  { margin-bototm:30px; width:380px}
 
 .advanced-search-head { border-bottom:5px solid #3f758a; padding-bottom:10px; margin-bottom:20px;}
 
@@ -932,3 +933,12 @@ a.next-show-btn { font-size:15px; width:100px; display:block; text-align:center;
 .list-t3 .box-decoration { width:29px; height:14px; background:url(../images/arrow-2.png) no-repeat 0 0; position:absolute; left:50%; top:-14px; margin-left:-15px;}
 
 .featuring-label { position:absolute; left:6px; top:6px; padding:4px 5px; background:#d9f6fd; text-transform:uppercase;}
+
+
+.ui-slider .ui-slider-handle { width:15px; height:15px; background-color:#940a0a; border:1px solid #fff;}
+.ui-slider .ui-slider-handle { cursor: pointer;}
+.ui-slider-horizontal .ui-slider-handle { margin-left: -0.1em !important;}
+.search-dragger-item { margin-right:9px;}
+
+.search-dragger > width:360px
+.search-dragger-item > width:380px

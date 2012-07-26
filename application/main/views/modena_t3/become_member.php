@@ -10,8 +10,8 @@
 	  <script type="text/javascript">
 		var $j = jQuery.noConflict();
 		<?php if($succes):?>
-			parent.location.reload();
-			parent.$.fancybox.close();
+			//parent.location.reload();
+			//parent.$.fancybox.close();
 		<?php endif;?>
 		</script>
 

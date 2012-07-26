@@ -62,15 +62,15 @@ jQuery(function($){
 		return false;
 	});
 
-	$('.modal').fancybox({
-		'overlayShow': true,
-		'scrolling': 'no',
-		'type': 'iframe',
-		'titleShow'			: false,
-		'overlayColor'		: '#000',
-		'overlayOpacity'	: 0.6,
-		'showCloseButton'	: true
-	});
+//	$('.modal').fancybox({
+//		'overlayShow': true,
+//		'scrolling': 'no',
+//		'type': 'iframe',
+//		'titleShow'			: false,
+//		'overlayColor'		: '#000',
+//		'overlayOpacity'	: 0.6,
+//		'showCloseButton'	: true
+//	});
 
 	$('.forgot_password').fancybox({
 		'showCloseButton'	: true,
@@ -86,7 +86,7 @@ jQuery(function($){
 
 
 
-	$("#register").fancybox({
+	$("#become-member").fancybox({
 		'showCloseButton'	: false,
 		'padding'			: 0,
 		'overlayColor'		: '#000  ',

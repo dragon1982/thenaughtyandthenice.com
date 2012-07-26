@@ -56,9 +56,9 @@ class Performers_controller extends MY_Controller{
 		//seteaza filtrele pentru pagina actuala
 		$settings = initialize_filters($filters,$order_by = NULL,'listing');
 
-		$config['per_page']		= (($this->user->id > 0)) ? 21 : 12;
-		$config['base_url'] 	= site_url('performers/page/');
-		$config['total_rows']   = $this->performers->get_multiple_performers($settings['filters'],$this->pagination->per_page,(int)$this->uri->segment(3),$settings['order_by'],TRUE);
+		$config['per_page']		    = (($this->user->id > 0)) ? 21 : 12;
+		$config['base_url'] 	    = site_url('performers/page/');
+		$config['total_rows']     = $this->performers->get_multiple_performers($settings['filters'],$this->pagination->per_page,(int)$this->uri->segment(3),$settings['order_by'],TRUE);
 		$this->pagination->initialize($config);
 
 		$data['performers'] 			= $this->performers->get_multiple_performers($settings['filters'],$this->pagination->per_page,(int)$this->uri->segment(3),$settings['order_by']);
@@ -67,10 +67,11 @@ class Performers_controller extends MY_Controller{
 
 		$data['pageViewHeight'] 	= 634;
 
+		$data['show_categories']	= true;
 		$data['_categories']			= true;
-		$data['_sidebar']				= false;
-		$data['_signup_header']			= true;
-		$data['page'] 					= 'performers';
+		$data['_sidebar']				  = false;
+		$data['_signup_header']		= true;
+		$data['page'] 					  = 'performers';
 		$data['description'] 			= SETTINGS_SITE_DESCRIPTION;
 		$data['keywords'] 				= SETTINGS_SITE_KEYWORDS;
 		$data['pageTitle'] 				= lang('Our Models').' - '.SETTINGS_SITE_TITLE;

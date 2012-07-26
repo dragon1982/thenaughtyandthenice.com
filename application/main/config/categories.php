@@ -15,12 +15,6 @@ lang('Dominant') => 'dominant',
 lang('Submissive') => 'submissive',
 lang('Leather/Latex') => 'leatherlatex',
 lang('BDSM') => 'bdsm',
-lang('Bondage') => 'bondage',
-lang('Foot Fetish') => 'foot_fetish',
-lang('sdfsdfsf') => 'sdfsdfsf',
-lang('sadasdad') => 'sadasdad',
-lang('sdfsfsfd') => 'sdfsfsfd',
-lang('adsadad') => 'adsadad',
-lang('zzzzzzzzzzzz') => 'zzzzzzzzzzzz',
+lang('Bondage') => 'bondage'
 )
 );
