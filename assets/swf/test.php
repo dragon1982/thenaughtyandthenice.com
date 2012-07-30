@@ -14,7 +14,7 @@
 		die("Unable to select database");
 	}
 
-//Function to sanitize values received from the form. Prevents SQL injection, duh
+   //Function to sanitize values received from the form. Prevents SQL injection, duh
 	function clean($str) {
 		$str = @trim($str);
 		if(get_magic_quotes_gpc()) {
@@ -24,11 +24,12 @@
 	}
 
 	//Sanitize the POST values
-	$performerStatus = clean($_POST['status']);
+	if(!$is_in_pause = clean($_POST['is_on_break'])) $is_in_pause = '0';
+    $performer_id = clean($_POST['performer_id']);
 
 	//Create INSERT query
-	$qry = "UPDATE performers(is_in_pause) VALUE('$performerStatus')";
-	//$result = @mysql_query($qry);
+	$qry = 'UPDATE performers SET is_in_pause='.$is_in_pause.' WHERE id='.$performer_id;
+	$result = @mysql_query($qry);
 	
 echo "writing=Ok";
 exit();
