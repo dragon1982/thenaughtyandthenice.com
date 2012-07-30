@@ -1,6 +1,6 @@
 <?php
-	define('DB_HOST', 'mysql.yoursite.com or localhost');
-    define('DB_USER', 'youradmin');
-    define('DB_PASSWORD', 'yourpassword');
-    define('DB_DATABASE', 'yourdatabase');
+	define('DB_HOST', 'my11328.d18632.myhost.ro');
+    define('DB_USER', '18632dev');
+    define('DB_PASSWORD', 'devEW123');
+    define('DB_DATABASE', 'east_wolf_com_thenaughtyandthenice');
 ?>

@@ -27,8 +27,9 @@
 	$performerStatus = clean($_POST['status']);
 
 	//Create INSERT query
-	$qry = "INSERT INTO perfstatus(status) VALUE('$performerStatus')";
-	$result = @mysql_query($qry);
+	$qry = "UPDATE performers(is_in_pause) VALUE('$performerStatus')";
+	//$result = @mysql_query($qry);
+	
 echo "writing=Ok";
 exit();
 mysql_close();

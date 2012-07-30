@@ -610,7 +610,70 @@ Class Settings_controller extends MY_Performer{
 		}
 	
 	}
+	function pause_settings(){
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('status_message', lang('status message'), 'trim|min_length[2]|max_length[255]|strip_tags|purify');
+		$this->form_validation->set_rules('pause_time', 	lang('pause time'), 	'trim|is_numeric|min_length[1]|max_length[30]|strip_tags|purify');
+		$this->form_validation->set_rules('pause_message',  lang('pause message'), 	'trim|max_length[255]|strip_tags|purify');
+		$this->form_validation->set_rules('personalised_pause_message',  lang('personalised pause message'), 	'trim|min_length[2]|max_length[255]|strip_tags|purify');
+		if($this->form_validation->run() === FALSE){
+			$data['pause_messages'] = array(
+				0 => 'Enter personalised message ...',
+				'Message 1' => 'Message 1',
+				'Message 2' => 'Message 2',
+				'Message 3' => 'Message 3',
+			);
+			$data['_sidebar']				= TRUE;
+			$data['_performer_menu']		= TRUE;
+			$data['page'] 					= 'pause_settings';
+			$data['description'] 			= SETTINGS_SITE_DESCRIPTION;
+			$data['keywords'] 				= SETTINGS_SITE_KEYWORDS;
+			$data['pageTitle'] 				= lang('Pause settings').' - '.SETTINGS_SITE_TITLE;
+			$data['performer']				= $this->user;
+			$this->load->view('template', $data);
+		} else {
+			if(!$this->input->post('pause_message')){
+				$pause_message = trim($this->input->post('personalised_pause_message'));
+			}else{
+				$pause_message = trim($this->input->post('pause_message'));
+			}
+			if(!$pause_message) $pause_message = null;
+			//ma asigur ca actiunea nu are loc doar daca toate queryurile au avut loc, folosest tranzactii
+			$this->db->trans_begin();
+			$this->performers->update(
+							$this->user->id,
+							array(
+								'status_message'		=> $this->input->post('status_message'),
+								'pause_time'			=> $this->input->post('pause_time')*60,
+								'pause_message'			=> $pause_message,
+							)
+			);
+			
+			if($this->db->trans_status() == FALSE){
+    			$this->db->trans_rollback();
 
+				$this->session->set_flashdata('msg',array('success'=>FALSE,'message'=>lang('database error. please try again later')));
+				redirect(current_url());					
+    			
+			}
+			
+			$this->db->trans_commit();
+			/*
+			$this->system_log->add(
+            			'performer', 
+            			$this->user->id,
+            			'performer', 
+            			$this->user->id, 
+            			'edit_account', 
+            			'Performer has edited personal details.', 
+            			time(), 
+            			ip2long($this->input->ip_address())
+			);
+			*/	
+			$this->session->set_flashdata('msg',array('success'=>TRUE,'message'=>lang('Pause settings saved')));
+			redirect(current_url());					
+		}
+	}
     /**
      * Oralul performerilor.
      * @author Bogdan
