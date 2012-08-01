@@ -14,11 +14,6 @@
 							<span class="error message" htmlfor="status_message" generated="true"><?php echo form_error('status_message')?></span>
 						</div>
 						<div>
-							<label><span class="gray italic bold"><?php echo lang('Pause time') ?>:</span></label>
-							<?php echo form_input('pause_time',set_value('pause_time', round($performer->pause_time/60)))?> <span class="gray italic bold">minutes</span>
-							<span class="error message" htmlfor="pause_time" generated="true"><?php echo form_error('pause_time')?></span>
-						</div>
-						<div>
 							<label><span class="gray italic bold"><?php echo lang('Pause message') ?>:</span></label>
 							<?php echo form_dropdown('pause_message',$pause_messages, set_value('pause_message', $performer->pause_message),'id="pause_message" onchange="pause_message_change(this.value)"')?>
 							<span class="error message" htmlfor="pause_message" generated="true"><?php echo form_error('pause_message')?></span>

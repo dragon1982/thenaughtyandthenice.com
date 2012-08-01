@@ -45,6 +45,19 @@
 			</div>
 			<br /><br /><br />
 			<div class="title">
+				<?php $pause_title = lang('Pause') ?>
+				<span class="eutemia "><?php echo substr($pause_title, 0, 1)?></span><span class="helvetica "><?php echo substr($pause_title, 1)?></span>
+			</div>
+			<div class="menu">
+				<div class="menu_item">
+					<a href="<?php echo site_url('settings/pause_settings')?>"><span class="btn"><span class="helvetica "><?php echo lang('Settings') ?></span></span><span class="r"></span></a>
+				</div>			
+				<div class="menu_item">
+					<a href="<?php echo site_url('settings/pause_time')?>"><span class="btn"><span class="helvetica "><?php echo lang('Time') ?></span></span><span class="r"></span></a>
+				</div>
+			</div>
+			<br /><br /><br />
+			<div class="title">
 				<?php $payments_settings_title = lang('Account') ?>
 				<span class="eutemia "><?php echo substr($payments_settings_title, 0, 1)?></span><span class="helvetica "><?php echo substr($payments_settings_title, 1)?></span>
 			</div>

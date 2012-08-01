@@ -644,7 +644,6 @@ Class Settings_controller extends MY_Performer{
 							$this->user->id,
 							array(
 								'status_message'		=> $this->input->post('status_message'),
-								'pause_time'			=> $this->input->post('pause_time')*60,
 								'pause_message'			=> $pause_message,
 							)
 			);
@@ -671,6 +670,55 @@ Class Settings_controller extends MY_Performer{
 			);
 			*/	
 			$this->session->set_flashdata('msg',array('success'=>TRUE,'message'=>lang('Pause settings saved')));
+			redirect(current_url());					
+		}
+	}
+	
+	function pause_time(){
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('pause_time', 	lang('pause time'), 	'trim|is_numeric|min_length[1]|max_length[30]|strip_tags|purify');
+		if($this->form_validation->run() === FALSE){
+			$data['_sidebar']				= TRUE;
+			$data['_performer_menu']		= TRUE;
+			$data['page'] 					= 'pause_time';
+			$data['description'] 			= SETTINGS_SITE_DESCRIPTION;
+			$data['keywords'] 				= SETTINGS_SITE_KEYWORDS;
+			$data['pageTitle'] 				= lang('Pause time').' - '.SETTINGS_SITE_TITLE;
+			$data['performer']				= $this->user;
+			$this->load->view('template', $data);
+		} else {
+			//ma asigur ca actiunea nu are loc doar daca toate queryurile au avut loc, folosest tranzactii
+			$this->db->trans_begin();
+			$this->performers->update(
+							$this->user->id,
+							array(
+								'pause_time'			=> $this->input->post('pause_time')*60,
+								'pause_timestamp'       => time(),
+							)
+			);
+			
+			if($this->db->trans_status() == FALSE){
+    			$this->db->trans_rollback();
+
+				$this->session->set_flashdata('msg',array('success'=>FALSE,'message'=>lang('database error. please try again later')));
+				redirect(current_url());					
+    			
+			}
+			
+			$this->db->trans_commit();
+			/*
+			$this->system_log->add(
+            			'performer', 
+            			$this->user->id,
+            			'performer', 
+            			$this->user->id, 
+            			'edit_account', 
+            			'Performer has edited personal details.', 
+            			time(), 
+            			ip2long($this->input->ip_address())
+			);
+			*/	
+			$this->session->set_flashdata('msg',array('success'=>TRUE,'message'=>lang('Pause time saved')));
 			redirect(current_url());					
 		}
 	}
