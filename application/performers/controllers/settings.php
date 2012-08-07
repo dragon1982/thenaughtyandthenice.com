@@ -693,7 +693,6 @@ Class Settings_controller extends MY_Performer{
 							$this->user->id,
 							array(
 								'pause_time'			=> $this->input->post('pause_time')*60,
-								'pause_timestamp'       => time(),
 							)
 			);
 			

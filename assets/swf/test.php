@@ -28,7 +28,7 @@
     $performer_id = clean($_POST['performer_id']);
 
 	//Create INSERT query
-	$qry = 'UPDATE performers SET is_in_pause='.$is_in_pause.' WHERE id='.$performer_id;
+	$qry = 'UPDATE performers SET is_in_pause='.$is_in_pause.', pause_timestamp='.time().' WHERE id='.$performer_id;
 	$result = @mysql_query($qry);
 	
 echo "writing=Ok";

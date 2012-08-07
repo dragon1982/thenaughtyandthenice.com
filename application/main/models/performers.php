@@ -8,6 +8,7 @@ Class Performers extends CI_Model{
 	var $performers_categories 	= 'performers_categories';
 	var $performers_languages	= 'performers_languages';
 	var $performers_favorites	= 'performers_favorites';
+	var $performers_ratings     = 'performers_ratings';
 	var $fms					= 'fms';
 	var $user_id				= 'user_id';
 
@@ -104,7 +105,6 @@ Class Performers extends CI_Model{
 		if( ! $this->is_purified  ){
 			show_error('Invalid filters applied');
 		}
-
 		$this->db->join($this->performers_languages, $this->performers_languages . '.performer_id = ' . $this->performers . '.id','inner');
 
 		//performerii trebuie sa fie aprobati
@@ -248,8 +248,20 @@ Class Performers extends CI_Model{
 
 			return $this->db->get($this->performers)->row()->total;
 		} else {
-			$this->db->select('distinct(performers.id), performers.* , performers_profile.* ,group_concat(language_code) as language_code ');
-
+			$this->db->select('performers.* , performers_profile.* ,group_concat(language_code) as language_code ');
+			
+			// SELECT score and most viewd
+			$this->db->select('
+				(SELECT 
+					AVG(`performers_ratings`.rating)
+				FROM `performers_ratings` 
+				WHERE `performers_ratings`.`performer_id` = `performers`.id) as score,
+				(SELECT 
+					COUNT(*)
+				FROM `performers_ratings` 
+				WHERE `performers_ratings`.`performer_id` = `performers`.id) as views
+			');
+			
 			//filtru pe tara de origine (ban pe tara)
 			if( isset( $filters['country_code'] ) ){
 				$this->db->having('(SELECT COUNT(performer_id) FROM `banned_countries` WHERE `banned_countries`.`performer_id` = `performers`.`id` AND `banned_countries`.`country_code` =  '.$this->db->escape($filters['country_code']).') = 0');
@@ -264,6 +276,15 @@ Class Performers extends CI_Model{
 				$this->db->order_by('is_online',$order_by['is_online']);
 			}
 
+			if(isset($order_by['most_viewed'])){
+				$this->db->order_by('views',$order_by['most_viewed']);
+			}
+			if(isset($order_by['newest'])){
+				$this->db->order_by('register_date',$order_by['newest']);
+			}
+			if(isset($order_by['score'])){
+				$this->db->order_by('score',$order_by['score']);
+			}
 			//selectare performeri favoriti
 			if( isset( $filters['user_id'] ) ){
 				$this->db->select($this->performers_favorites . '.favorite_id');
@@ -284,7 +305,7 @@ Class Performers extends CI_Model{
 			$this->db->group_by('performers.id');
 			$this->db->limit($limit);
 			$this->db->offset($offset);
-
+			
 			return $this->db->get($this->performers)->result();
 		}
 	}

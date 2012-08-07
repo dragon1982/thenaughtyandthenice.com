@@ -52,7 +52,15 @@ class Home_controller extends MY_Controller {
 		$data['categories'] 			= $this->categories->get_all_categories();
 
 		//$data['performers_random']		= $this->performers->get_multiple_performers(array(),9,FALSE,array('rand'=>TRUE));
-		$data['performers'] = $this->performers->get_multiple_performers(array(),40,FALSE,array('rand'=>TRUE));
+		$order_by = array('rand'=>TRUE);
+		if($sort = $this->input->get('sort',null)) {
+			if($sort == 'most_viewed') $order_by = array('most_viewed'=>'DESC');
+			if($sort == 'newest') $order_by = array('newest'=>'DESC');
+			if($sort == 'score') $order_by = array('score'=>'DESC');
+		}
+		$data['sort'] = $sort;
+		$data['performers'] = $this->performers->get_multiple_performers(array(),40,FALSE, $order_by);
+		
 		//$data['performers_in_private']	= $this->performers->get_multiple_performers(array('is_in_private'=>1),5,FALSE,array('rand'=>TRUE));
 		$data['pageViewHeight'] 	= 634;
 
