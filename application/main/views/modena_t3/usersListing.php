@@ -22,7 +22,7 @@
                                 	<div class="model-name"><a href="<?php echo site_url($user->nickname)?>"><?php echo $user->nickname?></a></div>
                                     <p class="model-stats">
                                         <strong><?php echo floor((time() - $user->birthday)/31556926);?> years</strong> - <?php echo $user->city?>, <?php echo $user->state?> <br>
-                                        Score: <strong><?php echo $user->score; ?></strong>
+                                        Score: <strong><?php echo ($user->score)?$user->score:'N/A';  ?></strong>
                                     </p>
                                 </div>
                                 <div class="clearfix">
