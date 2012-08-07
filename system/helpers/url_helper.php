@@ -50,7 +50,7 @@ if ( ! function_exists('site_url'))
 
 /**
  * Base URL
- * 
+ *
  * Create a local URL based on your basepath.
  * Segments can be passed in as a string or an array, same as site_url
  * or a URL to a file can be passed in, e.g. to an image file.
@@ -535,7 +535,7 @@ if ( ! function_exists('redirect'))
 	function redirect($uri = '', $method = 'location', $http_response_code = 302)
 	{
 
-		
+
 		if ( ! preg_match('#^https?://#i', $uri))
 		{
 			$uri = site_url($uri);
@@ -543,16 +543,16 @@ if ( ! function_exists('redirect'))
 
 		$CI = &get_instance();
 		if( isset($CI->im_in_modal) && $CI->im_in_modal ){
-			$method = 'ajax';			
+			$method = 'ajax';
 		}
-				
+
 		switch($method)
 		{
 			case 'refresh'	: header("Refresh:0;url=".$uri);
 				break;
 			case 'ajax'		:
 				echo '<script type="text/javascript">
-						window.parent.location.href = "' . $uri . '";  
+						window.parent.location.href = "' . $uri . '";
 						</script>';
 				break;
 			default			: header("Location: ".$uri, TRUE, $http_response_code);

@@ -89,6 +89,52 @@
 
 	});
 </script>
+
+<script type="text/javascript">
+	function update_stats(){
+		var user_id = <?php echo $this->user->id?>;
+		var performer_id = <?php echo $this->user->id?>;
+		$.ajax({
+        	url: "<?php echo site_url('ajax_update/update_stats?nickname='.$performer->nickname)?>",
+            type: 'get',
+            dataType: "json",
+            success: function(response) {
+
+				//$('#room-status').html(response.roomStatus);
+				$('#clock-message').html(response.clockMsg);
+
+				$('#clock-min').html(response.clockMin);
+				$('#clock-sec').html(response.clockSec);
+				if(!response.is_in_break){
+				  $('#clock').hide();
+				}else{
+				  $('#clock').show();
+				}
+
+				if(response.is_online == 0){
+				  $('#btn-go-free').hide();
+				  $('#btn-go-private').hide();
+				  $('#btn-go-peek').hide();
+				}else{
+				  $('#btn-go-free').show();
+				  $('#btn-go-private').show();
+				  $('#btn-go-peek').show();
+				}
+
+				$('#time_remaining').html(response.rem_time + ' <?php echo lang('minute(s)')?>');
+            }
+        });
+		if(user_id > 0){
+			setTimeout(update_stats, 1000);
+		}
+	}
+
+	$(document).ready(function(){
+  	$('#clock').hide();
+		update_stats();
+	});
+</script>
+
 <?php include_once($_SERVER['DOCUMENT_ROOT']."/assets/modena_t3/addons/rating/_drawrating.php")?>
             <article class="set-bott-1">
 
@@ -125,44 +171,49 @@
 
                         </div><!-- end box-t1 -->
 
-                        <a class="btn-nice-4 set-bott-2" href="javascript:;"><span class="ico-private-messages">Private Chat</span></a>
+                        <a id="btn-go-free" class="btn-nice-4 set-bott-2" href="<?php echo site_url('room/'.$performer->nickname)?>"><span class="ico-private-messages">Free Chat</span></a>
+                        <?php if($this->user->id > 0):?>
+                        <a id="btn-go-private" class="btn-nice-4 set-bott-2" href="<?php echo site_url('room/'.$performer->nickname.'/private')?>"><span class="ico-private-messages">Private Chat</span></a>
+                        <a id="btn-go-peek" class="btn-nice-4 set-bott-2" href="<?php echo site_url('room/'.$performer->nickname.'/peek')?>"><span class="ico-private-messages">Peek Chat</span></a>
+                        <?php endif;?>
+
                         <?php if($this->user->id > 0):?>
                         	<a class="btn-nice-3 set-bott-2 send_message" href="javascript:;"><span class="ico-messages"><?php echo lang('send message')?></span></a>
 
-							<?php if(isset($friends['request'])): ?>
-										<?php if($friends['request']->status == 'new'): ?>
-											<?php echo form_open('relation/add', array('id'=>'add_relation_form', 'method'=>'post', 'name' => 'add_relation_form_'.$performer->nickname)); ?>
-												<input type="hidden" name="id" value="<?php echo $friends['request']->id; ?>" />
-												<input type="hidden" name="type" value="<?php echo $friends['request']->type; ?>" />
-												<a class="btn-nice-3 set-bott-2" href="javascript:;" onclick="javascript:document.add_relation_form_<?php echo $performer->nickname?>.submit();"><span class="ico-add-friend">Add friend</span></a>
-											</form>
-										<?php elseif($friends['request']->status == 'pending'): ?>
-											<?php echo form_open('relation/delete', array('id'=>'delete_relation_form', 'method'=>'post', 'name'=>'delete_relation_form_'.$performer->nickname)); ?>
-												<input type="hidden" name="rel_id" value="<?php echo $friends['request']->rel_id; ?>" />
-												<a class="btn-nice-3 set-bott-2" href="javascript:;" onclick="javascript:document.delete_relation_form_<?php echo $performer->nickname?>.submit();"><span class="ico-remove-friend">Cancel friend request</span></a>
-											</form>
-										<?php elseif($friends['request']->status == 'ban'): ?>
-											The user is banned
-										<?php elseif($friends['request']->status == 'banned'): ?>
-											You were banned by this user
-										<?php endif; ?>
-							<?php endif; ?>
+													<?php if(isset($friends['request'])): ?>
+																<?php if($friends['request']->status == 'new'): ?>
+																	<?php echo form_open('relation/add', array('id'=>'add_relation_form', 'method'=>'post', 'name' => 'add_relation_form_'.$performer->nickname)); ?>
+																		<input type="hidden" name="id" value="<?php echo $friends['request']->id; ?>" />
+																		<input type="hidden" name="type" value="<?php echo $friends['request']->type; ?>" />
+																		<a class="btn-nice-3 set-bott-2" href="javascript:;" onclick="javascript:document.add_relation_form_<?php echo $performer->nickname?>.submit();"><span class="ico-add-friend">Add friend</span></a>
+																	</form>
+																<?php elseif($friends['request']->status == 'pending'): ?>
+																	<?php echo form_open('relation/delete', array('id'=>'delete_relation_form', 'method'=>'post', 'name'=>'delete_relation_form_'.$performer->nickname)); ?>
+																		<input type="hidden" name="rel_id" value="<?php echo $friends['request']->rel_id; ?>" />
+																		<a class="btn-nice-3 set-bott-2" href="javascript:;" onclick="javascript:document.delete_relation_form_<?php echo $performer->nickname?>.submit();"><span class="ico-remove-friend">Cancel friend request</span></a>
+																	</form>
+																<?php elseif($friends['request']->status == 'ban'): ?>
+																	The user is banned
+																<?php elseif($friends['request']->status == 'banned'): ?>
+																	You were banned by this user
+																<?php endif; ?>
+													<?php endif; ?>
                         <?php endif;?>
 
                         <a class="btn-nice-3 set-bott-2" href="<?php echo site_url(($favorite)? 'remove-favorite/' . $performer->nickname : 'add-favorite/' . $performer->nickname)?>">
                         	<span class="ico-add-favorite"><?php echo ( ! $favorite)?lang('add favorite'):lang('remove favorite')?></span>
                         </a>
 
-                        <div class="clock set-top-1 set-bott-1 clearfix">
-                        	<div class="clock-title-1"><span class="color-1">Next show</span> will start in</div>
+                        <div id="clock" class="clock set-top-1 set-bott-1 clearfix">
+                        	<div id="clock-message" class="clock-title-1">Soon...</div>
                         	<div class="left-part">
                             	<div class="time-decoration"><!-- --></div>
-                            	<div class="time-no">12</div>
+                            	<div id="clock-min" class="time-no">12</div>
                                 <div class="time-desc">Minutes</div>
                             </div>
                             <div class="right-part">
                             	<div class="time-decoration"><!-- --></div>
-                            	<div class="time-no">32</div>
+                            	<div id="clock-sec" class="time-no">32</div>
                                 <div class="time-desc">Seconds</div>
                             </div>
                         </div><!-- end clock -->

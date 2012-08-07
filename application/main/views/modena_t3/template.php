@@ -39,6 +39,8 @@
 		        </header><!--end master-header-->
 
 		    		<div id="wrapper" class="clearfix">
+		    			<?php if ($this->router->class == 'room_controller') $this->load->view('chat/website_models_head');?>
+
 			        <div id="content">
 			        			<?php if ($this->router->class == 'home_controller') $this->load->view('includes/_champagne_room_banner');
 

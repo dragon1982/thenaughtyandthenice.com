@@ -69,7 +69,7 @@
 		$(function() {
 			$('#chatOnlineUserList').slimScroll({
 					height: '200px',
-				  width: '245px',
+				  width: '131px',
 				  railVisible: false,
 				  alwaysVisible: true,
 				  railColor: '#27434e',
@@ -80,7 +80,7 @@
 
 			$('#chatOfflineUserList').slimScroll({
 				height: '200px',
-			  width: '245px',
+			  width: '131px',
 			  railVisible: false,
 			  alwaysVisible: true,
 			  railColor: '#27434e',

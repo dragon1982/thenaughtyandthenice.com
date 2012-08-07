@@ -10,7 +10,7 @@
     </ul>
 
     <div class="chips-status">
-    	<span><?php echo $bold_credits?></span> credits left in your account &nbsp;|&nbsp; <a href="<?php echo site_url('add-credits')?>"><strong>Buy more coins!</strong></a>
+    	<span id="user_chips"><?php echo $bold_credits?></span> credits left in your account &nbsp;|&nbsp; <a href="<?php echo site_url('add-credits')?>"><strong>Buy more coins!</strong></a>
     </div>
 
 </div><!--end my-account-->
