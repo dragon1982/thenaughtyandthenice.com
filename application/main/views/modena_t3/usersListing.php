@@ -26,8 +26,8 @@
                                     </p>
                                 </div>
                                 <div class="clearfix">
-                                    <a href="<?php echo site_url($user->nickname)?>" class="btn-view-profile">View Profile</a>
-                                    <a href="<?php echo site_url($user->nickname)?>" class="btn-view-webcam">View Webcam</a>
+                                    <a href="<?php echo site_url($user->nickname)?>" class="btn-view-profile">Profile</a>
+                                    <a href="<?php echo site_url($user->nickname)?>" class="btn-view-webcam">Webcam</a>
                                 </div>
                             </article>
                         </li>
@@ -39,7 +39,7 @@
 		$(function() {
 			$('#usersListing').slimScroll({
 					height: '<?php echo $pageViewHeight ?>px',
-				  width: '<?php echo ($this->user->id > 0)? '821px' : '1090px'?>',
+				  width: '<?php echo ($this->user->id > 0)? '821px' : '1101px'?>',
 				  railVisible: true,
 				  alwaysVisible: true,
 				  railColor: '#27434e',
