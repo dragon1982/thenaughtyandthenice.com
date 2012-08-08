@@ -59,7 +59,7 @@ class Home_controller extends MY_Controller {
 			if($sort == 'score') $order_by = array('score'=>'DESC');
 		}
 		$data['sort'] = $sort;
-		$data['performers'] = $this->performers->get_multiple_performers(array(),40,FALSE, $order_by);
+		$data['performers'] = $this->performers->get_multiple_performers(array('is_online'=>true),40,FALSE, $order_by);
 		
 		//$data['performers_in_private']	= $this->performers->get_multiple_performers(array('is_in_private'=>1),5,FALSE,array('rand'=>TRUE));
 		$data['pageViewHeight'] 	= 634;

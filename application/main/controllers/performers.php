@@ -55,6 +55,12 @@ class Performers_controller extends MY_Controller{
 		$filters = $this->input->get('filters');
 		//seteaza filtrele pentru pagina actuala
 		$settings = initialize_filters($filters,$order_by = NULL,'listing');
+		$settings['order_by'] = array('rand'=>TRUE);
+		if($sort = $this->input->get('sort',null)) {
+			if($sort == 'most_viewed') $settings['order_by'] = array('most_viewed'=>'DESC');
+			if($sort == 'newest') $settings['order_by'] = array('newest'=>'DESC');
+			if($sort == 'score') $settings['order_by'] = array('score'=>'DESC');
+		}
 
 		$config['per_page']		    = (($this->user->id > 0)) ? 21 : 12;
 		$config['base_url'] 	    = site_url('performers/page/');
@@ -76,6 +82,9 @@ class Performers_controller extends MY_Controller{
 		$data['keywords'] 				= SETTINGS_SITE_KEYWORDS;
 		$data['pageTitle'] 				= lang('Our Models').' - '.SETTINGS_SITE_TITLE;
 
+		$data['sort'] = $sort;
+		$data['sortPage'] = 'performers';
+		
 		$search = prepare_search_options();
 		$data = array_merge($data, $search);
 

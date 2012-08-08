@@ -1,4 +1,8 @@
-<?php  $filter_array = $this->input->get('filters', TRUE); //pentru repopulare + XSS CLEAN
+<?php  
+if(!isset($sort)) $sort = null;
+if(!isset($sortPage)) $sortPage = null;
+
+$filter_array = $this->input->get('filters', TRUE); //pentru repopulare + XSS CLEAN
 if(isset($filter_array['price_range'])) {
 	$prices = explode('-', $filter_array['price_range'][0]);
 	$min_price = $prices[0];
@@ -146,15 +150,15 @@ $online_performers = $query->row()->online_performers;
 	
 <div class="box-header clearfix">
 	<h1 class="left box-title-1">
-		<a href="<?php echo site_url()?>">
+		<a href="<?php echo site_url($sortPage)?>">
 			<span class="girls-no"><?php echo $online_performers?></span> <img src="<?php echo assets_url()?>images/title-models-online.png" alt="Models Online now">
 		</a>
 	</h1>
 
 	<ul class="tabs-t1 left set-tabs-pos">
-		<li <?php if($sort=='most_viewed'): ?>class="selected"<?php endif; ?>><a href="<?php echo site_url('?sort=most_viewed')?>">Most viewed </a></li>
-		<li <?php if($sort=='newest'): ?>class="selected"<?php endif; ?>><a href="<?php echo site_url('?sort=newest')?>">Newest</a></li>
-		<li <?php if($sort=='score'): ?>class="selected"<?php endif; ?>><a href="<?php echo site_url('?sort=score')?>">Cam score</a></li>
+		<li <?php if($sort=='most_viewed'): ?>class="selected"<?php endif; ?>><a href="<?php echo site_url($sortPage.'?sort=most_viewed')?>">Most viewed </a></li>
+		<li <?php if($sort=='newest'): ?>class="selected"<?php endif; ?>><a href="<?php echo site_url($sortPage.'?sort=newest')?>">Newest</a></li>
+		<li <?php if($sort=='score'): ?>class="selected"<?php endif; ?>><a href="<?php echo site_url($sortPage.'?sort=score')?>">Cam score</a></li>
 	</ul>	
 	
 	<?php echo form_open('', array('method' => 'get', 'id' => 'form_search', 'class' => 'search clearfix'))?>
