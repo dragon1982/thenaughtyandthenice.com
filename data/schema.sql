@@ -378,10 +378,6 @@ CREATE TABLE IF NOT EXISTS `performers` (
   `account` varchar(800) DEFAULT NULL,
   `release` decimal(7,2) DEFAULT '0.00',
   `credits` decimal(8,2) DEFAULT '0.00',
-  `status_message` VARCHAR(255) NULL DEFAULT NULL,
-  `is_in_pause` TINYINT(1) UNSIGNED NULL DEFAULT NULL,
-  `pause_time` INT(10) UNSIGNED NULL DEFAULT NULL,
-  `pause_message` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `nickname` (`nickname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -161,7 +161,16 @@
                         		<img src="<?php echo ($performer->avatar != '') ? main_url('uploads/performers/' . $performer->id . '/medium/' . $performer->avatar) : assets_url().'images/poza_tarfa_medium.jpg'?>" alt="" width="178">
                         	</a>
 
-                          <div class="rate clearfix">
+                          <div class="rate clearfix">						
+							<?php
+							if($performer->is_online):
+								echo '<div style="width: 100%;">';
+								$url = base_url()."userListFull.php?performer=$performer->id&userId=$performer->id";
+								$xml = simplexml_load_file($url);
+								echo '<strong>'. $xml->viewer->count() .'</strong> users online<br/>';
+								echo '</div>';
+							endif;	
+							?>						
                           	<div>Rate:</div>
 														<?php
 														$user_id = ($this->user->id > 0) ? $this->user->id : null;

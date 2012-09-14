@@ -39,7 +39,7 @@
 		$(function() {
 			$('#usersListing').slimScroll({
 					height: '<?php echo $pageViewHeight ?>px',
-				  width: '<?php echo ($this->user->id > 0)? '821px' : '1101px'?>',
+				  width: '<?php echo ($this->user->id > 0)? '941px' : '1101px'?>',
 				  railVisible: true,
 				  alwaysVisible: true,
 				  railColor: '#27434e',

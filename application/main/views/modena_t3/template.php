@@ -44,10 +44,10 @@
 			        <div id="content">
 			        			<?php if ($this->router->class == 'home_controller') $this->load->view('includes/_champagne_room_banner');
 
-											if((isset($_categories)) && (isset($show_categories))){
-												if($_categories && is_array($categories) && ($this->router->class == 'performers_controller'))
-													$this->load->view('includes/_categories');
-											}
+											//if((isset($_categories)) && (isset($show_categories))){
+											//	if($_categories && is_array($categories) && ($this->router->class == 'performers_controller'))
+											//		$this->load->view('includes/_categories');
+											//}
 
 											if(isset($page)){
 												$this->load->view($page);

@@ -91,6 +91,7 @@ if(isset($filter_array['age_range'])) {
 			    
 
 			}); */
+      
 
 		});
 		
@@ -98,6 +99,11 @@ if(isset($filter_array['age_range'])) {
 			$('.advanced_search').css('height', $('.advanced_search').height() + 'px');
 			$('.advanced_search').slideToggle(1000);
 		}
+    
+		$(window).load(function() {
+      //toggle_advanced();
+      $('.advanced_search').hide();
+		});     
 
 		function perform_ajax_request() {
 			if($('#search-input-field').val().length >= 3 || $('#search-input-field').val().length == 0) {
@@ -142,7 +148,7 @@ if(isset($filter_array['age_range'])) {
 	
 <?php
 $this->db->select('count(*) AS online_performers', FALSE);
-$this->db->select('is_online', 1);
+$this->db->where('is_online', 1);
 $query = $this->db->get('performers');
 $online_performers = $query->row()->online_performers;
 ?>
@@ -173,7 +179,7 @@ $online_performers = $query->row()->online_performers;
 	<?php if($this->user->id > 0):?>                
 
 					   
-		<div class="advanced_search" style=" display: block;">
+		<div class="advanced_search" style="display: block;">
 				<div class="box-header clearfix">
 					<div class="advanced_search_container clearfix">	
 					

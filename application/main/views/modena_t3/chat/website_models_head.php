@@ -119,6 +119,7 @@
                                 </div>
                             </div>
 
+														<?php if(isset($showPerformerRates)):?>
                             <div class="chat-tax ">
                             	<table>
                                 	<tr>
@@ -155,6 +156,7 @@
 																		<?php endif ?>
                                 </table>
                             </div>
+                            <?php endif;?>
 
                             <div class="chat-topic-right">
                                 <div class="clock-label">

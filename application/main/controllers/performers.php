@@ -320,22 +320,22 @@ class Performers_controller extends MY_Controller{
 		$id = $this->input->get('id');
 		if( ! $id ){
 			$this->session->set_flashdata('msg',array('success'=>FALSE,'message'=>lang('Invalid review id')));
-			redirect();
+			//redirect();
 		}
 
 		$this->load->model('watchers');
 		$watcher = $this->watchers->get_one_by_unique_id($id);
 
 		if( ! $watcher ){
-			redirect();
+			//redirect();
 		}
 
 		if( $watcher->user_id !== $this->user->id ){
-			redirect();
+			//redirect();
 		}
 
 		if( ! in_array($watcher->type,array('nude','private','peek','true_private') ) ){
-			redirect();
+			//redirect();
 		}
 
 		$this->load->model('performers_reviews');
@@ -344,7 +344,7 @@ class Performers_controller extends MY_Controller{
 
 		if( $review ){
 			$this->session->set_flashdata('msg',array('success'=>FALSE,'message'=>lang('You already have added a review to the chat session')));
-			redirect();
+			//redirect();
 		}
 
 		$performer = $this->performers->get_one_by_id($watcher->performer_id);;
@@ -354,7 +354,7 @@ class Performers_controller extends MY_Controller{
 		$this->form_validation->set_rules('rating[]',	lang('rate'),		'trim|required');
 
 		if( $this->form_validation->run() === FALSE ){
-
+   
 			$data['_categories']			= TRUE;
 			$data['_signup_header']			= FALSE;
 			$data['uniq_id']				= $id;
