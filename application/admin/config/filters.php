@@ -72,4 +72,8 @@ $config['filters']['admins'] = array(
 		'id' 			=> 'id',
 		'username' 		=> 'username',
 );
+$config['filters']['champagne_rooms'] = array (
+		'title' 		=> 'title',
+		'status' 		=> 'status'
+);
 //$config['filters']['performers'] = $performers;

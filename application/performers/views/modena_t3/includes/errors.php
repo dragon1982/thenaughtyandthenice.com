@@ -1,6 +1,6 @@
 <?php $messages = $this->session->flashdata('msg');
 if( (isset($messages) && $messages) ):	
-	if( ! $messages['success'] ):// ERRORS?>
+	if( ! isset($messages['success']) ):// ERRORS?>
 		<div class="status error">
 			<?php if(isset($messages) && $messages):?>	
 				<p><img src="<?php echo assets_url()?>images/icons/icon_error.png" /><?php echo $messages['message']?></p>

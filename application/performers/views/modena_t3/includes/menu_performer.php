@@ -41,6 +41,14 @@
 	</div>
 	<div class="item">
 		<span class="bg_l "></span><span class="bg_m ">
+			<a href="<?php echo site_url('champagne_rooms')?>" class="menu_item">
+				<?php $menu_item = lang('Champagne rooms')?>
+				<span class="eutemia " ><?php echo substr($menu_item,0,1)?></span><span class="red arial" ><?php echo substr($menu_item,1)?></span>
+			</a>
+		</span><span class="bg_r "></span>
+	</div>
+	<div class="item">
+		<span class="bg_l "></span><span class="bg_m ">
 			<a href="<?php echo site_url('logout')?>" class="menu_item">
 				<?php $menu_item = lang('Log Out')?>
 				<span class="eutemia " ><?php echo substr($menu_item,0,1)?></span><span class="red arial" ><?php echo substr($menu_item,1)?></span>

@@ -1,22 +1,16 @@
-# --------------------------------------------------------
-# Host:                         debian
-# Server version:               5.5.18-1~dotdeb.1
-# Server OS:                    debian-linux-gnu
-# HeidiSQL version:             6.0.0.3603
-# Date/time:                    2012-06-19 22:11:50
-# --------------------------------------------------------
+-- --------------------------------------------------------
+-- Host:                         localhost
+-- Server version:               5.1.63-0+squeeze1 - (Debian)
+-- Server OS:                    debian-linux-gnu
+-- HeidiSQL version:             7.0.0.4053
+-- Date/time:                    2012-10-02 03:53:03
+-- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40014 SET FOREIGN_KEY_CHECKS=0 */;
 
-# Dumping database structure for east_wolf_com_thenaughtyandthenice
-CREATE DATABASE IF NOT EXISTS `east_wolf_com_thenaughtyandthenice` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
-USE `east_wolf_com_thenaughtyandthenice`;
-
-
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.admins
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.admins
 CREATE TABLE IF NOT EXISTS `admins` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` char(64) NOT NULL,
@@ -27,10 +21,10 @@ CREATE TABLE IF NOT EXISTS `admins` (
   KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.ad_traffic
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.ad_traffic
 CREATE TABLE IF NOT EXISTS `ad_traffic` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `ad_id` int(11) DEFAULT NULL,
@@ -41,10 +35,10 @@ CREATE TABLE IF NOT EXISTS `ad_traffic` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.ad_zones
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.ad_zones
 CREATE TABLE IF NOT EXISTS `ad_zones` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `hash` varchar(255) DEFAULT NULL,
@@ -65,10 +59,10 @@ CREATE TABLE IF NOT EXISTS `ad_zones` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.affiliates
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.affiliates
 CREATE TABLE IF NOT EXISTS `affiliates` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` char(25) DEFAULT NULL,
@@ -102,10 +96,10 @@ CREATE TABLE IF NOT EXISTS `affiliates` (
   KEY `token` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.banned_countries
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.banned_countries
 CREATE TABLE IF NOT EXISTS `banned_countries` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `performer_id` int(11) DEFAULT '0',
@@ -114,10 +108,10 @@ CREATE TABLE IF NOT EXISTS `banned_countries` (
   KEY `performer_id` (`performer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.banned_states
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.banned_states
 CREATE TABLE IF NOT EXISTS `banned_states` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `performer_id` int(11) DEFAULT '0',
@@ -126,10 +120,10 @@ CREATE TABLE IF NOT EXISTS `banned_states` (
   KEY `performer_id` (`performer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.categories
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.categories
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` smallint(6) DEFAULT NULL,
@@ -140,10 +134,47 @@ CREATE TABLE IF NOT EXISTS `categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.chat_logs
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.champagne_rooms
+CREATE TABLE IF NOT EXISTS `champagne_rooms` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `performer_id` int(10) unsigned NOT NULL,
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `is_private` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `type` enum('girl','girl/girl','girl/boy') COLLATE utf8_unicode_ci NOT NULL,
+  `ticket_price` float unsigned NOT NULL DEFAULT '0',
+  `min_tickets` int(10) unsigned NOT NULL DEFAULT '0',
+  `max_tickets` int(10) unsigned DEFAULT NULL,
+  `join_in_session` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `start_time` int(10) unsigned NOT NULL COMMENT 'datetime to timestamp',
+  `duration` int(10) unsigned NOT NULL COMMENT 'seconds',
+  `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT 'available/unavailable',
+  PRIMARY KEY (`id`),
+  KEY `FK_champagne_room_performers` (`performer_id`),
+  CONSTRAINT `FK_champagne_room_performers` FOREIGN KEY (`performer_id`) REFERENCES `performers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Data exporting was unselected.
+
+
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.champagne_rooms_users
+CREATE TABLE IF NOT EXISTS `champagne_rooms_users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `champagne_room_id` int(10) unsigned NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK__champagne_room` (`champagne_room_id`),
+  KEY `FK__users` (`user_id`),
+  CONSTRAINT `FK__champagne_room` FOREIGN KEY (`champagne_room_id`) REFERENCES `champagne_rooms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK__users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Data exporting was unselected.
+
+
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.chat_logs
 CREATE TABLE IF NOT EXISTS `chat_logs` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `performer_id` int(11) unsigned NOT NULL,
@@ -152,10 +183,10 @@ CREATE TABLE IF NOT EXISTS `chat_logs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.contracts
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.contracts
 CREATE TABLE IF NOT EXISTS `contracts` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `date` int(11) NOT NULL,
@@ -168,10 +199,10 @@ CREATE TABLE IF NOT EXISTS `contracts` (
   KEY `studio_id` (`studio_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.countries
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.countries
 CREATE TABLE IF NOT EXISTS `countries` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(4) NOT NULL,
@@ -179,10 +210,10 @@ CREATE TABLE IF NOT EXISTS `countries` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.credits
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.credits
 CREATE TABLE IF NOT EXISTS `credits` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `amount_paid` decimal(7,2) NOT NULL,
@@ -200,10 +231,10 @@ CREATE TABLE IF NOT EXISTS `credits` (
   KEY `invoice_id` (`invoice_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.credits_detail
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.credits_detail
 CREATE TABLE IF NOT EXISTS `credits_detail` (
   `credit_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `log_table` enum('test_gateway_processor') DEFAULT NULL,
@@ -214,10 +245,10 @@ CREATE TABLE IF NOT EXISTS `credits_detail` (
   CONSTRAINT `credits_detail_ibfk_1` FOREIGN KEY (`credit_id`) REFERENCES `credits` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.failure_logins
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.failure_logins
 CREATE TABLE IF NOT EXISTS `failure_logins` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `ip` int(11) NOT NULL,
@@ -228,10 +259,10 @@ CREATE TABLE IF NOT EXISTS `failure_logins` (
   KEY `ip` (`ip`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.fms
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.fms
 CREATE TABLE IF NOT EXISTS `fms` (
   `fms_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -246,10 +277,10 @@ CREATE TABLE IF NOT EXISTS `fms` (
   PRIMARY KEY (`fms_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.logins
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.logins
 CREATE TABLE IF NOT EXISTS `logins` (
   `user_id` int(11) unsigned DEFAULT NULL,
   `ip` int(11) NOT NULL,
@@ -259,10 +290,10 @@ CREATE TABLE IF NOT EXISTS `logins` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.messages
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.messages
 CREATE TABLE IF NOT EXISTS `messages` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `subject` varchar(255) NOT NULL,
@@ -281,10 +312,10 @@ CREATE TABLE IF NOT EXISTS `messages` (
   KEY `to_id` (`to_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.newsletter_cron
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.newsletter_cron
 CREATE TABLE IF NOT EXISTS `newsletter_cron` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `recipient_email` varchar(255) NOT NULL,
@@ -295,10 +326,10 @@ CREATE TABLE IF NOT EXISTS `newsletter_cron` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.payments
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.payments
 CREATE TABLE IF NOT EXISTS `payments` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `paid_date` int(11) unsigned NOT NULL,
@@ -317,10 +348,10 @@ CREATE TABLE IF NOT EXISTS `payments` (
   KEY `studio_id` (`studio_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.payment_methods
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.payment_methods
 CREATE TABLE IF NOT EXISTS `payment_methods` (
   `id` tinyint(1) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
@@ -330,10 +361,10 @@ CREATE TABLE IF NOT EXISTS `payment_methods` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.performers
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.performers
 CREATE TABLE IF NOT EXISTS `performers` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` char(25) NOT NULL,
@@ -378,14 +409,19 @@ CREATE TABLE IF NOT EXISTS `performers` (
   `account` varchar(800) DEFAULT NULL,
   `release` decimal(7,2) DEFAULT '0.00',
   `credits` decimal(8,2) DEFAULT '0.00',
+  `status_message` varchar(255) DEFAULT NULL,
+  `is_in_pause` tinyint(1) unsigned DEFAULT NULL,
+  `pause_time` int(10) unsigned DEFAULT NULL,
+  `pause_timestamp` int(10) unsigned DEFAULT NULL,
+  `pause_message` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `nickname` (`nickname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_categories
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_categories
 CREATE TABLE IF NOT EXISTS `performers_categories` (
   `performers_categories_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `performer_id` int(10) DEFAULT '0',
@@ -394,10 +430,10 @@ CREATE TABLE IF NOT EXISTS `performers_categories` (
   KEY `performer_id` (`performer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_favorites
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_favorites
 CREATE TABLE IF NOT EXISTS `performers_favorites` (
   `favorite_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `performer_id` int(11) DEFAULT '0',
@@ -408,10 +444,10 @@ CREATE TABLE IF NOT EXISTS `performers_favorites` (
   KEY `performer_id` (`performer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_languages
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_languages
 CREATE TABLE IF NOT EXISTS `performers_languages` (
   `language_id` int(7) unsigned NOT NULL AUTO_INCREMENT,
   `language_code` char(3) NOT NULL,
@@ -420,10 +456,10 @@ CREATE TABLE IF NOT EXISTS `performers_languages` (
   KEY `performer_id` (`performer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_photos
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_photos
 CREATE TABLE IF NOT EXISTS `performers_photos` (
   `photo_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(30) DEFAULT NULL,
@@ -437,10 +473,10 @@ CREATE TABLE IF NOT EXISTS `performers_photos` (
   CONSTRAINT `performers_photos_ibfk_1` FOREIGN KEY (`performer_id`) REFERENCES `performers` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_photo_id
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_photo_id
 CREATE TABLE IF NOT EXISTS `performers_photo_id` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `date` int(11) DEFAULT NULL,
@@ -451,20 +487,20 @@ CREATE TABLE IF NOT EXISTS `performers_photo_id` (
   KEY `performer_id` (`performer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_ping
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_ping
 CREATE TABLE IF NOT EXISTS `performers_ping` (
   `performer_id` int(11) unsigned NOT NULL DEFAULT '0',
   `last_ping` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`performer_id`)
 ) ENGINE=MEMORY DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_profile
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_profile
 CREATE TABLE IF NOT EXISTS `performers_profile` (
   `performer_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `gender` enum('male','female','transsexual') DEFAULT NULL,
@@ -486,10 +522,10 @@ CREATE TABLE IF NOT EXISTS `performers_profile` (
   CONSTRAINT `performers_profile_ibfk_1` FOREIGN KEY (`performer_id`) REFERENCES `performers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_ratings
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_ratings
 CREATE TABLE IF NOT EXISTS `performers_ratings` (
   `performer_id` int(11) unsigned NOT NULL,
   `user_id` int(11) unsigned NOT NULL,
@@ -498,10 +534,10 @@ CREATE TABLE IF NOT EXISTS `performers_ratings` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_reviews
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_reviews
 CREATE TABLE IF NOT EXISTS `performers_reviews` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
@@ -513,10 +549,10 @@ CREATE TABLE IF NOT EXISTS `performers_reviews` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_schedules
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_schedules
 CREATE TABLE IF NOT EXISTS `performers_schedules` (
   `performer_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `day_of_week` tinyint(10) NOT NULL,
@@ -524,10 +560,10 @@ CREATE TABLE IF NOT EXISTS `performers_schedules` (
   KEY `performer_id` (`performer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_videos
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.performers_videos
 CREATE TABLE IF NOT EXISTS `performers_videos` (
   `video_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `description` varchar(255) DEFAULT NULL,
@@ -543,10 +579,10 @@ CREATE TABLE IF NOT EXISTS `performers_videos` (
   CONSTRAINT `performers_videos_ibfk_1` FOREIGN KEY (`performer_id`) REFERENCES `performers` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.relations
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.relations
 CREATE TABLE IF NOT EXISTS `relations` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `from_id` int(11) unsigned NOT NULL,
@@ -558,19 +594,19 @@ CREATE TABLE IF NOT EXISTS `relations` (
   UNIQUE KEY `unique` (`from_id`,`from_type`,`to_id`,`to_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.schema_version
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.schema_version
 CREATE TABLE IF NOT EXISTS `schema_version` (
   `version` int(3) DEFAULT NULL,
   `sub_version` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.settings
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.settings
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -581,10 +617,10 @@ CREATE TABLE IF NOT EXISTS `settings` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.songs
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.songs
 CREATE TABLE IF NOT EXISTS `songs` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
@@ -592,10 +628,10 @@ CREATE TABLE IF NOT EXISTS `songs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.studios
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.studios
 CREATE TABLE IF NOT EXISTS `studios` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` char(25) NOT NULL,
@@ -623,10 +659,10 @@ CREATE TABLE IF NOT EXISTS `studios` (
   KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.supported_languages
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.supported_languages
 CREATE TABLE IF NOT EXISTS `supported_languages` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
   `code` char(2) NOT NULL,
@@ -634,10 +670,10 @@ CREATE TABLE IF NOT EXISTS `supported_languages` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.system_logs
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.system_logs
 CREATE TABLE IF NOT EXISTS `system_logs` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `date` int(11) DEFAULT NULL,
@@ -652,10 +688,10 @@ CREATE TABLE IF NOT EXISTS `system_logs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.test_gateway_processor
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.test_gateway_processor
 CREATE TABLE IF NOT EXISTS `test_gateway_processor` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `amount` decimal(6,2) NOT NULL,
@@ -664,10 +700,10 @@ CREATE TABLE IF NOT EXISTS `test_gateway_processor` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.users
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` char(25) NOT NULL,
@@ -681,10 +717,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.users_detail
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.users_detail
 CREATE TABLE IF NOT EXISTS `users_detail` (
   `user_id` int(11) unsigned DEFAULT NULL,
   `register_ip` int(11) NOT NULL,
@@ -698,10 +734,10 @@ CREATE TABLE IF NOT EXISTS `users_detail` (
   CONSTRAINT `users_detail_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.watchers
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.watchers
 CREATE TABLE IF NOT EXISTS `watchers` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `type` enum('private','true_private','peek','nude','free','premium_video','photos','gift','admin_action','spy') DEFAULT 'free',
@@ -732,10 +768,10 @@ CREATE TABLE IF NOT EXISTS `watchers` (
   KEY `performer_id` (`performer_id`)
 ) ENGINE=MEMORY DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
+-- Data exporting was unselected.
 
 
-# Dumping structure for table east_wolf_com_thenaughtyandthenice.watchers_old
+-- Dumping structure for table east_wolf_com_thenaughtyandthenice.watchers_old
 CREATE TABLE IF NOT EXISTS `watchers_old` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `type` enum('private','true_private','peek','nude','free','premium_video','photos','gift','admin_action','spy') DEFAULT 'free',
@@ -766,7 +802,6 @@ CREATE TABLE IF NOT EXISTS `watchers_old` (
   KEY `performer_id` (`performer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-# Data exporting was unselected.
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+-- Data exporting was unselected.
+/*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

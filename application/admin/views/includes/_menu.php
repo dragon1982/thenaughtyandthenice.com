@@ -56,4 +56,7 @@
 				 <li>
 					<a href="<?php echo site_url('system_logs') ?>"><img src="<?php echo assets_url('admin/images/icons/logs.png') ?>" /><br /><?php echo lang('System Logs') ?></a>
                 </li>
+				 <li>
+					<a href="<?php echo site_url('champagne_rooms') ?>"><img src="<?php echo assets_url('admin/images/icons/logs.png') ?>" /><br /><?php echo lang('Champagne rooms') ?></a>
+                </li>
             </ul>

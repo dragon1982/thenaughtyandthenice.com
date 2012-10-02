@@ -216,7 +216,7 @@ input[type=checkbox]{
 
 #warpper{
 	position: relative;
-	width:986px;
+	width:1040px;
 	margin:0px auto;
 	padding-bottom:110px;
 	z-index:10;
@@ -442,7 +442,7 @@ input[type=checkbox]{
 .black_box{
 	position: relative;
 	margin:5px 0 0 0;
-	width: 984px;
+	width: 1040px;
 	height:100%;
 }
 
@@ -1117,6 +1117,15 @@ div.register_affiliate > div > select.small,
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	background: url("../images/input_bg_l.png") no-repeat scroll 0 0 #ffffff;
+	font-size: 11px;
+}
+
+div.register_performer > div > input.small,
+div.register_studio > div > input.small,
+div.register_affiliate > div > input.small,
+#performer_profile form input.small,
+#selected_payment_fields > div > input.small {
+	width:56px;
 	font-size: 11px;
 }
 

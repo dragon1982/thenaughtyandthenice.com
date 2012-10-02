@@ -559,6 +559,23 @@ if ( ! function_exists('html_escape'))
 		}
 	}
 }
+if ( ! function_exists('_format_seconds'))
+{
+    function _format_seconds ($sec, $padHours = false)
+    {
+      if(!$sec) return null;
+      $hms = "";
+      $hours = intval(intval($sec) / 3600);
+      $hms .= ($padHours)
+            ? str_pad($hours, 2, "0", STR_PAD_LEFT). ":"
+            : $hours. ":";
+      $minutes = intval(($sec / 60) % 60);
+      $hms .= str_pad($minutes, 2, "0", STR_PAD_LEFT). ":";
+      $seconds = intval($sec % 60);
+      $hms .= str_pad($seconds, 2, "0", STR_PAD_LEFT);
+      return $hms;
 
+    }
+}
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */

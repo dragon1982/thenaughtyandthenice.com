@@ -39,7 +39,6 @@ class Users_controller extends MY_Admin {
 		$config['per_page']		= 20;
 		
 		$this->admin_pagination->initialize($config);
-		
 		$data['pagination']     = $this->admin_pagination->create_links();
 		$data['users']			= $this->users->get_all($filters, FALSE,implode_order($order) , $this->uri->segment(3), $config['per_page']);
 

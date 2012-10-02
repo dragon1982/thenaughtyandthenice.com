@@ -38,10 +38,7 @@
 				</div>
 				<div class="menu_item">
 					<a href="<?php echo site_url('videos')?>"><span class="btn"><span class="helvetica "><?php echo lang('My videos') ?></span></span><span class="r"></span></a>
-				</div>
-				<div class="menu_item">
-					<a href="<?php echo site_url('settings/pause_settings')?>"><span class="btn"><span class="helvetica "><?php echo lang('Pause Settings') ?></span></span><span class="r"></span></a>
-				</div>			
+				</div>		
 			</div>
 			<br /><br /><br />
 			<div class="title">
