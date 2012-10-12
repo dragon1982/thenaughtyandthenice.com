@@ -53,8 +53,8 @@
                         	<div class="featuring-label">Featuring</div>
                         	<div class="box-decoration"><!-- --></div>
                         	<div class=" thumb-size-2">
-								<a href="javascript:;">
-									<img src="<?php echo  ( ! (file_exists('uploads/performers/' . $champagneRoom['performer_id'] . '/small/' . $champagneRoom['avatar']) && $champagneRoom['avatar']))? assets_url().'images/poza_tarfa.png':site_url('uploads/performers/' . $champagneRoom['id'] . '/small/' . $champagneRoom['avatar'])?>" alt="" width="246">
+								<a href="<?php echo site_url('champagne_room/view/'.$champagneRoom['id'])?>">
+									<img src="<?php echo  ( ! (file_exists('uploads/performers/' . $champagneRoom['performer_id'] . '/small/' . $champagneRoom['avatar']) && $champagneRoom['avatar']))? assets_url().'images/poza_tarfa.png':site_url('uploads/performers/' . $champagneRoom['performer_id'] . '/small/' . $champagneRoom['avatar'])?>" alt="" width="246">
 								</a>
 							</div>
                             <div class="model-desc">

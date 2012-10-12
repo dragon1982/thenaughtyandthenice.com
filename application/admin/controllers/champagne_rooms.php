@@ -48,7 +48,6 @@ class Champagne_rooms_controller extends MY_Admin {
 			$champagne_room = $this->champagne_rooms->get_by_id($id);
 			$data['champagne_room'] = $champagne_room;
                 }
-                
                 $data['types'] = $this->types;
                 
 		$this->form_validation->set_rules('title', lang('title'), 'required|trim|min_length[2]|max_length[100]|strip_tags|purify');

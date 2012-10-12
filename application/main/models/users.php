@@ -195,6 +195,11 @@ Class Users extends CI_Model{
 		$this->db->drop_memcache_key('user_id-%s',array($user_id));
 	}
 	
+	function spend_credits($user_id,$credits){			
+		$result = $this->db->query('UPDATE `users` SET `credits` = `credits` - ' . $this->db->escape($credits) . ' WHERE `id` = ' . $this->db->escape($user_id) );
+		$this->db->drop_memcache_key('user_id-%s',array($user_id));
+                return $result;
+	}
 	
 	#############################################################################################
 	######################################### UPDATE ############################################

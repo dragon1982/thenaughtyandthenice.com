@@ -9,7 +9,7 @@
                 <?php echo form_open('champagne_rooms/add_or_edit/'.$champagne_room_id)?>
                         <div class="inputboxes">
                                 <label><?php echo lang('Performer')?>: </label>
-                                <label><b>Performer</b></label>
+                                <label><b><?php echo ((isset($champagne_room) && is_object($champagne_room))? $champagne_room->performer_username : null); ?></b></label>
                         </div>
                         <div class="inputboxes">
                                 <label for="name"><?php echo lang('Title')?>: </label>

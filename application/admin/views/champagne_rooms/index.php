@@ -72,7 +72,7 @@
                                                                         <td><?php echo $champagne_room->champagne_rooms_min_tickets?></td>
                                                                         <td><?php echo $champagne_room->champagne_rooms_max_tickets?></td>
                                                                         <td><img src="<?php echo assets_url('admin/images/icons/' . ($champagne_room->champagne_rooms_join_in_session?'approved':'rejected') . '.png') ?>" /></td>
-                                                                        <td><?php echo $champagne_room->champagne_rooms_start_time?></td>
+                                                                        <td><?php echo date('Y-m-d H:i:s',$champagne_room->champagne_rooms_start_time); ?></td>
                                                                         <td><?php echo _format_seconds($champagne_room->champagne_rooms_duration); ?></td>
                                                                         <td><img src="<?php echo assets_url('admin/images/icons/' . ($champagne_room->champagne_rooms_status?'approved':'rejected') . '.png') ?>" /></td>
 									<td style="text-align: center;">

@@ -29,6 +29,7 @@ class Champagne_room_controller extends MY_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('champagne_rooms');
+                $this->load->model('users');
 		$this->load->model('performers');		
 		$this->load->model('categories');
 
@@ -78,5 +79,77 @@ class Champagne_room_controller extends MY_Controller{
 
 		$this->load->view('template', $data);
 	}
+        
+        function view($id = null){
+            //$this->access->restrict('users'); 
+            $champagne_room = $this->champagne_rooms->get_by_id($id);
+            if(!$champagne_room) show_404();
+            if(!$champagne_room->status) show_404();
+            $champagne_room->sold_tickets = $this->champagne_rooms->sold_tickets($id);
+            $champagne_room->available_tickets = $champagne_room->max_tickets - $champagne_room->sold_tickets;
+            $champagne_room->joined_user = $this->champagne_rooms->joined_user($id,$this->user->id);
+            $data = array('champagne_room'=>$champagne_room);
+            $data['_sidebar']		= false;
+            $data['_signup_header']	= true;
+            $data['page'] 		= 'champagne_room/view';
+            $data['description'] 	= SETTINGS_SITE_DESCRIPTION;
+            $data['keywords'] 		= SETTINGS_SITE_KEYWORDS;
+            $data['pageTitle'] 		= 'Champagne Room - '.SETTINGS_SITE_TITLE;
+
+            
+            
+            $this->load->view('template', $data);
+        }
+        
+        function join(){
+            $this->access->restrict('users'); 
+            $id = $this->input->post('id');
+            $champagne_room = $this->champagne_rooms->get_by_id($id);
+            if(!$champagne_room) show_404();
+            if(!$champagne_room->status) show_404();
+            $champagne_room->sold_tickets = $this->champagne_rooms->sold_tickets($id);
+            $champagne_room->available_tickets = $champagne_room->max_tickets - $champagne_room->sold_tickets;
+            $champagne_room->joined_user = $this->champagne_rooms->joined_user($id,$this->user->id);
+            
+            if(!$champagne_room->available_tickets){
+                $this->session->set_flashdata('msg',array('success'=>FALSE,'message' => lang('They are NO more tickets available')));
+                redirect('champagne_room/view/'.$id);
+            }
+            if($champagne_room->joined_user){
+                $this->session->set_flashdata('msg',array('success'=>FALSE,'message' => lang('You already joined')));
+                redirect('champagne_room/view/'.$id);
+            }
+            if($this->user->credits < $champagne_room->ticket_price){
+                $this->session->set_flashdata('msg',array('success'=>FALSE,'message' => lang('Not enough '.SETTINGS_SHOWN_CURRENCY)));
+                redirect('champagne_room/view/'.$id);
+            }
+            
+            $this->db->trans_begin();
+            if(!$this->users->spend_credits($this->user->id, $champagne_room->ticket_price)){
+                $this->db->trans_rollback();
+                $this->session->set_flashdata('msg',array('success'=>FALSE,'message' => lang('Transaction failed 1')));
+                redirect('champagne_room/view/'.$id);
+            }
+            if(!$this->champagne_rooms->join($champagne_room->id, $this->user->id )){
+                $this->db->trans_rollback();
+                $this->session->set_flashdata('msg',array('success'=>FALSE,'message' => lang('Transaction failed 2')));
+                redirect('champagne_room/view/'.$id);
+            }
+            $this->db->trans_commit();
+            $this->session->set_flashdata('msg',array('success'=>TRUE,'message' => lang('Transaction was done successfully !')));
+
+            $this->system_log->add(
+                            'user',
+                            $this->user->id,
+                            'champagne_room',
+                            $champagne_room->id,
+                            'champagne_room/join',
+                            sprintf('User spent %s credits. User joined champagne room #%s',$champagne_room->ticket_price, $champagne_room->id),
+                            time(),
+                            ip2long($this->input->ip_address())
+            );
+            
+            redirect('champagne_room/view/'.$id);
+        }
 
 }
