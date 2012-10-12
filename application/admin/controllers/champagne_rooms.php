@@ -43,7 +43,7 @@ class Champagne_rooms_controller extends MY_Admin {
 	}
         
 	function add_or_edit($id = 0){
-            
+
 		if($id > 0){
 			$champagne_room = $this->champagne_rooms->get_by_id($id);
 			$data['champagne_room'] = $champagne_room;
@@ -60,19 +60,9 @@ class Champagne_rooms_controller extends MY_Admin {
                 $this->form_validation->set_rules('join_in_session', lang('join_in_session'), 'callback_boolean_check');
                 $this->form_validation->set_rules('duration', lang('duration'), 'trim|is_natural|min_length[1]|max_length[10]|strip_tags|purify');
                 $this->form_validation->set_rules('status', lang('status'), 'callback_boolean_check');
-                
+
 		if($this->form_validation->run() == FALSE){
-			
-			$champagne_rooms = $this->champagne_rooms->get_all();
-			if(is_array($champagne_rooms)){
-				foreach($champagne_rooms as $_champagne_room){
-					if($id != $_champagne_room->id){
-						$data['champagne_rooms'][$_champagne_room->id] = $_champagne_room->name;
-					}
-				}
-			}
-			
-			
+
 			$data['breadcrumb'][lang('Champagne rooms')] = base_url().'champagne_rooms';
 			
 			if($id > 0){
@@ -101,7 +91,7 @@ class Champagne_rooms_controller extends MY_Admin {
                 $rows['join_in_session'] = $this->input->post('join_in_session');
                 $rows['duration'] = $this->input->post('duration')*60;
                 $rows['status'] = $this->input->post('status');
-                
+
 		if($this->champagne_rooms->save($rows)){
 			$this->session->set_flashdata('msg', array('type' => 'success', 'message' => lang('Champagne room was saved successfully!')));
 			$this->system_log->add(

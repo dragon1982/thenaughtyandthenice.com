@@ -28,7 +28,8 @@ class Champagne_room_controller extends MY_Controller{
 	 */
 	function __construct(){
 		parent::__construct();
-		$this->load->model('performers');
+		$this->load->model('champagne_rooms');
+		$this->load->model('performers');		
 		$this->load->model('categories');
 
 		$this->load->config('filters');
@@ -57,7 +58,10 @@ class Champagne_room_controller extends MY_Controller{
 		$config['total_rows']   	= 0;
 		$this->pagination->initialize($config);
 
-		$data['champagne_rooms'] 	= TRUE;
+		$data['champagne_room_featured'] 	= $this->champagne_rooms->get_featured();		
+		$data['champagne_rooms_featured'] 	= $this->champagne_rooms->get_all_featured();
+		$data['champagne_rooms'] 	= $this->champagne_rooms->get_all();
+
 		$data['pagination']				= $this->pagination->create_links();
 
 		$data['pageViewHeight'] 	= 634;
